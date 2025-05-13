@@ -4,6 +4,7 @@
   height: 100vh;
   width: 100%;
   overflow: hidden;
+  font-family: Lato, sans-serif;
 }
 
 /* Slide styles */
@@ -37,11 +38,11 @@
 /* Gradient overlay */
 .gradientOverlay {
   position: absolute;
-  inset: 0;
+    inset: 0;
   background: linear-gradient(
     to right,
-    rgba(22, 101, 52, 0.7) 0%,
-    rgba(22, 101, 52, 0.5) 50%,
+    rgba(10, 49, 10, 1) 0%,
+    rgba(10, 49, 10, 0.9) 50%,
     transparent 100%
   );
 }
