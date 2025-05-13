@@ -150,3 +150,77 @@
 .activeDot {
   background-color: rgb(34 197 94); /* green-500 */
 }
+/* Existing styles... */
+
+/* Media Queries for Mobile Devices (max-width: 768px) */
+@media (max-width: 768px) {
+  .heroContainer {
+    height: 70vh; /* Reduce height on mobile */
+  }
+
+  .title {
+    font-size: 2rem; /* Smaller title */
+    line-height: 1.2;
+  }
+
+  .subtitle {
+    font-size: 1.5rem; /* Smaller subtitle */
+  }
+
+  .description {
+    font-size: 1rem; /* Smaller description */
+  }
+
+  .textContent {
+    max-width: 90%; /* Take more width on mobile */
+    padding: 0 1rem;
+  }
+
+  .buttonGroup {
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 0.75rem;
+    padding-top: 1rem;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    width: 100%; /* Full width buttons */
+    padding: 0.5rem 1rem; /* Slightly smaller padding */
+    text-align: center;
+  }
+
+  .imageContainer {
+    transform: scale(1.05); /* Less zoom on mobile */
+  }
+
+  .zoomed {
+    transform: scale(1.15);
+  }
+
+  .navigationDots {
+    bottom: 1rem; /* Move dots up slightly */
+  }
+}
+
+/* Media Queries for Very Small Screens (max-width: 480px) */
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.75rem; /* Even smaller text */
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+  }
+
+  .contentWrapper {
+    padding: 0 0.5rem; /* Less side padding */
+  }
+
+  .imageContainer {
+    transform: scale(1.1); /* Adjust zoom level */
+  }
+
+  .zoomed {
+    transform: scale(1.2);
+  }
+}
