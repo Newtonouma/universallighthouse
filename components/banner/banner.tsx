@@ -12,47 +12,54 @@ import {
 import Link from 'next/link';
 import styles from './banner.module.css';
 
+interface ActionItem {
+  title: string;
+  icon: React.ReactNode;
+  link: string;
+  color: string;
+}
+
 const DonationCarousel = () => {
-  const actions = [
+  const actions: ActionItem[] = [
     {
       title: "VOLUNTEER",
-      icon: <FaHandsHelping size={30} />, // Reduced icon size
+      icon: <FaHandsHelping size={30} />,
       link: "/volunteer",
       color: "#4CAF50"
     },
     {
       title: "HELP LIFE",
-      icon: <FaHeartbeat size={30} />, // Reduced icon size
+      icon: <FaHeartbeat size={30} />,
       link: "/help-life",
       color: "#F44336"
     },
     {
       title: "GIVE THOUGHTFULLY",
-      icon: <FaHandHoldingHeart size={30} />, // Reduced icon size
+      icon: <FaHandHoldingHeart size={30} />,
       link: "/give",
       color: "#2196F3"
     },
     {
       title: "SEND DONATION",
-      icon: <FaDonate size={30} />, // Reduced icon size
+      icon: <FaDonate size={30} />,
       link: "/donate",
       color: "#FF9800"
     },
     {
       title: "SUPPORT CAUSE",
-      icon: <FaHands size={30} />, // Reduced icon size
+      icon: <FaHands size={30} />,
       link: "/support",
       color: "#9C27B0"
     },
     {
       title: "CHANGE LIVES",
-      icon: <FaSmile size={30} />, // Reduced icon size
+      icon: <FaSmile size={30} />,
       link: "/change-lives",
       color: "#00BCD4"
     },
     {
       title: "BE THE CHANGE",
-      icon: <FaSeedling size={30} />, // Reduced icon size
+      icon: <FaSeedling size={30} />,
       link: "/be-the-change",
       color: "#8BC34A"
     }
@@ -61,8 +68,6 @@ const DonationCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
-
-  // Double the array for seamless looping
   const extendedActions = [...actions, ...actions];
 
   useEffect(() => {
@@ -71,26 +76,22 @@ const DonationCarousel = () => {
     const interval = setInterval(() => {
       setCurrentIndex(prev => {
         const newIndex = prev + 1;
-        if (newIndex >= actions.length) {
-          // Reset to first set without animation
-          return 0;
-        }
-        return newIndex;
+        return newIndex >= actions.length ? 0 : newIndex;
       });
     }, 3000);
 
     return () => clearInterval(interval);
   }, [actions.length, isPaused]);
 
-  // Handle reset without animation
   useEffect(() => {
     if (currentIndex === 0 && carouselRef.current) {
       carouselRef.current.style.transition = 'none';
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         if (carouselRef.current) {
           carouselRef.current.style.transition = 'transform 0.5s ease';
         }
       }, 50);
+      return () => clearTimeout(timer);
     }
   }, [currentIndex]);
 
@@ -110,23 +111,19 @@ const DonationCarousel = () => {
           }}
         >
           {extendedActions.map((action, index) => (
-            <Link 
-              href={action.link} 
-              key={index} 
-              passHref 
-              legacyBehavior
+            <Link
+              href={action.link}
+              key={`${action.title}-${index}`}
+              className={styles.actionCard}
+              style={{ backgroundColor: action.color }}
+              aria-label={action.title}
+              passHref
             >
-              <a 
-                className={styles.actionCard} 
-                style={{ backgroundColor: action.color }}
-                aria-label={action.title}
-              >
-                <div className={styles.iconWrapper}>
-                  {action.icon}
-                </div>
-                <h3 className={styles.actionTitle}>{action.title}</h3>
-                <div className={styles.learnMore}>→</div> {/* Simplified arrow */}
-              </a>
+              <div className={styles.iconWrapper}>
+                {action.icon}
+              </div>
+              <h3 className={styles.actionTitle}>{action.title}</h3>
+              <div className={styles.learnMore} aria-hidden="true">→</div>
             </Link>
           ))}
         </div>

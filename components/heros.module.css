@@ -204,6 +204,11 @@
 
 /* Media Queries for Very Small Screens (max-width: 480px) */
 @media (max-width: 480px) {
+  .heroContainer {
+  position: relative;height: 78vh;
+  
+}
+
   .title {
     font-size: 1.75rem; /* Even smaller text */
   }
