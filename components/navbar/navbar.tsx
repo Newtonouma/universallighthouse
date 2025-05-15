@@ -30,7 +30,7 @@ const Navbar = () => {
             <h3>Need Help?</h3>
             <p>Call our 24/7 Support Line:</p>
             <button onClick={initiateCall} className={styles.callButton}>
-              <FaPhoneAlt /> Call Now: +1 (234) 567-890
+              <FaPhoneAlt /> Call Now: +254728000747
             </button>
             <button 
               onClick={toggleHelpline} 
