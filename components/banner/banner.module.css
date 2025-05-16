@@ -1,8 +1,10 @@
-/* banner.module.css */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 .carouselContainer {
   margin: 0 auto;
   padding: 1rem 0;
   overflow: hidden;
+  background-color: rgba(10, 49, 10, 0.05);
+  font-family: 'Montserrat', sans-serif;
 }
 
 .carouselWrapper {

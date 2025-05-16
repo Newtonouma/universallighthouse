@@ -1,9 +1,12 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+/* ==========================
+   Base Styles for About Section
+========================== */
 .aboutSection {
   font-family: 'Montserrat', sans-serif;
   padding: 4rem 1rem;
-  background-color: #f9f9f9;
+  background-color: rgba(10, 49, 10, 0.05);
   color: #333;
   line-height: 1.6;
 }
@@ -17,7 +20,9 @@
   align-items: stretch;
 }
 
-/* Left Column Styles */
+/* ==========================
+   Left Column
+========================== */
 .leftColumn {
   display: flex;
   flex-direction: column;
@@ -58,7 +63,9 @@
   margin-bottom: 0.5rem;
 }
 
-/* Middle Column Styles */
+/* ==========================
+   Middle Column (Image)
+========================== */
 .middleColumn {
   position: relative;
 }
@@ -70,13 +77,15 @@
 }
 
 .mainImage {
-  object-fit: cover;
   width: 100%;
   height: 100%;
+  object-fit: cover;
   border-radius: 8px;
 }
 
-/* Right Column Styles */
+/* ==========================
+   Right Column
+========================== */
 .rightColumn {
   display: flex;
   flex-direction: column;
@@ -102,15 +111,18 @@
 }
 
 .smallImage {
-  object-fit: cover;
   width: 100%;
   height: 100%;
+  object-fit: cover;
   border-radius: 8px;
 }
 
+/* ==========================
+   Button
+========================== */
 .volunteerButton {
   background-color: #2e7d32;
-  color: white;
+  color: #fff;
   border: none;
   padding: 1rem 2rem;
   font-size: 1rem;
@@ -129,67 +141,73 @@
   transform: translateY(-2px);
 }
 
-/* Responsive Styles */
+/* ==========================
+   Responsive Breakpoints
+========================== */
+
+/* --- Tablet & Small Laptops --- */
 @media (max-width: 1024px) {
   .threeColumnLayout {
     grid-template-columns: 1fr 1fr;
   }
-  
+
   .rightColumn {
     grid-column: span 2;
     flex-direction: row;
     gap: 2rem;
   }
-  
-  .shortParagraph {
-    flex: 1;
-  }
-  
+
+  .shortParagraph,
   .smallImageWrapper {
     flex: 1;
+  }
+
+  .smallImageWrapper {
     height: auto;
     min-height: 200px;
   }
 }
 
+/* --- Tablets & Large Phones --- */
 @media (max-width: 768px) {
   .threeColumnLayout {
     grid-template-columns: 1fr;
   }
-  
+
   .imageWrapper {
-    min-height: 400px;
     order: 1;
+    min-height: 400px;
   }
-  
+
   .leftColumn {
     order: 2;
   }
-  
+
   .rightColumn {
     order: 3;
-    grid-column: span 1;
     flex-direction: column;
+    grid-column: span 1;
   }
-  
+
   .sectionTitle {
     font-size: 1.8rem;
   }
-  
+
   .sectionSubtitle {
     font-size: 1.3rem;
   }
 }
 
+/* --- Mobile Devices --- */
 @media (max-width: 480px) {
   .aboutSection {
     padding: 2rem 1rem;
   }
-  
+
   .volunteerButton {
     max-width: 100%;
   }
-  
+
   .smallImageWrapper {
     height: 150px;
   }

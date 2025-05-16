@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+.carousel-wrapper {
+  width: 100%;
+  position: relative;
+  font-family: 'Montserrat', sans-serif;
+  background-color: rgba(10, 49, 10, 0.05);
+}
+
+.carousel-track {
+  width: 600%;
+  animation: simpleCarousel 18s infinite;
+}
+
+.carousel-slide {
+  width: 100%;
+}
+
+@keyframes simpleCarousel {
+  0%, 16.66% {
+    transform: translateX(0%);
+  }
+  16.67%, 33.32% {
+    transform: translateX(-100%);
+  }
+  33.33%, 49.99% {
+    transform: translateX(-200%);
+  }
+  50%, 66.65% {
+    transform: translateX(-300%);
+  }
+  66.66%, 83.31% {
+    transform: translateX(-400%);
+  }
+  83.32%, 100% {
+    transform: translateX(-500%);
+  }
+}
