@@ -14,7 +14,8 @@ interface Event {
 }
 
 const EventsComponent: React.FC = () => {
-  const [events, setEvents] = useState<Event[]>([
+  // i removed , setEvents from the [events, setEvents] = useState<Event[]>([])
+  const [events] = useState<Event[]>([
     {
       id: 1,
       title: "Annual Tech Conference",
@@ -56,8 +57,8 @@ const EventsComponent: React.FC = () => {
       category: "Training"
     }
   ]);
-
-  const [currentDate] = useState(new Date());
+// i removed , currentDate from the [currentDate] = useState(new Date());
+  const [] = useState(new Date());
   const [activeEvent, setActiveEvent] = useState<Event | null>(null);
 
   useEffect(() => {
@@ -128,7 +129,8 @@ const EventsComponent: React.FC = () => {
 
       {/* Middle Section */}
       <div className={styles.middleSection}>
-        {events.slice(0, 4).map((event, index) => (
+      {/* i remove index from .map((event, index)) */}
+        {events.slice(0, 4).map((event) => (
           <div 
             key={event.id}
             className={`${styles.dateBox} ${activeEvent?.id === event.id ? styles.activeDate : ''}`}
