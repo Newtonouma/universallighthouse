@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import styles from './teams.module.css';
 
+// Define SVG icons directly in the component
 const TwitterIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
     <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
@@ -27,10 +28,7 @@ interface TeamMember {
   };
 }
 
-export default function TeamsComponent() {
-  const [activeDepartment, setActiveDepartment] = useState<string>('All');
-  const [hoveredId, setHoveredId] = useState<number | null>(null); // ✅ renamed to avoid collision
-
+const TeamsComponent = () => {
   const teamData: TeamMember[] = [
     {
       id: 1,
@@ -39,7 +37,10 @@ export default function TeamsComponent() {
       department: "Leadership",
       bio: "Visionary leader with 10+ years of experience building successful companies.",
       imageUrl: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=500&auto=format&fit=crop",
-      socialLinks: { twitter: "#", linkedin: "#" }
+      socialLinks: {
+        twitter: "#",
+        linkedin: "#"
+      }
     },
     {
       id: 2,
@@ -48,7 +49,10 @@ export default function TeamsComponent() {
       department: "Technology",
       bio: "Technology expert specializing in scalable architecture and innovative solutions.",
       imageUrl: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&auto=format&fit=crop",
-      socialLinks: { twitter: "#", linkedin: "#" }
+      socialLinks: {
+        twitter: "#",
+        linkedin: "#"
+      }
     },
     {
       id: 3,
@@ -57,7 +61,9 @@ export default function TeamsComponent() {
       department: "Marketing",
       bio: "Creative strategist with a passion for building brands that resonate.",
       imageUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=500&auto=format&fit=crop",
-      socialLinks: { linkedin: "#" }
+      socialLinks: {
+        linkedin: "#"
+      }
     },
     {
       id: 4,
@@ -66,7 +72,9 @@ export default function TeamsComponent() {
       department: "Design",
       bio: "User experience specialist focused on creating intuitive interfaces.",
       imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop",
-      socialLinks: { twitter: "#" }
+      socialLinks: {
+        twitter: "#"
+      }
     },
     {
       id: 5,
@@ -75,13 +83,19 @@ export default function TeamsComponent() {
       department: "Product",
       bio: "Product leader with expertise in agile development and user-centered design.",
       imageUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&auto=format&fit=crop",
-      socialLinks: { twitter: "#", linkedin: "#" }
+      socialLinks: {
+        twitter: "#",
+        linkedin: "#"
+      }
     }
   ];
 
+  const [activeDepartment, setActiveDepartment] = useState<string>('All');
+  const [] = useState<number | null>(null); // ✅ fixed destructuring
+
   const departments = ['All', ...new Set(teamData.map(member => member.department))];
-  const filteredMembers = activeDepartment === 'All'
-    ? teamData
+  const filteredMembers = activeDepartment === 'All' 
+    ? teamData 
     : teamData.filter(member => member.department === activeDepartment);
 
   return (
@@ -93,34 +107,36 @@ export default function TeamsComponent() {
         </div>
 
         <div className={styles.departmentFilters}>
-          {departments.map(dept => (
+          {departments.map(department => (
             <button
-              key={dept}
-              className={`${styles.filterButton} ${activeDepartment === dept ? styles.active : ''}`}
-              onClick={() => setActiveDepartment(dept)}
+              key={department}
+              className={`${styles.filterButton} ${activeDepartment === department ? styles.active : ''}`}
+              onClick={() => setActiveDepartment(department)}
             >
-              {dept}
+              {department}
             </button>
           ))}
         </div>
 
         <div className={styles.teamCarousel}>
           {filteredMembers.map((member, index) => (
-            <div
+            <div 
               key={member.id}
               className={styles.teamCard}
-              onMouseEnter={() => setHoveredId(member.id)}
-              onMouseLeave={() => setHoveredId(null)}
               style={{ '--i': index } as React.CSSProperties}
             >
               <div className={styles.cardImage}>
                 <img src={member.imageUrl} alt={member.name} />
                 <div className={styles.socialLinks}>
                   {member.socialLinks.twitter && (
-                    <a href={member.socialLinks.twitter}><TwitterIcon /></a>
+                    <a href={member.socialLinks.twitter} aria-label={`${member.name} Twitter`}>
+                      <TwitterIcon />
+                    </a>
                   )}
                   {member.socialLinks.linkedin && (
-                    <a href={member.socialLinks.linkedin}><LinkedInIcon /></a>
+                    <a href={member.socialLinks.linkedin} aria-label={`${member.name} LinkedIn`}>
+                      <LinkedInIcon />
+                    </a>
                   )}
                 </div>
               </div>
@@ -136,4 +152,6 @@ export default function TeamsComponent() {
       </div>
     </section>
   );
-}
+};
+
+export default TeamsComponent;
