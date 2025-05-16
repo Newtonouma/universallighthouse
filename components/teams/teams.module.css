@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
 .teamsSection {
   padding: 3rem 2rem;
   background-color: rgba(10, 49, 10, 0.05);
@@ -57,10 +58,68 @@
   border-color: transparent;
 }
 
-.teamGrid {
+/* Carousel styles */
+.teamCarousel {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-auto-flow: column;
   gap: 2rem;
+  overflow-x: auto;
+  padding: 1rem 0;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Large and medium screens - horizontal scroll */
+@media (min-width: 768px) {
+  .teamCarousel {
+    grid-auto-columns: calc(33.333% - 1.5rem);
+  }
+}
+
+/* Small screens - stacked carousel */
+@media (max-width: 767px) {
+  .teamCarousel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem;
+    max-width: 300px;
+    margin: 0 auto;
+    position: relative;
+    height: 400px;
+  }
+
+  .teamCard {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s ease;
+    opacity: 0;
+    transform: translateX(100%) scale(0.8);
+    z-index: 1;
+  }
+
+  .teamCard:nth-child(1) {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    z-index: 2;
+  }
+
+  .teamCarousel:hover .teamCard {
+    opacity: 0.7;
+    transform: translateX(-100%) scale(0.8);
+  }
+
+  .teamCarousel:hover .teamCard:nth-child(1) {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+
+  .teamCarousel:hover .teamCard:nth-child(2) {
+    opacity: 0.9;
+    transform: translateX(100%) scale(0.9);
+  }
 }
 
 .teamCard {
@@ -70,19 +129,15 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  height: 550px;
+  height: 400px;
+  scroll-snap-align: start;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
-}
-
-.teamCard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 .cardImage {
-  height: 180px;
+  height: 200px;
   overflow: hidden;
+  position: relative;
 }
 
 .cardImage img {
@@ -90,45 +145,6 @@
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease;
-}
-
-.teamCard:hover .cardImage img {
-  transform: scale(1.05);
-}
-
-.cardContent {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 1.5rem;
-  color: #0a310a;
-}
-
-.cardName {
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 0.25rem;
-}
-
-.cardPosition {
-  font-size: 1rem;
-  font-weight: 600;
-  color: rgba(10, 49, 10, 0.85);
-  margin-bottom: 0.5rem;
-}
-
-.cardDepartment {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: rgba(10, 49, 10, 0.6);
-  margin-bottom: 1rem;
-}
-
-.cardBio {
-  font-size: 0.875rem;
-  color: rgba(10, 49, 10, 0.7);
-  flex-grow: 1;
-  line-height: 1.4;
 }
 
 .socialLinks {
@@ -163,17 +179,47 @@
   background: linear-gradient(90deg, #16a34a 0%, #ef4444 100%);
 }
 
-@media (max-width: 768px) {
-  .sectionTitle {
-    font-size: 1.75rem;
-  }
+.cardContent {
+  padding: 1.5rem;
+  color: #0a310a;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
 
-  .teamsSection {
-    padding: 2rem 1rem;
-  }
+.cardName {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
 
-  .teamCard {
-    height: auto;
-    min-height: 480px;
-  }
+.cardPosition {
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(10, 49, 10, 0.85);
+  margin-bottom: 0.5rem;
+}
+
+.cardDepartment {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: rgba(10, 49, 10, 0.6);
+  margin-bottom: 1rem;
+}
+
+.cardBio {
+  font-size: 0.875rem;
+  color: rgba(10, 49, 10, 0.7);
+  line-height: 1.4;
+  margin-top: auto;
+}
+
+/* Hide scrollbar for cleaner look */
+.teamCarousel::-webkit-scrollbar {
+  display: none;
+}
+
+.teamCarousel {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
