@@ -8,6 +8,7 @@ import Events from "../../components/events/events";
 import Teams from "../../components/teams/teams";
 import Gallery from "../../components/gallery/gallery";
 import Partners from "../../components/partners/partners";
+import Footer from "../../components/footer/footer";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
     <Teams/>
     <Gallery/>
     <Partners/>
+    <Footer/>
     </>
     
   );

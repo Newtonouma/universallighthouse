@@ -1,0 +1,144 @@
+.footer-container {
+  background-color: #f7f5f0;
+  color: #1f2937;
+  padding: 2.5rem 1rem;
+}
+
+.footer-wrapper {
+  max-width: 1280px;
+  margin: auto;
+}
+
+.footer-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .footer-section-desktop {
+    display: block;
+  }
+
+  .footer-section-mobile {
+    display: none;
+  }
+}
+
+@media (max-width: 1023px) {
+  .footer-section-desktop {
+    display: none;
+  }
+
+  .footer-section-mobile {
+    display: block;
+  }
+}
+
+.footer-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-description {
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+.footer-socials {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  font-size: 1.25rem;
+}
+
+.footer-heading {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.footer-link {
+  font-size: 0.875rem;
+  display: inline-block;
+  margin-bottom: 0.25rem;
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: #db2777;
+}
+
+.footer-contact-item {
+  font-size: 0.875rem;
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.footer-accordion-btn {
+  width: 100%;
+  font-weight: 600;
+  padding: 0.5rem 0;
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.footer-chevron {
+  transition: transform 0.3s ease;
+}
+
+.footer-chevron.rotate {
+  transform: rotate(180deg);
+}
+
+.footer-accordion-content {
+  padding-left: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.footer-bottom {
+  border-top: 1px solid #e5e7eb;
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  font-size: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+@media (min-width: 640px) {
+  .footer-bottom {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.footer-bottom-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-bottom-links a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+.footer-bottom-links a:hover {
+  color: #db2777;
+}
