@@ -1,8 +1,7 @@
-
 "use client";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
-import "./footer.css";
+import styles from './footer.module.css';
 
 const footerLinks = {
   "Quick Links": ["Home Page", "About Us", "Appointment", "News & Blog", "Testimonials"],
@@ -22,21 +21,26 @@ const Footer = () => {
   };
 
   return (
-    <footer className="footer-container">
-      <div className="footer-wrapper">
-        <div className="footer-grid">
+    <footer className={styles.footerContainer}>
+      <div className={styles.footerWrapper}>
+        <div className={styles.footerGrid}>
           {/* Logo and Text */}
-          <div>
-            <h2 className="footer-logo">
-              <span className="footer-logo-icon">🤝</span> Helpy
+          <div className={styles.footerBrand}>
+            <h2 className={styles.footerLogo}>
+              <span className={styles.footerLogoIcon}>🤝</span> Helpy
             </h2>
-            <p className="footer-description">
+            <p className={styles.footerDescription}>
               Now the time act because every second counts, and contribution brings one step closer a brighter
               future. Join us today & difference.
             </p>
-            <div className="footer-socials">
+            <div className={styles.footerSocials}>
               {["facebook", "instagram", "twitter", "github"].map((platform) => (
-                <a key={platform} href="#" aria-label={platform}>
+                <a 
+                  key={platform} 
+                  href="#" 
+                  aria-label={platform}
+                  className={styles.socialIcon}
+                >
                   {platform === "facebook" && "🌐"}
                   {platform === "instagram" && "📸"}
                   {platform === "twitter" && "🐦"}
@@ -48,22 +52,22 @@ const Footer = () => {
 
           {/* Link Sections */}
           {Object.entries(footerLinks).map(([section, links]) => (
-            <div key={section}>
+            <div key={section} className={styles.footerSection}>
               {/* Desktop */}
-              <div className="footer-section-desktop">
-                <h3 className="footer-heading">{section}</h3>
-                <ul>
+              <div className={styles.footerSectionDesktop}>
+                <h3 className={styles.footerHeading}>{section}</h3>
+                <ul className={styles.footerLinks}>
                   {Array.isArray(links) &&
                     links.map((item, idx) =>
                       typeof item === "string" ? (
                         <li key={idx}>
-                          <a href="#" className="footer-link">
+                          <a href="#" className={styles.footerLink}>
                             {item}
                           </a>
                         </li>
                       ) : (
-                        <li key={idx} className="footer-contact-item">
-                          <span>{item.icon}</span>
+                        <li key={idx} className={styles.footerContactItem}>
+                          <span className={styles.contactIcon}>{item.icon}</span>
                           <span>{item.label}</span>
                         </li>
                       )
@@ -72,24 +76,30 @@ const Footer = () => {
               </div>
 
               {/* Mobile Accordion */}
-              <div className="footer-section-mobile">
-                <button className="footer-accordion-btn" onClick={() => toggleAccordion(section)}>
+              <div className={styles.footerSectionMobile}>
+                <button 
+                  className={styles.footerAccordionBtn} 
+                  onClick={() => toggleAccordion(section)}
+                >
                   {section}
-                  <ChevronDown className={`footer-chevron ${openSection === section ? "rotate" : ""}`} />
+                  <ChevronDown 
+                    className={`${styles.footerChevron} ${openSection === section ? styles.rotate : ''}`} 
+                    size={18}
+                  />
                 </button>
                 {openSection === section && (
-                  <ul className="footer-accordion-content">
+                  <ul className={styles.footerAccordionContent}>
                     {Array.isArray(links) &&
                       links.map((item, idx) =>
                         typeof item === "string" ? (
                           <li key={idx}>
-                            <a href="#" className="footer-link">
+                            <a href="#" className={styles.footerLink}>
                               {item}
                             </a>
                           </li>
                         ) : (
-                          <li key={idx} className="footer-contact-item">
-                            <span>{item.icon}</span>
+                          <li key={idx} className={styles.footerContactItem}>
+                            <span className={styles.contactIcon}>{item.icon}</span>
                             <span>{item.label}</span>
                           </li>
                         )
@@ -102,9 +112,9 @@ const Footer = () => {
         </div>
 
         {/* Bottom Footer */}
-        <div className="footer-bottom">
+        <div className={styles.footerBottom}>
           <p>© 2025 Helpy, Inc. All Rights Reserved.</p>
-          <div className="footer-bottom-links">
+          <div className={styles.footerBottomLinks}>
             <a href="#">Privacy Policy</a>
             <a href="#">Terms & Conditions</a>
           </div>
