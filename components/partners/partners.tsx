@@ -1,8 +1,8 @@
 import React from 'react';
-import './partner.css'; // We'll create this CSS file next
+import './partner.css';
 
-const Slider: React.FC = () => {
-  const slides = [
+const PartnerCarousel: React.FC = () => {
+  const partners = [
     { id: 1, src: './images/partners/apdk.jpg' },
     { id: 2, src: './images/partners/kisumucounty.jpg' },
     { id: 3, src: './images/partners/legs4africa.svg' },
@@ -12,28 +12,30 @@ const Slider: React.FC = () => {
     { id: 7, src: './images/partners/ugani.png' }
   ];
 
-  // Duplicate the slides to create infinite loop effect
-  const duplicatedSlides = [...slides, ...slides];
+  // Duplicate for seamless looping
+  const partnerLogos = [...partners, ...partners];
 
   return (
-    <div className="slider-container">
-      <div className="slider">
-        <div className="slide-track">
-          {duplicatedSlides.map((slide, index) => (
-            <div className="slide" key={`${slide.id}-${index}`}>
-              <img 
-                src={slide.src} 
-                height="100" 
-                width="250" 
-                alt={`Slide ${slide.id}`}
-                loading="lazy"
-              />
-            </div>
-          ))}
+    <section className="partners-section">
+      <div className="partners-container">
+        <h2 className="partners-title">Our Trusted Partners</h2>
+        <div className="partners-carousel">
+          <div className="carousel-track">
+            {partnerLogos.map((partner, index) => (
+              <div className="carousel-slide" key={`${partner.id}-${index}`}>
+                <img 
+                  src={partner.src}
+                  alt={`Partner Logo ${partner.id}`}
+                  className="partner-logo"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
-export default Slider;
+export default PartnerCarousel;
