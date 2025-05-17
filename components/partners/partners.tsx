@@ -3,13 +3,13 @@ import './partner.css'; // We'll create this CSS file next
 
 const Slider: React.FC = () => {
   const slides = [
-    { id: 1, src: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png' },
-    { id: 2, src: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png' },
-    { id: 3, src: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/3.png' },
-    { id: 4, src: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/4.png' },
-    { id: 5, src: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/5.png' },
-    { id: 6, src: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/6.png' },
-    { id: 7, src: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png' }
+    { id: 1, src: './images/partners/apdk.jpg' },
+    { id: 2, src: './images/partners/kisumucounty.jpg' },
+    { id: 3, src: './images/partners/legs4africa.svg' },
+    { id: 4, src: './images/partners/moh.png' },
+    { id: 5, src: './images/partners/ncpd.webp' },
+    { id: 6, src: './images/partners/redcross.jpg' },
+    { id: 7, src: './images/partners/ugani.png' }
   ];
 
   // Duplicate the slides to create infinite loop effect

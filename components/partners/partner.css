@@ -11,10 +11,11 @@
 .slider {
   background: white;
   box-shadow: 0 10px 20px -5px rgba(0, 0, 0, .125);
-  height: 100px;
+  height: 35vh;
   margin: auto;
   overflow: hidden;
   position: relative;
+  
   
 }
 
@@ -41,13 +42,25 @@
 
 .slide-track {
   animation: scroll 40s linear infinite;
+  width: calc(250px * 14);  
   display: flex;
-  width: calc(250px * 14);
+  justify-content: center;
 }
 
 .slide {
-  height: 100px;
-  width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 2rem;
+}
+.slide img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2rem;
+  
+  
 }
 
 @keyframes scroll {

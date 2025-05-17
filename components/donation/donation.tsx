@@ -19,37 +19,55 @@ type DonationItem = {
 const donationData: DonationItem[] = [
   {
     id: '1',
-    title: 'Disaster Relief',
+    title: 'Psychosocial Support',
     raised: 70000,
     goal: 85000,
-    category: 'Disasters',
+    category: 'Psychosocial Support',
     description: 'Long-term recovery requires sustainable livelihoods. We support individuals & families in rebuilding.',
     image: '/images/hero1.jpg',
   },
   {
     id: '2',
-    title: 'Medical Assistance',
+    title: 'Skills Empowerment for Independent Living',
     raised: 26000,
     goal: 90000,
-    category: 'Medical',
+    category: 'Skills Empowerment for Independent Living',
     description: 'Access healthcare becomes a lifeline in times of crisis. We offer medical support, mobile clinics, & mental health services.',
     image: '/images/hero2.jpg',
   },
   {
     id: '3',
-    title: 'Hunger Relief',
+    title: 'Limb Empowerment Initiative',
     raised: 13701,
     goal: 60000,
-    category: 'Food',
+    category: 'Limb Empowerment Initiative',
     description: 'In the aftermath of a disaster access to nutritious food is often disrupted. We work to provide emergency meals.',
     image: '/images/hero3.jpg',
   },
   {
     id: '4',
-    title: 'Shelter and Housing',
+    title: 'Mental Health Sand Counseling Services',
     raised: 18000,
     goal: 75000,
     category: 'Shelter',
+    description: 'Rebuilding home & shelter essential for recovery. We help restore safe living conditions by offering temporary housing.',
+    image: '/images/hero2.jpg',
+  },
+  {
+    id: '4',
+    title: 'Mental Health Sand Counseling Services',
+    raised: 18000,
+    goal: 75000,
+    category: 'Shelter',
+    description: 'Rebuilding home & shelter essential for recovery. We help restore safe living conditions by offering temporary housing.',
+    image: '/images/hero2.jpg',
+  },
+  {
+    id: '4',
+    title: 'Hospital Visits for Newly Amputees',
+    raised: 18000,
+    goal: 75000,
+    category: 'Hospital Visits for Newly Amputees',
     description: 'Rebuilding home & shelter essential for recovery. We help restore safe living conditions by offering temporary housing.',
     image: '/images/hero2.jpg',
   },
@@ -62,8 +80,8 @@ const settings = {
   slidesToShow: 3,
   slidesToScroll: 1,
   centerMode: false,
-  variableWidth: false,       // Enable center mode
-  centerPadding: '40px',  // Add padding on both sides
+  variableWidth: false,
+  centerPaddingLeft: '40px', 
   autoplay: true,
   autoplaySpeed: 3000,
   pauseOnHover: true,
@@ -90,7 +108,7 @@ const DonationCarousel = () => {
     <div className={styles.carouselWrapper}>
       <h2 className={styles.sectionTitle}>Our Latest Causes</h2>
       <p className={styles.sectionDescription}>
-        Long-term recovery requires sustainable livelihoods. We support individuals & families in rebuilding.
+        Sustainable livelihoods are key to long-term recovery. We empower individuals and families to rebuild their lives with lasting stability.
       </p>
       
       <Slider {...settings}>

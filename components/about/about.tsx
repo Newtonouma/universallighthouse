@@ -10,25 +10,24 @@ const AboutUs = () => {
         {/* Left Column - Title and Text Content */}
         <div className={styles.leftColumn}>
           <div className={styles.textContent}>
-            <h2 className={styles.sectionTitle}>About Us</h2>
+            <h2 className={styles.sectionTitle}>Who we are:</h2>
             <h3 className={styles.sectionSubtitle}>
-              Committed to Relief, Our<br />
-              Work Dedicated to Hope
+              Transforming lives,<br />fostering hope and inclusiveness.
+              
             </h3>
             
             <p className={styles.mainParagraph}>
-              At the heart of our organization lies simple yet powerful mission
-              provide immediate relief & lasting hope to communities affected.
+              Universal Lighthouse fosters inclusive communities by designing programs that eliminate disability stigma, registered under the Ministry of Labour and Social Protection
             </p>
             
             <div className={styles.highlightItem}>
-              <h4>Helping people rebuild and prepare</h4>
-              <p>We help them rebuild stronger more resilient for the future. Together with supporters like.</p>
+              <h4>Our Mision</h4>
+              <p>champion inclusivity as our guiding light and uplifting the vulnerable groups in our community.</p>
             </div>
             
             <div className={styles.highlightItem}>
-              <h4>Putting people first in everything we do</h4>
-              <p>Guided by compassion driven the belief that every act kindness makes a difference.</p>
+              <h4>Our Vision</h4>
+              <p>influencing change by empowering lives and inspiring a future where everyone thrives, regardless of their physical challenges.</p>
             </div>
           </div>
         </div>
@@ -50,8 +49,7 @@ const AboutUs = () => {
         <div className={styles.rightColumn}>
           <div className={styles.rightContent}>
             <p className={styles.shortParagraph}>
-              At the heart of our lies a simple yet powerful
-              mission: to provide immediate relief affected by disaster.
+              Join us in making a real impact, volunteer today to uplift lives, spread hope, build communities, and inspire lasting positive change.
             </p>
             
             <div className={styles.smallImageWrapper}>

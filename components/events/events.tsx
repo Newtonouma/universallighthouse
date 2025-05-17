@@ -17,45 +17,45 @@ const EventsComponent: React.FC = () => {
   // i removed , setEvents from the [events, setEvents] = useState<Event[]>([])
   const [events] = useState<Event[]>([
     {
-      id: 1,
-      title: "Annual Tech Conference",
-      description: "Join us for the biggest technology conference of the year featuring industry leaders and innovative startups.",
-      shortDescription: "Tech innovation showcase",
-      date: new Date().toISOString().split('T')[0],
-      time: "09:00 - 17:00",
-      imageUrl: "/images/hero1.jpg",
-      category: "Conference"
-    },
-    {
-      id: 2,
-      title: "Community Workshop",
-      description: "Hands-on workshop for community development and engagement strategies.",
-      shortDescription: "Community building",
-      date: new Date(Date.now() + 86400000).toISOString().split('T')[0],
-      time: "14:00 - 16:00",
-      imageUrl: "/images/hero2.jpg",
-      category: "Workshop"
-    },
-    {
-      id: 3,
-      title: "Fundraising Gala",
-      description: "An elegant evening of dining and entertainment to support our community initiatives.",
-      shortDescription: "Charity fundraiser",
-      date: new Date(Date.now() + 2 * 86400000).toISOString().split('T')[0],
-      time: "19:00 - 23:00",
-      imageUrl: "/images/hero3.jpg",
-      category: "Fundraiser"
-    },
-    {
-      id: 4,
-      title: "Volunteer Training",
-      description: "Training session for new volunteers to learn about our programs and procedures.",
-      shortDescription: "Volunteer orientation",
-      date: new Date(Date.now() + 3 * 86400000).toISOString().split('T')[0],
-      time: "10:00 - 12:00",
-      imageUrl: "/images/hero2.jpg",
-      category: "Training"
-    }
+    id: 1,
+    title: "Annual Charity Tech Drive",
+    description: "Join us for an inspiring event showcasing how technology can support charitable causes and transform communities.",
+    shortDescription: "Tech for good showcase",
+    date: new Date().toISOString().split('T')[0],
+    time: "09:00 - 17:00",
+    imageUrl: "/images/hero1.jpg",
+    category: "Charity Conference"
+  },
+  {
+    id: 2,
+    title: "Community Empowerment Workshop",
+    description: "A hands-on workshop focused on empowering local communities through skills, resources, and collaboration.",
+    shortDescription: "Empowerment workshop",
+    date: new Date(Date.now() + 86400000).toISOString().split('T')[0],
+    time: "14:00 - 16:00",
+    imageUrl: "/images/hero2.jpg",
+    category: "Charity Workshop"
+  },
+  {
+    id: 3,
+    title: "Hope for All Gala Night",
+    description: "An elegant evening of giving, with live entertainment, dinner, and auctions to raise funds for vulnerable communities.",
+    shortDescription: "Fundraising gala",
+    date: new Date(Date.now() + 2 * 86400000).toISOString().split('T')[0],
+    time: "19:00 - 23:00",
+    imageUrl: "/images/hero3.jpg",
+    category: "Charity Fundraiser"
+  },
+  {
+    id: 4,
+    title: "Volunteer Induction & Training",
+    description: "A special session designed to equip new volunteers with the knowledge and tools to make a meaningful impact.",
+    shortDescription: "Volunteer training",
+    date: new Date(Date.now() + 3 * 86400000).toISOString().split('T')[0],
+    time: "10:00 - 12:00",
+    imageUrl: "/images/hero2.jpg",
+    category: "Volunteer Program"
+  }
   ]);
 // i removed , currentDate from the [currentDate] = useState(new Date());
   const [] = useState(new Date());

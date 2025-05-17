@@ -7,9 +7,9 @@ const footerLinks = {
   "Quick Links": ["Home Page", "About Us", "Appointment", "News & Blog", "Testimonials"],
   "Our Services": ["Donation Online", "Donor Centres", "Volunteering", "Your Philanthropy", "Senior Care"],
   "Contact Us": [
-    { icon: "📧", label: "support@charity.com" },
-    { icon: "📍", label: "8708 Technology Forest Pl Suite 125-G, The Woodlands, TX 773" },
-    { icon: "📞", label: "123-456-7890" },
+    { icon: "📧", label: "info@universallighthouse.org" },
+    { icon: "📍", label: "Friends Quakers Church Compound, Next to Kisumu National Library" },
+    { icon: "📞", label: "+254 728 000 747" }
   ],
 };
 
@@ -27,11 +27,10 @@ const Footer = () => {
           {/* Logo and Text */}
           <div className={styles.footerBrand}>
             <h2 className={styles.footerLogo}>
-              <span className={styles.footerLogoIcon}>🤝</span> Helpy
+              <span className={styles.footerLogoIcon}></span> Universal Lighthouse 
             </h2>
             <p className={styles.footerDescription}>
-              Now the time act because every second counts, and contribution brings one step closer a brighter
-              future. Join us today & difference.
+              Universal Lighthouse fosters inclusive communities by designing programs that eliminate disability stigma, registered under the Ministry of Labour and Social Protection
             </p>
             <div className={styles.footerSocials}>
               {["facebook", "instagram", "twitter", "github"].map((platform) => (
@@ -113,7 +112,7 @@ const Footer = () => {
 
         {/* Bottom Footer */}
         <div className={styles.footerBottom}>
-          <p>© 2025 Helpy, Inc. All Rights Reserved.</p>
+          <p>© 2025 Universal Lighthouse , Inc. All Rights Reserved.</p>
           <div className={styles.footerBottomLinks}>
             <a href="#">Privacy Policy</a>
             <a href="#">Terms & Conditions</a>

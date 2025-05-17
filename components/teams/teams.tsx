@@ -30,64 +30,64 @@ interface TeamMember {
 
 const TeamsComponent = () => {
   const teamData: TeamMember[] = [
-    {
-      id: 1,
-      name: "Sarah Johnson",
-      position: "CEO & Founder",
-      department: "Leadership",
-      bio: "Visionary leader with 10+ years of experience building successful companies.",
-      imageUrl: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=500&auto=format&fit=crop",
-      socialLinks: {
-        twitter: "#",
-        linkedin: "#"
-      }
-    },
-    {
-      id: 2,
-      name: "Michael Chen",
-      position: "CTO",
-      department: "Technology",
-      bio: "Technology expert specializing in scalable architecture and innovative solutions.",
-      imageUrl: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&auto=format&fit=crop",
-      socialLinks: {
-        twitter: "#",
-        linkedin: "#"
-      }
-    },
-    {
-      id: 3,
-      name: "Emma Rodriguez",
-      position: "Marketing Director",
-      department: "Marketing",
-      bio: "Creative strategist with a passion for building brands that resonate.",
-      imageUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=500&auto=format&fit=crop",
-      socialLinks: {
-        linkedin: "#"
-      }
-    },
-    {
-      id: 4,
-      name: "David Kim",
-      position: "Lead Designer",
-      department: "Design",
-      bio: "User experience specialist focused on creating intuitive interfaces.",
-      imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop",
-      socialLinks: {
-        twitter: "#"
-      }
-    },
-    {
-      id: 5,
-      name: "Jessica Williams",
-      position: "Product Manager",
-      department: "Product",
-      bio: "Product leader with expertise in agile development and user-centered design.",
-      imageUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&auto=format&fit=crop",
-      socialLinks: {
-        twitter: "#",
-        linkedin: "#"
-      }
+     {
+    id: 1,
+    name: "Emmily Akech",
+    position: "Founder and CEO",
+    department: "Leadership",
+    bio: "Championing community transformation with a vision for dignity and inclusiveness.",
+    imageUrl: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=500&auto=format&fit=crop",
+    socialLinks: {
+      twitter: "#",
+      linkedin: "#"
     }
+  },
+  {
+    id: 2,
+    name: "Sylvia Otieno",
+    position: "Mental Health Expert",
+    department: "Wellbeing",
+    bio: "Dedicated to promoting mental wellness and emotional resilience in vulnerable communities.",
+    imageUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&auto=format&fit=crop",
+    socialLinks: {
+      twitter: "#",
+      linkedin: "#"
+    }
+  },
+  {
+    id: 3,
+    name: "Peter Otieno",
+    position: "Finance",
+    department: "Finance",
+    bio: "Ensuring transparency and accountability in our financial operations and resource allocation.",
+    imageUrl: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&auto=format&fit=crop",
+    socialLinks: {
+      linkedin: "#"
+    }
+  },
+  {
+    id: 4,
+    name: "Erick Yogo",
+    position: "Data and Communication",
+    department: "Communications",
+    bio: "Committed to impactful storytelling and data-driven outreach strategies for social change.",
+    imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop",
+    socialLinks: {
+      twitter: "#"
+    }
+  },
+  {
+    id: 5,
+    name: "Trizer Ogada",
+    position: "Gender and SRHR Specialist",
+    department: "Advocacy",
+    bio: "Empowering women and youth through advocacy for sexual and reproductive health rights.",
+    imageUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=500&auto=format&fit=crop",
+    socialLinks: {
+      twitter: "#",
+      linkedin: "#"
+    }
+  }
   ];
 
   const [activeDepartment, setActiveDepartment] = useState<string>('All');
@@ -103,7 +103,7 @@ const TeamsComponent = () => {
       <div className={styles.container}>
         <div className={styles.sectionHeader}>
           <h2 className={styles.sectionTitle}>Our Team</h2>
-          <p className={styles.sectionSubtitle}>Meet the talented individuals behind our success</p>
+          <p className={styles.sectionSubtitle}>At the heart of our organization is a dedicated team committed to creating lasting change. Each member brings unique expertise, compassion, and leadership working together to uplift communities, advocate for rights, and ensure every voice is heard.</p>
         </div>
 
         <div className={styles.departmentFilters}>
