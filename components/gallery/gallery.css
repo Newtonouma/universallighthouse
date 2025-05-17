@@ -1,0 +1,137 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  max-inline-size: 100%;
+}
+
+.app-container {
+  font-family: system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #070707;
+  background: #fff;
+
+  display: grid;
+  grid-template-columns:
+    [sidebar-start]
+    0em
+    [sidebar-end main-start]
+    1fr
+    [main-end];
+}
+
+h1 {
+  font-size: 1.75rem;
+  line-height: 1.5;
+  margin-block-end: 1rem;
+}
+
+.sidebar {
+  grid-column: sidebar;
+  color: #fff;
+  background-color: #1d1d29;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+  height: 100svh;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  line-height: 1.5;
+  height: 100%;
+}
+
+.main {
+  grid-column: main;
+  padding: 1.25rem;
+}
+
+/* Photo Gallery */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
+  grid-auto-rows: 12.5rem;
+  grid-auto-flow: dense;
+  gap: 0.75rem;
+}
+
+.gallery figure {
+  container: figure / inline-size;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  position: relative;
+  border-radius: 4px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  grid-area: 1 / 1 / -1 / -1;
+  transition: transform 0.3s ease-in-out;
+}
+
+.gallery figure:hover img {
+  transform: scale(1.05);
+}
+
+.gallery figcaption {
+  grid-area: 1 / 1 / -1 / -1;
+  align-self: end;
+  z-index: 1;
+  padding: 1.5em 15% 1em 1em;
+  color: #fff;
+  font-size: 0.875rem;
+  line-height: 1.3;
+  background: linear-gradient(transparent 25%, rgba(0, 0, 0, 0.75));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gallery figure:hover figcaption {
+  opacity: 1;
+}
+
+.gallery figcaption h3 {
+  font-size: 1.0625rem;
+  margin-bottom: 0.25em;
+}
+
+.gallery figcaption p {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* Responsive grid adjustments */
+@media (min-width: 600px) {
+  .gallery figure:nth-child(1) {
+    grid-area: span 2 / span 2;
+  }
+
+  .gallery figure:nth-child(4n + 1) {
+    grid-row: span 2;
+  }
+
+  .gallery figure:nth-child(4n + 2) {
+    grid-column: span 2;
+  }
+}
+
+/* Show captions on larger containers */
+@container figure (min-width: 20rem) {
+  .gallery figcaption {
+    display: block;
+  }
+}

@@ -6,7 +6,8 @@ import Navbar from "../../components/navbar/navbar";
 import Donation from "../../components/donation/donation";
 import Events from "../../components/events/events";
 import Teams from "../../components/teams/teams";
-// import Gallery from "../../components/gallary/gallary";
+import Gallery from "../../components/gallery/gallery";
+import Partners from "../../components/partners/partners";
 
 export default function Home() {
   return (
@@ -18,7 +19,8 @@ export default function Home() {
     <Donation/>
     <Events/>
     <Teams/>
-    {/* <Gallery/> */}
+    <Gallery/>
+    <Partners/>
     </>
     
   );
