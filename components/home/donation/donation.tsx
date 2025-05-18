@@ -5,73 +5,10 @@ import Slider from 'react-slick';
 import styles from './donation.module.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { causes } from '../../../public/data/causesData';
+import { useRouter } from 'next/navigation';
 
-type DonationItem = {
-  id: string;
-  title: string;
-  raised: number;
-  goal: number;
-  category: string;
-  description: string;
-  image: string;
-};
 
-const donationData: DonationItem[] = [
-  {
-    id: '1',
-    title: 'Psychosocial Support',
-    raised: 70000,
-    goal: 85000,
-    category: 'Psychosocial Support',
-    description: 'Long-term recovery requires sustainable livelihoods. We support individuals & families in rebuilding.',
-    image: '/images/hero1.jpg',
-  },
-  {
-    id: '2',
-    title: 'Skills Empowerment for Independent Living',
-    raised: 26000,
-    goal: 90000,
-    category: 'Skills Empowerment for Independent Living',
-    description: 'Access healthcare becomes a lifeline in times of crisis. We offer medical support, mobile clinics, & mental health services.',
-    image: '/images/hero2.jpg',
-  },
-  {
-    id: '3',
-    title: 'Limb Empowerment Initiative',
-    raised: 13701,
-    goal: 60000,
-    category: 'Limb Empowerment Initiative',
-    description: 'In the aftermath of a disaster access to nutritious food is often disrupted. We work to provide emergency meals.',
-    image: '/images/hero3.jpg',
-  },
-  {
-    id: '4',
-    title: 'Mental Health Sand Counseling Services',
-    raised: 18000,
-    goal: 75000,
-    category: 'Shelter',
-    description: 'Rebuilding home & shelter essential for recovery. We help restore safe living conditions by offering temporary housing.',
-    image: '/images/hero2.jpg',
-  },
-  {
-    id: '4',
-    title: 'Mental Health Sand Counseling Services',
-    raised: 18000,
-    goal: 75000,
-    category: 'Shelter',
-    description: 'Rebuilding home & shelter essential for recovery. We help restore safe living conditions by offering temporary housing.',
-    image: '/images/hero2.jpg',
-  },
-  {
-    id: '4',
-    title: 'Hospital Visits for Newly Amputees',
-    raised: 18000,
-    goal: 75000,
-    category: 'Hospital Visits for Newly Amputees',
-    description: 'Rebuilding home & shelter essential for recovery. We help restore safe living conditions by offering temporary housing.',
-    image: '/images/hero2.jpg',
-  },
-];
 
 const settings = {
   dots: true,
@@ -104,6 +41,8 @@ const settings = {
 };
 
 const DonationCarousel = () => {
+  const router = useRouter();
+
   return (
     <div className={styles.carouselWrapper}>
       <h2 className={styles.sectionTitle}>Our Latest Causes</h2>
@@ -112,7 +51,7 @@ const DonationCarousel = () => {
       </p>
       
       <Slider {...settings}>
-        {donationData.map((item) => {
+        {causes.map((item) => {
           const percentage = Math.min((item.raised / item.goal) * 100, 100).toFixed(0);
           return (
             <div key={item.id} className={styles.card}>
@@ -144,7 +83,7 @@ const DonationCarousel = () => {
                 </div>
                 <button 
                   className={styles.donateButton}
-                  onClick={() => console.log(`Donate to ${item.title}`)}
+                  onClick={() => router.push(`/causes/${item.id}`)}
                 >
                   Donate Now
                 </button>

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import styles from './Navbar.module.css';
 import Image from 'next/image';
-import Link from 'next/link'; // ✅ Import Link
+import Link from 'next/link'; 
 import { FaPhoneAlt, FaHandsHelping } from 'react-icons/fa';
 
 const Navbar = () => {
