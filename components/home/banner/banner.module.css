@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+.carouselContainer {
+  margin: 0 auto;
+  padding: 1rem 0;
+  overflow: hidden;
+  background-color: rgba(10, 49, 10, 0.05);
+  font-family: 'Montserrat', sans-serif;
+}
+
+.carouselWrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel {
+  display: flex;
+  transition: transform 0.5s ease;
+  will-change: transform;
+}
+
+.actionCard {
+  flex: 0 0 calc(100% / 5 - 1rem); /* 5 cards on large screens */
+  margin: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border-radius: 8px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 140px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.actionCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.iconWrapper {
+  margin-bottom: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.actionTitle {
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.learnMore {
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .actionCard {
+    flex: 0 0 calc(100% / 4 - 1rem); /* 4 cards on laptops */
+  }
+}
+
+@media (max-width: 768px) {
+  .actionCard {
+    flex: 0 0 calc(100% / 3 - 1rem); /* 3 cards on tablets */
+    min-height: 130px;
+    padding: 0.75rem;
+  }
+  
+  .iconWrapper {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .actionTitle {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .actionCard {
+    flex: 0 0 calc(100% / 2 - 1rem); /* 2 cards on mobile */
+    min-height: 120px;
+    padding: 0.5rem;
+  }
+  
+  .actionTitle {
+    font-size: 0.8rem;
+  }
+  
+  .iconWrapper {
+    width: 40px;
+    height: 40px;
+  }
+}

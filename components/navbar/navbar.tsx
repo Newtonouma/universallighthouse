@@ -58,8 +58,8 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <div className={styles.desktopLinks}>
-          <a href="#home">Home</a>
-          <a href="#about">Our Mission</a>
+          <a href="/home">Home</a>
+          <a href="/about">About Us</a>
           <a href="#stories">Success Stories</a>
           <a href="#volunteer">Volunteer</a>
           <a href="#contact">Contact</a>
