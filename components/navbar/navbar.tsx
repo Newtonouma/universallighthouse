@@ -41,6 +41,7 @@ const Navbar = () => {
       )}
 
       <nav className={styles.navbar}>
+        <Link href="/">
         <div className={styles.logoContainer}>
           <Image
             src="/images/Logo.png"
@@ -52,6 +53,7 @@ const Navbar = () => {
           />
           <span className={styles.name}>Universal Lighthouse</span>
         </div>
+        </Link>
 
         {/* Desktop Navigation */}
         <div className={styles.desktopLinks}>
@@ -60,7 +62,7 @@ const Navbar = () => {
           <Link href="/causes" onClick={toggleMenu}>Our Causes</Link>
           <a href="#stories">Success Stories</a>
           <a href="#volunteer">Volunteer</a>
-          <a href="#contact">Contact</a>
+          <Link href="/contact">Contact</Link>
           <Link href="/donate" className={styles.donateButton}>
             <FaHandsHelping /> Donate
           </Link>
@@ -92,7 +94,7 @@ const Navbar = () => {
           <Link href="/causes" onClick={toggleMenu}>Our Causes</Link>
           <a href="#stories" onClick={toggleMenu}>Success Stories</a>
           <a href="#volunteer" onClick={toggleMenu}>Volunteer</a>
-          <a href="#contact" onClick={toggleMenu}>Contact</a>
+          <Link href="/contact" onClick={toggleMenu}>Contact</Link>
           <Link 
             href="/donate" 
             className={styles.donateButton}
