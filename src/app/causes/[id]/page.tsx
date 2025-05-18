@@ -77,21 +77,22 @@ export default function CauseDetails({ params }: CauseDetailsProps) {
 
         {/* Progress Bar */}
         <div>
-          <div className="flex justify-between items-center mb-2">
-            <span className="text-sm font-medium text-gray-700">Funding Progress</span>
-            <span className="text-sm font-bold text-emerald-600">
-              {((parseFloat(cause.raised) / parseFloat(cause.goal)) * 100).toFixed(1)}%
-            </span>
-          </div>
-          <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-            <div
-              className="h-full bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full"
-              style={{
-                width: `${Math.min((parseFloat(cause.raised) / parseFloat(cause.goal)) * 100, 100)}%`,
-              }}
-            />
-          </div>
-        </div>
+  <div className="flex justify-between items-center mb-2">
+    <span className="text-sm font-medium text-gray-700">Funding Progress</span>
+    <span className="text-sm font-bold text-emerald-600">
+      {((cause.raised / cause.goal) * 100).toFixed(1)}%
+    </span>
+  </div>
+  <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+    <div
+      className="h-full bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full"
+      style={{
+        width: `${Math.min((cause.raised / cause.goal) * 100, 100)}%`,
+      }}
+    />
+  </div>
+</div>
+
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 pt-4">
