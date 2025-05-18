@@ -57,6 +57,7 @@ const Navbar = () => {
         <div className={styles.desktopLinks}>
           <Link href="/">Home</Link>
           <Link href="/about">About Us</Link>
+          <Link href="/causes" onClick={toggleMenu}>Our Causes</Link>
           <a href="#stories">Success Stories</a>
           <a href="#volunteer">Volunteer</a>
           <a href="#contact">Contact</a>
@@ -88,6 +89,7 @@ const Navbar = () => {
         <div className={`${styles.mobileLinks} ${isOpen ? styles.open : ''}`}>
           <Link href="/" onClick={toggleMenu}>Home</Link>
           <Link href="/about" onClick={toggleMenu}>About Us</Link>
+          <Link href="/causes" onClick={toggleMenu}>Our Causes</Link>
           <a href="#stories" onClick={toggleMenu}>Success Stories</a>
           <a href="#volunteer" onClick={toggleMenu}>Volunteer</a>
           <a href="#contact" onClick={toggleMenu}>Contact</a>
