@@ -3,7 +3,7 @@ import React from 'react';
 
 const HeroVideoSection: React.FC = () => {
   return (
-    <section className="relative h-[80vh] w-full overflow-hidden">
+    <section className="relative h-[60vh] md:h-[80vh] w-full overflow-hidden">
       {/* Video Background */}
       <video
         className="absolute top-0 left-0 w-full h-full object-cover brightness-75"
@@ -20,7 +20,7 @@ const HeroVideoSection: React.FC = () => {
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10" />
 
       {/* Text Content */}
-      <div className="relative z-20 flex items-center justify-center h-full text-center px-4">
+      <div className="pt-16 relative z-20 flex items-center justify-center h-full text-center px-4">
         <div className="max-w-4xl text-white px-8">
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-amber-300">
@@ -31,12 +31,6 @@ const HeroVideoSection: React.FC = () => {
             We are a charity organization committed to empowering communities
             through compassion, resources, and long-term support.
           </p>
-          <div className="flex gap-4 justify-center">
-            
-            <button className="px-8 py-3 bg-transparent border-2 border-white rounded-full text-white font-medium hover:bg-white/10 transition-all duration-300">
-              Donate Now
-            </button>
-          </div>
         </div>
       </div>
     </section>
