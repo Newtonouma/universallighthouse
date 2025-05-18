@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import styles from './Navbar.module.css';
 import Image from 'next/image';
+import Link from 'next/link'; // ✅ Import Link
 import { FaPhoneAlt, FaHandsHelping } from 'react-icons/fa';
 
 const Navbar = () => {
@@ -12,18 +13,15 @@ const Navbar = () => {
   const toggleHelpline = () => setShowHelpline(!showHelpline);
 
   const initiateCall = () => {
-    // Replace with actual helpline number
     window.location.href = 'tel:+254728000747';
   };
 
   return (
     <>
-      {/* Mobile Menu Overlay */}
       {isOpen && (
         <div className={styles.overlay} onClick={toggleMenu}></div>
       )}
 
-      {/* Helpline Popup */}
       {showHelpline && (
         <div className={styles.helplinePopup}>
           <div className={styles.helplineContent}>
@@ -43,10 +41,9 @@ const Navbar = () => {
       )}
 
       <nav className={styles.navbar}>
-        {/* Logo/Image Section */}
         <div className={styles.logoContainer}>
           <Image
-            src="/images/Logo.png" // NGO logo
+            src="/images/Logo.png"
             alt="universal lighthouse logo"
             width={50}
             height={50}
@@ -58,17 +55,14 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <div className={styles.desktopLinks}>
-          <a href="/home">Home</a>
-          <a href="/about">About Us</a>
+          <Link href="/">Home</Link>
+          <Link href="/about">About Us</Link>
           <a href="#stories">Success Stories</a>
           <a href="#volunteer">Volunteer</a>
           <a href="#contact">Contact</a>
-          <a 
-            href="/donate" 
-            className={styles.donateButton}
-          >
+          <Link href="/donate" className={styles.donateButton}>
             <FaHandsHelping /> Donate
-          </a>
+          </Link>
           <button 
             onClick={toggleHelpline} 
             className={styles.helplineButton}
@@ -92,18 +86,18 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         <div className={`${styles.mobileLinks} ${isOpen ? styles.open : ''}`}>
-          <a href="#home" onClick={toggleMenu}>Home</a>
-          <a href="#about" onClick={toggleMenu}>Our Mission</a>
+          <Link href="/" onClick={toggleMenu}>Home</Link>
+          <Link href="/about" onClick={toggleMenu}>About Us</Link>
           <a href="#stories" onClick={toggleMenu}>Success Stories</a>
           <a href="#volunteer" onClick={toggleMenu}>Volunteer</a>
           <a href="#contact" onClick={toggleMenu}>Contact</a>
-          <a 
+          <Link 
             href="/donate" 
             className={styles.donateButton}
             onClick={toggleMenu}
           >
             <FaHandsHelping /> Donate
-          </a>
+          </Link>
           <button 
             onClick={() => {
               toggleMenu();
