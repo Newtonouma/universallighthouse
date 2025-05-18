@@ -1,14 +1,9 @@
 // src/app/causes/[id]/page.tsx
-
-import { causes } from '../../../../public/data/causesData'; // Use alias if set in tsconfig or adjust the path correctly
+import { causes } from '../../../../public/data/causesData';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 
-type CauseDetailsProps = {
-  params: { id: string };
-};
-
-export default function CauseDetails({ params }: CauseDetailsProps) {
+export default function CauseDetails({ params }: { params: { id: string } }) {
   const id = params.id.trim();
 
   const cause = causes.find((c) => String(c.id) === id);
