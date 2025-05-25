@@ -5,7 +5,7 @@ import Slider from 'react-slick';
 import styles from './donation.module.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { causes } from '../../../public/data/causesData';
+import { causes } from '../../../src/data/causesData';
 import { useRouter } from 'next/navigation';
 
 

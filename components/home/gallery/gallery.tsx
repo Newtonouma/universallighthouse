@@ -73,7 +73,7 @@ const PhotoGallery: React.FC = () => {
     <div className="app-container">
       <main className="main">
         <header className="gallery-header">
-          <h1>Modern Photo Gallery</h1>
+          <h1>Photo Gallery</h1>
           <p className="subtitle">Witness the power of compassion in action. These moments capture the real difference your generosity makes every day.</p>
         </header>
 
