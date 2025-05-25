@@ -5,7 +5,7 @@ import Slider from 'react-slick';
 import styles from './donation.module.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { causes } from '../../../src/data/causesData';
+import { causes, CauseItem } from '../../../src/data/causesData';
 import { useRouter } from 'next/navigation';
 
 
@@ -51,7 +51,7 @@ const DonationCarousel = () => {
       </p>
       
       <Slider {...settings}>
-        {causes.map((item) => {
+        {causes.map((item: CauseItem) => {
           const percentage = Math.min((item.raised / item.goal) * 100, 100).toFixed(0);
           return (
             <div key={item.id} className={styles.card}>
