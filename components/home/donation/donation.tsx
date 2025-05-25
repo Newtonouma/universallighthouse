@@ -7,6 +7,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { causes, CauseItem } from '../../../src/data/causesData';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 
 
@@ -57,7 +58,14 @@ const DonationCarousel = () => {
             <div key={item.id} className={styles.card}>
               <div className={styles.cardHeader}>
                 <span className={styles.categoryTag}>{item.category}</span>
-                <img src={item.image} alt={item.title} className={styles.image} />
+                <Image 
+                  src={item.image}
+                  alt={item.title}
+                  width={400}
+                  height={300}
+                  className={styles.image}
+                  unoptimized={item.image.startsWith('.')}
+                />
               </div>
               <div className={styles.content}>
                 <h3 className={styles.title}>{item.title}</h3>

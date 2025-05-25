@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import styles from './teams.module.css';
+import Image from 'next/image';
 
 // Define SVG icons directly in the component
 const TwitterIcon = () => (
@@ -126,7 +127,14 @@ const TeamsComponent = () => {
               style={{ '--i': index } as React.CSSProperties}
             >
               <div className={styles.cardImage}>
-                <img src={member.imageUrl} alt={member.name} />
+                <Image 
+                  src={member.imageUrl}
+                  alt={member.name}
+                  width={200}
+                  height={200}
+                  className={styles.cardImage}
+                  unoptimized={member.imageUrl.startsWith('http')}
+                />
                 <div className={styles.socialLinks}>
                   {member.socialLinks.twitter && (
                     <a href={member.socialLinks.twitter} aria-label={`${member.name} Twitter`}>

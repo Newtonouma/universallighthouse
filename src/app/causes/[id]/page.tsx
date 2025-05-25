@@ -8,7 +8,6 @@ import type { Metadata } from 'next';
 // Import your causes data with proper typing
 import { causes } from '../../../data/causesData';
 
-// Define TypeScript interfaces
 
 
 interface StatCardProps {

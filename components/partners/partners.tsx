@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import './partner.css';
 
 const PartnerCarousel: React.FC = () => {
@@ -23,11 +24,14 @@ const PartnerCarousel: React.FC = () => {
           <div className="carousel-track">
             {partnerLogos.map((partner, index) => (
               <div className="carousel-slide" key={`${partner.id}-${index}`}>
-                <img 
+                <Image 
                   src={partner.src}
                   alt={`Partner Logo ${partner.id}`}
+                  width={120}
+                  height={60}
                   className="partner-logo"
                   loading="lazy"
+                  unoptimized={partner.src.startsWith('.')}
                 />
               </div>
             ))}
