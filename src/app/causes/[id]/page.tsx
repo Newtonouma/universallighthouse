@@ -1,3 +1,5 @@
+// File: app/causes/[id]/page.tsx
+
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import type { Metadata } from 'next';
@@ -16,7 +18,7 @@ interface CTAButtonProps {
   gradient?: boolean;
   onClick?: () => void;
 }
-// imenisumbua
+
 // Generate metadata dynamically
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   const cause = causes.find((c) => String(c.id) === params.id);
@@ -26,8 +28,10 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   };
 }
 
+// Main Component
 export default function CauseDetailsPage({ params }: { params: { id: string } }) {
-  const cause = causes.find((c) => String(c.id) === params.id.trim());
+  const id = params.id?.trim();
+  const cause = causes.find((c) => String(c.id) === id);
 
   if (!cause) return notFound();
 
@@ -37,13 +41,13 @@ export default function CauseDetailsPage({ params }: { params: { id: string } })
     <main className="max-w-6xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <CauseImage image={cause.image} title={cause.title} />
-        
+
         <div className="space-y-8">
           <CauseHeader title={cause.title} description={cause.description} />
-          
+
           <div className="space-y-6 bg-gray-50 p-6 rounded-xl border border-gray-100">
             <div className="grid grid-cols-2 gap-4">
-              <StatCard 
+              <StatCard
                 iconColor="emerald-600"
                 bgColor="emerald-100"
                 label="Raised"
@@ -58,7 +62,7 @@ export default function CauseDetailsPage({ params }: { params: { id: string } })
             </div>
 
             <ProgressBar percentage={progressPercentage} />
-            
+
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <CTAButton
                 text="Donate Now"
