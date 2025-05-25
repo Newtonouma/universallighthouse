@@ -1,66 +1,57 @@
 // src/app/causes/[id]/page.tsx
-import { causes } from '../../../data/causesData';
+// 'use client'; // Remove this line because this file must be a server component
+
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
+import type { Metadata } from 'next';
 
-// Define the Cause type if not already in your causesData file
-type Cause = {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  raised: number;
-  goal: number;
-};
+// Import your causes data with proper typing
+import { causes } from '../../../data/causesData';
 
-// Proper typing for page props in Next.js 13+
-type Props = {
-  params: { id: string };
-  searchParams?: { [key: string]: string | string[] | undefined };
-};
+// Define TypeScript interfaces
 
-export default function CauseDetails({ params }: Props) {
-  const id = params.id.trim();
 
-  const cause = causes.find((c) => String(c.id) === id);
+interface StatCardProps {
+  iconColor: string;
+  bgColor: string;
+  label: string;
+  value: number;
+}
+
+interface CTAButtonProps {
+  text: string;
+  iconPath: string;
+  gradient?: boolean;
+  onClick?: () => void;
+}
+
+// Generate metadata dynamically
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+  const cause = causes.find((c) => String(c.id) === params.id);
+  return {
+    title: cause?.title || 'Cause Not Found',
+    description: cause?.description || '',
+  };
+}
+
+export default function CauseDetailsPage({ params }: { params: { id: string } }) {
+  const cause = causes.find((c) => String(c.id) === params.id.trim());
 
   if (!cause) return notFound();
 
-  const progressPercentage = 
-    cause.goal > 0 ? Math.min((cause.raised / cause.goal) * 100, 100).toFixed(1) : '0';
+  const progressPercentage = calculateProgress(cause.raised, cause.goal);
 
   return (
-    <div className="max-w-6xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
+    <main className="max-w-6xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        {/* Image Section */}
-        <div className="relative w-full h-96 lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl group">
-          <Image
-            src={cause.image}
-            alt={`Image for ${cause.title}`}
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-            priority
-            sizes="(max-width: 768px) 100vw, 50vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-        </div>
-
-        {/* Details Section */}
+        <CauseImage image={cause.image} title={cause.title} />
+        
         <div className="space-y-8">
-          <div>
-            <span className="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider text-white bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full mb-4">
-              Featured Cause
-            </span>
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-              {cause.title}
-            </h1>
-            <p className="text-lg text-gray-600 leading-relaxed mb-8">{cause.description}</p>
-          </div>
-
+          <CauseHeader title={cause.title} description={cause.description} />
+          
           <div className="space-y-6 bg-gray-50 p-6 rounded-xl border border-gray-100">
-            {/* Stats */}
             <div className="grid grid-cols-2 gap-4">
-              <StatCard
+              <StatCard 
                 iconColor="emerald-600"
                 bgColor="emerald-100"
                 label="Raised"
@@ -74,21 +65,8 @@ export default function CauseDetails({ params }: Props) {
               />
             </div>
 
-            {/* Progress Bar */}
-            <div>
-              <div className="flex justify-between items-center mb-2">
-                <span className="text-sm font-medium text-gray-700">Funding Progress</span>
-                <span className="text-sm font-bold text-emerald-600">{progressPercentage}%</span>
-              </div>
-              <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-                <div
-                  className="h-full bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full"
-                  style={{ width: `${progressPercentage}%` }}
-                />
-              </div>
-            </div>
-
-            {/* CTA Buttons */}
+            <ProgressBar percentage={progressPercentage} />
+            
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <CTAButton
                 text="Donate Now"
@@ -103,29 +81,73 @@ export default function CauseDetails({ params }: Props) {
           </div>
         </div>
       </div>
+    </main>
+  );
+}
+
+// Helper function
+function calculateProgress(raised: number, goal: number): string {
+  return goal > 0 ? Math.min((raised / goal) * 100, 100).toFixed(1) : '0';
+}
+
+// Component: Cause Image
+function CauseImage({ image, title }: { image: string; title: string }) {
+  return (
+    <div className="relative w-full h-96 lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl group">
+      <Image
+        src={image}
+        alt={`Image for ${title}`}
+        fill
+        className="object-cover transition-transform duration-700 group-hover:scale-105"
+        priority
+        sizes="(max-width: 768px) 100vw, 50vw"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
     </div>
   );
 }
 
-// StatCard component with proper TypeScript props
-interface StatCardProps {
-  iconColor: string;
-  bgColor: string;
-  label: string;
-  value: number;
+// Component: Cause Header
+function CauseHeader({ title, description }: { title: string; description: string }) {
+  return (
+    <div>
+      <span className="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider text-white bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full mb-4">
+        Featured Cause
+      </span>
+      <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+        {title}
+      </h1>
+      <p className="text-lg text-gray-600 leading-relaxed mb-8">{description}</p>
+    </div>
+  );
 }
 
-function StatCard({ iconColor, bgColor, label, value }: StatCardProps) {
-  // Use template literals for dynamic Tailwind classes
-  const iconColorClass = `text-${iconColor}`;
-  const bgColorClass = `bg-${bgColor}`;
+// Component: Progress Bar
+function ProgressBar({ percentage }: { percentage: string }) {
+  return (
+    <div>
+      <div className="flex justify-between items-center mb-2">
+        <span className="text-sm font-medium text-gray-700">Funding Progress</span>
+        <span className="text-sm font-bold text-emerald-600">{percentage}%</span>
+      </div>
+      <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+        <div
+          className="h-full bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full"
+          style={{ width: `${percentage}%` }}
+        />
+      </div>
+    </div>
+  );
+}
 
+// Component: Stat Card
+function StatCard({ iconColor, bgColor, label, value }: StatCardProps) {
   return (
     <div className="bg-white p-4 rounded-lg shadow-sm">
       <div className="flex items-center space-x-2">
-        <div className={`p-2 ${bgColorClass} rounded-full`}>
+        <div className={`p-2 bg-${bgColor} rounded-full`}>
           <svg
-            className={`w-5 h-5 ${iconColorClass}`}
+            className={`w-5 h-5 text-${iconColor}`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -140,25 +162,18 @@ function StatCard({ iconColor, bgColor, label, value }: StatCardProps) {
         </div>
         <div>
           <p className="text-sm font-medium text-gray-500">{label}</p>
-          <p className="text-xl font-bold text-gray-900">
-            ${value.toLocaleString()}
-          </p>
+          <p className="text-xl font-bold text-gray-900">${value.toLocaleString()}</p>
         </div>
       </div>
     </div>
   );
 }
 
-// CTAButton component with proper TypeScript props
-interface CTAButtonProps {
-  text: string;
-  iconPath: string;
-  gradient?: boolean;
-}
-
-function CTAButton({ text, iconPath, gradient = false }: CTAButtonProps) {
+// Component: CTA Button
+function CTAButton({ text, iconPath, gradient = false, onClick }: CTAButtonProps) {
   return (
     <button
+      onClick={onClick}
       className={`flex-1 ${
         gradient
           ? 'bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white'
