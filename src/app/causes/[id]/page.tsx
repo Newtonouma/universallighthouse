@@ -1,14 +1,7 @@
-// src/app/causes/[id]/page.tsx
-// 'use client'; // Remove this line because this file must be a server component
-
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import type { Metadata } from 'next';
-
-// Import your causes data with proper typing
 import { causes } from '../../../data/causesData';
-
-
 
 interface StatCardProps {
   iconColor: string;
@@ -23,7 +16,7 @@ interface CTAButtonProps {
   gradient?: boolean;
   onClick?: () => void;
 }
-
+// imenisumbua
 // Generate metadata dynamically
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   const cause = causes.find((c) => String(c.id) === params.id);
