@@ -3,7 +3,12 @@ import { causes } from '../../../data/causesData';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 
-export default function CauseDetails({ params }: { params: { id: string } }) {
+type Props = {
+  params: { id: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
+
+export default function CauseDetails({ params }: Props) {
   const id = params.id.trim();
 
   const cause = causes.find((c) => String(c.id) === id);
