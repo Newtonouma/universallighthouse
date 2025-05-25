@@ -5,7 +5,6 @@ import Image from 'next/image';
 
 type Props = {
   params: { id: string }
-  searchParams?: { [key: string]: string | string[] | undefined }
 }
 
 export default function CauseDetails({ params }: Props) {
