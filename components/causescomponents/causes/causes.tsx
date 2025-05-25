@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { causes } from '../../../data/causesData';
+import { causes } from '../../../src/data/causesData';
 import { useRouter } from 'next/navigation';
 
 interface Cause {
