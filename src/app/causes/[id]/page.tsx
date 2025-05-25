@@ -3,9 +3,21 @@ import { causes } from '../../../data/causesData';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 
+// Define the Cause type if not already in your causesData file
+type Cause = {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  raised: number;
+  goal: number;
+};
+
+// Proper typing for page props in Next.js 13+
 type Props = {
-  params: { id: string }
-}
+  params: { id: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
+};
 
 export default function CauseDetails({ params }: Props) {
   const id = params.id.trim();
@@ -14,7 +26,7 @@ export default function CauseDetails({ params }: Props) {
 
   if (!cause) return notFound();
 
-  const progressPercentage =
+  const progressPercentage = 
     cause.goal > 0 ? Math.min((cause.raised / cause.goal) * 100, 100).toFixed(1) : '0';
 
   return (
@@ -28,6 +40,7 @@ export default function CauseDetails({ params }: Props) {
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-105"
             priority
+            sizes="(max-width: 768px) 100vw, 50vw"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
         </div>
@@ -47,14 +60,12 @@ export default function CauseDetails({ params }: Props) {
           <div className="space-y-6 bg-gray-50 p-6 rounded-xl border border-gray-100">
             {/* Stats */}
             <div className="grid grid-cols-2 gap-4">
-              {/* Raised */}
               <StatCard
                 iconColor="emerald-600"
                 bgColor="emerald-100"
                 label="Raised"
                 value={cause.raised}
               />
-              {/* Goal */}
               <StatCard
                 iconColor="blue-600"
                 bgColor="blue-100"
@@ -96,24 +107,25 @@ export default function CauseDetails({ params }: Props) {
   );
 }
 
-// Reusable StatCard component
-function StatCard({
-  iconColor,
-  bgColor,
-  label,
-  value,
-}: {
+// StatCard component with proper TypeScript props
+interface StatCardProps {
   iconColor: string;
   bgColor: string;
   label: string;
   value: number;
-}) {
+}
+
+function StatCard({ iconColor, bgColor, label, value }: StatCardProps) {
+  // Use template literals for dynamic Tailwind classes
+  const iconColorClass = `text-${iconColor}`;
+  const bgColorClass = `bg-${bgColor}`;
+
   return (
     <div className="bg-white p-4 rounded-lg shadow-sm">
       <div className="flex items-center space-x-2">
-        <div className={`p-2 bg-${bgColor} rounded-full`}>
+        <div className={`p-2 ${bgColorClass} rounded-full`}>
           <svg
-            className={`w-5 h-5 text-${iconColor}`}
+            className={`w-5 h-5 ${iconColorClass}`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -128,23 +140,23 @@ function StatCard({
         </div>
         <div>
           <p className="text-sm font-medium text-gray-500">{label}</p>
-          <p className="text-xl font-bold text-gray-900">{value}</p>
+          <p className="text-xl font-bold text-gray-900">
+            ${value.toLocaleString()}
+          </p>
         </div>
       </div>
     </div>
   );
 }
 
-// Reusable CTA Button component
-function CTAButton({
-  text,
-  iconPath,
-  gradient = false,
-}: {
+// CTAButton component with proper TypeScript props
+interface CTAButtonProps {
   text: string;
   iconPath: string;
   gradient?: boolean;
-}) {
+}
+
+function CTAButton({ text, iconPath, gradient = false }: CTAButtonProps) {
   return (
     <button
       className={`flex-1 ${
