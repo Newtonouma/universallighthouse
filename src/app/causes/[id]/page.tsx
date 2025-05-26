@@ -41,13 +41,12 @@ export default async function CauseDetailsPage(
   const progressPercentage = calculateProgress(cause.raised, cause.goal);
 
   return (
-    <main className="max-w-6xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <CauseImage image={cause.image} title={cause.title} />
+    <main className="w-11xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">      
 
         <div className="space-y-8">
-          <CauseHeader title={cause.title} description={cause.description} />
-
+          <CauseImage image={cause.image} title={cause.title} />  
+          <CauseHeader title={cause.title} x />
           <div className="space-y-6 bg-gray-50 p-6 rounded-xl border border-gray-100">
             <div className="grid grid-cols-2 gap-4">
               <StatCard
@@ -78,7 +77,8 @@ export default async function CauseDetailsPage(
               />
             </div>
           </div>
-        </div>
+          <CauseHeader description={cause.description} />
+        </div>        
       </div>
     </main>
   );
@@ -92,7 +92,7 @@ function calculateProgress(raised: number, goal: number): string {
 // Component: Cause Image
 function CauseImage({ image, title }: { image: string; title: string }) {
   return (
-    <div className="relative w-full h-96 lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl group">
+    <div className="relative w-full h-46 lg:h-[400px] rounded-2xl overflow-hidden shadow-2xl group">
       <Image
         src={image}
         alt={`Image for ${title}`}
@@ -107,16 +107,17 @@ function CauseImage({ image, title }: { image: string; title: string }) {
 }
 
 // Component: Cause Header
-function CauseHeader({ title, description }: { title: string; description: string }) {
+function CauseHeader({ title, description }: { title?: string; description?: string }) {
   return (
     <div>
-      <span className="inline-block px-4 py-1.5 text-xs font-semibold tracking-wider text-white bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full mb-4">
-        Featured Cause
-      </span>
-      <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-        {title}
-      </h1>
-      <p className="text-lg text-gray-600 leading-relaxed mb-8">{description}</p>
+      {title && (
+        <h1 className="text-2xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+          {title}
+        </h1>
+      )}
+      {description && (
+        <p className="text-lg text-gray-600 leading-relaxed mb-8">{description}</p>
+      )}
     </div>
   );
 }
@@ -161,7 +162,7 @@ function StatCard({ iconColor, bgColor, label, value }: StatCardProps) {
         </div>
         <div>
           <p className="text-sm font-medium text-gray-500">{label}</p>
-          <p className="text-xl font-bold text-gray-900">${value.toLocaleString()}</p>
+          <p className="text-0.5xl font-bold text-gray-900">${value.toLocaleString()}</p>
         </div>
       </div>
     </div>
