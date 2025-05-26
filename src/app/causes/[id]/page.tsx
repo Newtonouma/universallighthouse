@@ -1,5 +1,3 @@
-// File: app/causes/[id]/page.tsx
-
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import type { Metadata } from 'next';
@@ -19,19 +17,24 @@ interface CTAButtonProps {
   onClick?: () => void;
 }
 
-// Generate metadata dynamically
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const cause = causes.find((c) => String(c.id) === params.id);
+// Generate metadata dynamically - FIXED
+export async function generateMetadata(
+  { params }: { params: Promise<{ id: string }> }
+): Promise<Metadata> {
+  const { id } = await params;
+  const cause = causes.find(c => String(c.id) === id);
   return {
     title: cause?.title || 'Cause Not Found',
     description: cause?.description || '',
   };
 }
 
-// Main Component
-export default function CauseDetailsPage({ params }: { params: { id: string } }) {
-  const id = params.id?.trim();
-  const cause = causes.find((c) => String(c.id) === id);
+// Main Component - FIXED
+export default async function CauseDetailsPage(
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const { id } = await params;
+  const cause = causes.find((c) => String(c.id) === id.trim());
 
   if (!cause) return notFound();
 
