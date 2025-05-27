@@ -17,7 +17,7 @@ interface CTAButtonProps {
   onClick?: () => void;
 }
 
-// Generate metadata dynamically - FIXED
+// Generate metadata dynamically
 export async function generateMetadata(
   { params }: { params: Promise<{ id: string }> }
 ): Promise<Metadata> {
@@ -29,7 +29,7 @@ export async function generateMetadata(
   };
 }
 
-// Main Component - FIXED
+// Main Component
 export default async function CauseDetailsPage(
   { params }: { params: Promise<{ id: string }> }
 ) {
@@ -46,7 +46,7 @@ export default async function CauseDetailsPage(
 
         <div className="space-y-8">
           <CauseImage image={cause.image} title={cause.title} />  
-          <CauseHeader title={cause.title} x />
+          <CauseHeader title={cause.title} />
           <div className="space-y-6 bg-gray-50 p-6 rounded-xl border border-gray-100">
             <div className="grid grid-cols-2 gap-4">
               <StatCard
@@ -187,3 +187,4 @@ function CTAButton({ text, iconPath, gradient = false, onClick }: CTAButtonProps
     </button>
   );
 }
+

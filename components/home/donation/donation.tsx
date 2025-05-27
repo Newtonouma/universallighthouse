@@ -17,9 +17,9 @@ const settings = {
   speed: 500,
   slidesToShow: 3,
   slidesToScroll: 1,
-  centerMode: false,
+  centerMode: true,
   variableWidth: false,
-  centerPaddingLeft: '40px', 
+  centerPaddingLeft: '30px',
   autoplay: true,
   autoplaySpeed: 3000,
   pauseOnHover: true,
@@ -54,6 +54,10 @@ const DonationCarousel = () => {
       <Slider {...settings}>
         {causes.map((item: CauseItem) => {
           const percentage = Math.min((item.raised / item.goal) * 100, 100).toFixed(0);
+          const descriptionWords = item.description.split(' ');
+          const shortDescription = descriptionWords.length > 13
+            ? descriptionWords.slice(0, 10).join(' ') + '...'
+            : item.description;
           return (
             <div key={item.id} className={styles.card}>
               <div className={styles.cardHeader}>
@@ -69,7 +73,7 @@ const DonationCarousel = () => {
               </div>
               <div className={styles.content}>
                 <h3 className={styles.title}>{item.title}</h3>
-                <p className={styles.description}>{item.description}</p>
+                <p className={styles.description}>{shortDescription}</p>
                 <div className={styles.progressContainer}>
                   <div className={styles.progressBarContainer}>
                     <div 
