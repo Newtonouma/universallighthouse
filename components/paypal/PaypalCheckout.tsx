@@ -20,11 +20,11 @@ export default function PaypalCheckout() {
     disabled: "bg-gray-200 text-gray-500 cursor-not-allowed"
   };
 
-  const cardStyle = {
-    base: "p-6 rounded-xl border cursor-pointer transition-all",
-    selected: "border-2 border-emerald-500 bg-emerald-50",
-    unselected: "border-gray-200 hover:border-gray-300 bg-white"
-  };
+  // const cardStyle = {
+  //   base: "p-6 rounded-xl border cursor-pointer transition-all",
+  //   selected: "border-2 border-emerald-500 bg-emerald-50",
+  //   unselected: "border-gray-200 hover:border-gray-300 bg-white"
+  // };
 
   return (
     <div className="max-w-md mx-auto p-4">
