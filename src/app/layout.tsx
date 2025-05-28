@@ -38,6 +38,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      {/* <Head>
+      <script src="https://www.paypal.com/sdk/js?client-id=Adi5g3BpyHgDydtG4WfbRl-aEDnk1bTGJLPv_CsuYKGr0HeQ6apbYbCGC7TzVcqzOLLNQeYzyJVIQ_kN&currency=USD"></script>
+      
+      </Head> */}
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

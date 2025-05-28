@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import type { Metadata } from 'next';
 import { causes } from '../../../data/causesData';
-
+import PaypalCheckout from '../../../../components/paypal/PaypalCheckout';
 interface StatCardProps {
   iconColor: string;
   bgColor: string;
@@ -40,6 +40,7 @@ export default async function CauseDetailsPage(
 
   const progressPercentage = calculateProgress(cause.raised, cause.goal);
 
+ 
   return (
     <main className="w-11xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">      
@@ -78,7 +79,11 @@ export default async function CauseDetailsPage(
             </div>
           </div>
           <CauseHeader description={cause.description} />
-        </div>        
+        </div> 
+        <div className="paymentbuttons flex justify-center items-center gap-4 mt-8 p-4 flex-wrap bg-gray-100 rounded-lg">
+          <PaypalCheckout />
+        </div>
+      
       </div>
     </main>
   );
