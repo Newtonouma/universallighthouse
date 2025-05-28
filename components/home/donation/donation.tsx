@@ -94,7 +94,7 @@ const DonationCarousel = () => {
                   className={styles.donateButton}
                   onClick={() => router.push(`/causes/${item.id}`)}
                 >
-                  Donate Now
+                  Support Cause
                 </button>
               </div>
             </div>

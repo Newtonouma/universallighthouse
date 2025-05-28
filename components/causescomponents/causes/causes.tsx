@@ -111,7 +111,7 @@ export default function CausesGrid() {
                     onClick={() => router.push(`/causes/${cause.id}`)}
                     className="flex-1 bg-gradient-to-r from-green-500 to-red-500 hover:opacity-90 text-white font-medium py-2 px-4 rounded-lg transition-all duration-300 text-sm hover:-translate-y-0.5"
                   >
-                    Donate
+                    Support Cause
                   </button>
                 </div>
               </div>
