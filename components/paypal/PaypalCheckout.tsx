@@ -250,7 +250,7 @@ export default function PaypalCheckout() {
           
           <PayPalScriptProvider
             options={{
-              'clientId': 'Adi5g3BpyHgDydtG4WfbRl-aEDnk1bTGJLPv_CsuYKGr0HeQ6apbYbCGC7TzVcqzOLLNQeYzyJVIQ_kN',
+              'clientId': 'AZJSs77mtw0U8Xg7m2vJPhvYSW9Z5P8JoLWpqKb00MH9cN67YyPiGfZUa0mXAPqrFhpE3X_NJRMtdJvW',
               currency: currency,
             }}
           >
