@@ -1,8 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { causes } from '../../../src/data/causesData';
 import { useRouter } from 'next/navigation';
+import { useCauses } from '../../../src/hooks/useCauses';
+import SafeHTMLRenderer from '../../ui/SafeHTMLRenderer';
 
 interface Cause {
   id: number | string;
@@ -16,6 +17,68 @@ interface Cause {
 
 export default function CausesGrid() {
   const router = useRouter();
+  const { causes, loading, error, refetch } = useCauses();
+
+  if (loading) {
+    return (
+      <div className="px-4 pt-24 py-12 bg-[rgba(10,49,10,0.05)] font-['Montserrat'] mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-green-500 to-red-500 bg-clip-text text-transparent">
+            Our Impactful Causes
+          </h2>
+          <p className="text-lg text-[rgba(10,49,10,0.8)] max-w-3xl mx-auto">
+            Loading our latest causes...
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Loading skeleton */}
+          {[1, 2, 3, 4, 5, 6].map((i) => (
+            <div key={i} className="bg-white rounded-xl shadow-md overflow-hidden h-full flex flex-col animate-pulse">
+              <div className="h-48 bg-gray-300"></div>
+              <div className="p-6 flex-1 flex flex-col">
+                <div className="h-6 bg-gray-300 rounded mb-2"></div>
+                <div className="h-4 bg-gray-300 rounded mb-4"></div>
+                <div className="h-2 bg-gray-300 rounded mb-4"></div>
+                <div className="flex justify-between mb-6">
+                  <div className="bg-gray-200 p-3 rounded-lg flex-1 mr-2">
+                    <div className="h-4 bg-gray-300 rounded"></div>
+                  </div>
+                  <div className="bg-gray-200 p-3 rounded-lg flex-1">
+                    <div className="h-4 bg-gray-300 rounded"></div>
+                  </div>
+                </div>
+                <div className="flex space-x-3">
+                  <div className="flex-1 h-10 bg-gray-300 rounded-lg"></div>
+                  <div className="flex-1 h-10 bg-gray-300 rounded-lg"></div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="px-4 pt-24 py-12 bg-[rgba(10,49,10,0.05)] font-['Montserrat'] mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold mb-4 text-red-600">
+            Error Loading Causes
+          </h2>
+          <p className="text-lg text-[rgba(10,49,10,0.8)] max-w-3xl mx-auto mb-4">
+            {error}
+          </p>
+          <button
+            onClick={refetch}
+            className="bg-gradient-to-r from-green-500 to-red-500 hover:opacity-90 text-white font-medium py-2 px-6 rounded-lg transition-all duration-300"
+          >
+            Try Again
+          </button>
+        </div>
+      </div>
+    );
+  }
   
   return (
     <div className="px-4 pt-24 py-12 bg-[rgba(10,49,10,0.05)] font-['Montserrat']  mx-auto">
@@ -62,7 +125,10 @@ export default function CausesGrid() {
               {/* Content */}
               <div className="p-6 flex-1 flex flex-col">
                 <h3 className="text-xl font-bold text-[rgba(10,49,10,0.9)] mb-2">{cause.title}</h3>
-                <p className="text-[rgba(10,49,10,0.7)] text-sm mb-4 line-clamp-3">{cause.description}</p>
+                <SafeHTMLRenderer 
+                  content={cause.description}
+                  className="text-[rgba(10,49,10,0.7)] text-sm mb-4 line-clamp-3"
+                />
 
                 {/* Progress Bar */}
                 <div className="mt-auto mb-4">

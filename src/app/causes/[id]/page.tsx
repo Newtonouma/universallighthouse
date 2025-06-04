@@ -1,8 +1,9 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import type { Metadata } from 'next';
-import { causes } from '../../../data/causesData';
 import PaypalCheckout from '../../../../components/paypal/PaypalCheckout';
+import Navbar from '../../../../components/navbar/navbar';
+import Footer from '../../../../components/footer/footer';
 interface StatCardProps {
   iconColor: string;
   bgColor: string;
@@ -22,10 +23,24 @@ export async function generateMetadata(
   { params }: { params: Promise<{ id: string }> }
 ): Promise<Metadata> {
   const { id } = await params;
-  const cause = causes.find(c => String(c.id) === id);
+  
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'}/api/causes/${id}`);
+    const result = await response.json();
+    
+    if (result.success && result.data) {
+      return {
+        title: result.data.title || 'Cause Not Found',
+        description: result.data.description || '',
+      };
+    }
+  } catch (error) {
+    console.error('Error fetching cause for metadata:', error);
+  }
+  
   return {
-    title: cause?.title || 'Cause Not Found',
-    description: cause?.description || '',
+    title: 'Cause Not Found',
+    description: '',
   };
 }
 
@@ -34,59 +49,75 @@ export default async function CauseDetailsPage(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
-  const cause = causes.find((c) => String(c.id) === id.trim());
+  
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'}/api/causes/${id}`,
+      { cache: 'no-store' }
+    );
+    const result = await response.json();
+    
+    if (!response.ok || !result.success || !result.data) {
+      return notFound();
+    }
+    
+    const cause = result.data;
+    const progressPercentage = calculateProgress(cause.raised, cause.goal);
 
-  if (!cause) return notFound();
+    return (
+      <div>
+        <Navbar />
+        <main className="w-11xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">      
 
-  const progressPercentage = calculateProgress(cause.raised, cause.goal);
+          <div className="space-y-8">
+            <CauseImage image={cause.image} title={cause.title} />  
+            <CauseHeader title={cause.title} />
+            <div className="space-y-6 bg-gray-50 p-6 rounded-xl border border-gray-100">
+              <div className="grid grid-cols-2 gap-4">
+                <StatCard
+                  iconColor="emerald-600"
+                  bgColor="emerald-100"
+                  label="Raised"
+                  value={cause.raised}
+                />
+                <StatCard
+                  iconColor="blue-600"
+                  bgColor="blue-100"
+                  label="Goal"
+                  value={cause.goal}
+                />
+              </div>
 
- 
-  return (
-    <main className="w-11xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">      
+              <ProgressBar percentage={progressPercentage} />
 
-        <div className="space-y-8">
-          <CauseImage image={cause.image} title={cause.title} />  
-          <CauseHeader title={cause.title} />
-          <div className="space-y-6 bg-gray-50 p-6 rounded-xl border border-gray-100">
-            <div className="grid grid-cols-2 gap-4">
-              <StatCard
-                iconColor="emerald-600"
-                bgColor="emerald-100"
-                label="Raised"
-                value={cause.raised}
-              />
-              <StatCard
-                iconColor="blue-600"
-                bgColor="blue-100"
-                label="Goal"
-                value={cause.goal}
-              />
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                <CTAButton
+                  text="Donate Now"
+                  iconPath="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  gradient
+                />
+                <CTAButton
+                  text="Share Cause"
+                  iconPath="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+                />
+              </div>
             </div>
-
-            <ProgressBar percentage={progressPercentage} />
-
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <CTAButton
-                text="Donate Now"
-                iconPath="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                gradient
-              />
-              <CTAButton
-                text="Share Cause"
-                iconPath="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
-              />
-            </div>
+            <CauseHeader description={cause.description} />
+          </div> 
+          <div className="paymentbuttons flex justify-center items-center gap-4 mt-8 p-4 flex-wrap bg-gray-100 rounded-lg">
+            <PaypalCheckout />
           </div>
-          <CauseHeader description={cause.description} />
-        </div> 
-        <div className="paymentbuttons flex justify-center items-center gap-4 mt-8 p-4 flex-wrap bg-gray-100 rounded-lg">
-          <PaypalCheckout />
+        
         </div>
-      
-      </div>
-    </main>
-  );
+      </main>
+      <Footer />
+    </div>
+    );
+  } catch (error) {
+    console.error('Error fetching cause:', error);
+    return notFound();
+  }
 }
 
 // Helper function
@@ -137,7 +168,8 @@ function ProgressBar({ percentage }: { percentage: string }) {
       </div>
       <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
         <div
-          className="h-full bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full"
+          className="h-full bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full transition-all duration-500"
+          data-width={`${percentage}%`}
           style={{ width: `${percentage}%` }}
         />
       </div>
@@ -167,7 +199,7 @@ function StatCard({ iconColor, bgColor, label, value }: StatCardProps) {
         </div>
         <div>
           <p className="text-sm font-medium text-gray-500">{label}</p>
-          <p className="text-0.5xl font-bold text-gray-900">${value.toLocaleString()}</p>
+          <p className="text-xl font-bold text-gray-900">${value.toLocaleString()}</p>
         </div>
       </div>
     </div>

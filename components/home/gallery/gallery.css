@@ -22,24 +22,41 @@
   grid-template-columns: 1fr;
   padding: 3rem 2rem;
   background-color: rgba(10, 49, 10, 0.05);
- 
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.8s ease-out;
+}
+
+.app-container.animated {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 
 .main {
   padding: 1.25rem;
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.6s ease-out 0.2s;
+}
+
+.main.main-animated {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 
 .gallery-header {
   text-align: center;
   margin-bottom: 1rem;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .gallery-header h1 {
   
   font-size: 2.25rem;
-  font-weight: 700;
-  background: linear-gradient(90deg, #22c55e 0%, #f87171 100%);
+  font-weight: 700;  background: linear-gradient(90deg, #22c55e 0%, #f87171 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 0.5rem;
 }
@@ -58,6 +75,8 @@
   grid-auto-rows: 12.5rem;
   grid-auto-flow: dense;
   gap: 0.75rem;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .gallery-item {
@@ -70,6 +89,8 @@
   border-radius: 4px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   transition: var(--transition);
+  opacity: 1;
+  transform: scale(1);
 }
 
 .gallery-item:hover {
@@ -137,3 +158,82 @@
     display: block;
   }
 }
+
+/* Animation Keyframes */
+@keyframes galleryFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes galleryScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes gallerySlideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes gallerySlideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animation classes ensure smooth transitions when elements become visible */
+.gallery-header.header-animated {
+  animation: galleryFadeInUp 0.8s ease-out forwards;
+}
+
+.gallery.gallery-animated {
+  animation: galleryFadeInUp 1s ease-out 0.2s forwards;
+}
+
+.gallery-item.item-animated {
+  opacity: 1 !important;
+  animation: galleryScaleIn 0.6s ease-out forwards;
+}
+
+.gallery-item.item-animated:nth-child(odd) {
+  animation: gallerySlideInLeft 0.6s ease-out forwards;
+}
+
+.gallery-item.item-animated:nth-child(even) {
+  animation: gallerySlideInRight 0.6s ease-out forwards;
+}
+
+/* Staggered animation delays */
+.gallery-item.item-animated:nth-child(1) { animation-delay: 0.1s; }
+.gallery-item.item-animated:nth-child(2) { animation-delay: 0.2s; }
+.gallery-item.item-animated:nth-child(3) { animation-delay: 0.3s; }
+.gallery-item.item-animated:nth-child(4) { animation-delay: 0.4s; }
+.gallery-item.item-animated:nth-child(5) { animation-delay: 0.5s; }
+.gallery-item.item-animated:nth-child(6) { animation-delay: 0.6s; }
+.gallery-item.item-animated:nth-child(7) { animation-delay: 0.7s; }
+.gallery-item.item-animated:nth-child(8) { animation-delay: 0.8s; }
+.gallery-item.item-animated:nth-child(9) { animation-delay: 0.9s; }
+.gallery-item.item-animated:nth-child(10) { animation-delay: 1s; }

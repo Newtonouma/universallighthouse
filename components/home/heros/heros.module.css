@@ -13,10 +13,12 @@
   inset: 0;
   transition: all 1s ease-in-out;
   opacity: 0;
+  transform: translateY(20px);
 }
 
 .activeSlide {
   opacity: 1;
+  transform: translateY(0);
 }
 
 /* Image container with zoom effect */
@@ -150,7 +152,36 @@
 .activeDot {
   background-color: rgb(34 197 94); /* green-500 */
 }
-/* Existing styles... */
+
+/* Animation classes */
+.animateIn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slideAnimated {
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+.textAnimated .title {
+  animation: fadeInLeft 0.8s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+.textAnimated .subtitle {
+  animation: fadeInLeft 0.8s ease-out 0.5s forwards;
+  opacity: 0;
+}
+
+.textAnimated .description {
+  animation: fadeInLeft 0.8s ease-out 0.7s forwards;
+  opacity: 0;
+}
+
+.buttonAnimated {
+  animation: fadeInScale 0.6s ease-out 0.9s forwards;
+  opacity: 0;
+}
 
 /* Media Queries for Mobile Devices (max-width: 768px) */
 @media (max-width: 768px) {

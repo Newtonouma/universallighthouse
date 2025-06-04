@@ -1,11 +1,13 @@
 @import "tailwindcss";
+@import "../styles/animations.css";
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@theme inline {
+  --animation-duration: 0.6s;
+  --animation-easing: cubic-bezier(0.4, 0, 0.2, 1);
+  --hover-duration: 0.3s;
+  --hover-easing: ease-in-out;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -23,4 +25,516 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =============================================
+   ENHANCED ANIMATION UTILITIES
+   ============================================= */
+
+/* Smooth scroll behavior with enhanced easing */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+/* Base transition for all elements */
+*, *::before, *::after {
+  transition: transform var(--hover-duration) var(--hover-easing),
+              opacity var(--hover-duration) var(--hover-easing),
+              box-shadow var(--hover-duration) var(--hover-easing),
+              background-color var(--hover-duration) var(--hover-easing),
+              border-color var(--hover-duration) var(--hover-easing),
+              color var(--hover-duration) var(--hover-easing);
+}
+
+/* Enhanced button animations */
+.btn-animated {
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+  transition: all var(--hover-duration) var(--hover-easing);
+}
+
+.btn-animated:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.btn-animated:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-animated::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-animated:hover::before {
+  left: 100%;
+}
+
+/* Enhanced card animations */
+.card-animated {
+  transition: all var(--hover-duration) var(--hover-easing);
+  transform: translateZ(0);
+}
+
+.card-animated:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Image hover effects */
+.image-zoom {
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.image-zoom img {
+  transition: transform 0.8s var(--hover-easing);
+  transform: scale(1);
+}
+
+.image-zoom:hover img {
+  transform: scale(1.1);
+}
+
+/* Text reveal animations */
+.text-reveal {
+  overflow: hidden;
+}
+
+.text-reveal .text-content {
+  transform: translateY(100%);
+  transition: transform var(--animation-duration) var(--animation-easing);
+}
+
+.text-reveal.revealed .text-content {
+  transform: translateY(0);
+}
+
+/* Loading animations */
+.loading-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Pulse animation for loading states */
+.pulse-animation {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Floating animation */
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Glow effect */
+.glow-effect {
+  transition: box-shadow var(--hover-duration) var(--hover-easing);
+}
+
+.glow-effect:hover {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+}
+
+/* Typing effect */
+.typing-effect {
+  overflow: hidden;
+  border-right: 2px solid;
+  white-space: nowrap;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: currentColor; }
+}
+
+/* Parallax container */
+.parallax-container {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.parallax-element {
+  transform: translateZ(0);
+  transition: transform 0.1s linear;
+}
+
+/* Micro-interactions */
+.micro-bounce:hover {
+  animation: micro-bounce 0.4s ease-in-out;
+}
+
+@keyframes micro-bounce {
+  0%, 20%, 60%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-4px); }
+  80% { transform: translateY(-2px); }
+}
+
+.micro-rotate:hover {
+  animation: micro-rotate 0.3s ease-in-out;
+}
+
+@keyframes micro-rotate {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(5deg); }
+}
+
+/* Form enhancements */
+.form-input-animated {
+  position: relative;
+  border: 2px solid transparent;
+  transition: all var(--hover-duration) var(--hover-easing);
+}
+
+.form-input-animated:focus {
+  transform: scale(1.02);
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Navigation enhancements */
+.nav-item {
+  position: relative;
+  transition: all var(--hover-duration) var(--hover-easing);
+}
+
+.nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #3b82f6;
+  transition: width var(--hover-duration) var(--hover-easing);
+}
+
+.nav-item:hover::after {
+  width: 100%;
+}
+
+/* Progress bar animations */
+.progress-bar {
+  position: relative;
+  overflow: hidden;
+  background: #e5e7eb;
+  border-radius: 9999px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+  border-radius: 9999px;
+  transition: width 1s var(--animation-easing);
+  position: relative;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: progress-shine 2s infinite;
+}
+
+@keyframes progress-shine {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Responsive animation adjustments */
+@media (max-width: 768px) {
+  :root {
+    --animation-duration: 0.4s;
+    --hover-duration: 0.2s;
+  }
+  
+  .card-animated:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
+  
+  .btn-animated:hover {
+    transform: translateY(-1px);
+  }
+
+  /* Reduce animation complexity on mobile */
+  .reduce-motion-mobile * {
+    animation-duration: 0.2s !important;
+    transition-duration: 0.2s !important;
+  }
+
+  /* Mobile-friendly hover effects */
+  .mobile-tap-effect {
+    -webkit-tap-highlight-color: transparent;
+    transition: all 0.1s ease-out;
+  }
+
+  .mobile-tap-effect:active {
+    transform: scale(0.98);
+    opacity: 0.8;
+  }
+
+  /* Mobile navigation animations */
+  .mobile-menu-slide {
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .mobile-menu-slide.open {
+    transform: translateX(0);
+  }
+
+  /* Mobile card animations */
+  .mobile-card-stack {
+    perspective: 1000px;
+  }
+
+  .mobile-card-item {
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease-out;
+  }
+
+  .mobile-card-item:hover,
+  .mobile-card-item:focus {
+    transform: translateZ(20px) rotateX(5deg);
+  }
+
+  /* Mobile scroll indicators */
+  .mobile-scroll-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    transform-origin: left;
+    z-index: 9999;
+  }
+
+  /* Touch-friendly buttons */
+  .touch-button {
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation;
+  }
+
+  /* Mobile parallax adjustments */
+  .mobile-parallax {
+    transform: none !important;
+  }
+
+  /* Reduce motion for mobile performance */
+  .mobile-performance * {
+    will-change: auto !important;
+  }
+
+  /* Mobile-specific loading animations */
+  .mobile-loader {
+    animation: mobile-pulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes mobile-pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  /* Mobile drawer animations */
+  .mobile-drawer {
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .mobile-drawer.open {
+    transform: translateY(0);
+  }
+
+  /* Mobile toast notifications */
+  .mobile-toast {
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.3s ease-out;
+  }
+
+  .mobile-toast.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  /* Mobile image lazy load */
+  .mobile-image-fade {
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+  }
+
+  .mobile-image-fade.loaded {
+    opacity: 1;
+  }
+
+  /* Mobile swipe animations */
+  .mobile-swipeable {
+    touch-action: pan-x;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .mobile-swipe-indicator {
+    width: 40px;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+    margin: 8px auto;
+    transition: background 0.2s ease;
+  }
+
+  .mobile-swipe-indicator.active {
+    background: var(--primary);
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  /* Disable hover effects on touch devices */
+  .hover-only:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Enable touch-specific interactions */
+  .touch-interactive {
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .touch-interactive:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease-out;
+  }
+}
+
+/* High performance mode for older devices */
+@media (max-width: 480px) {
+  .performance-mode * {
+    animation-duration: 0.1s !important;
+    transition-duration: 0.1s !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  .performance-mode .parallax-element {
+    transform: none !important;
+  }
+
+  .performance-mode .complex-animation {
+    animation: none !important;
+  }
+}
+
+/* Haptic feedback simulation with CSS */
+.haptic-light {
+  animation: haptic-pulse-light 0.1s ease-out;
+}
+
+.haptic-medium {
+  animation: haptic-pulse-medium 0.15s ease-out;
+}
+
+.haptic-heavy {
+  animation: haptic-pulse-heavy 0.2s ease-out;
+}
+
+@keyframes haptic-pulse-light {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+@keyframes haptic-pulse-medium {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes haptic-pulse-heavy {
+  0% { transform: scale(1); }
+  25% { transform: scale(1.08); }
+  75% { transform: scale(0.98); }
+  100% { transform: scale(1); }
+}
+
+/* Accessibility improvements for animations */
+@media (prefers-reduced-motion: reduce) {
+  /* Respect user's motion preferences */
+  .respect-motion-preference * {
+    animation-duration: 0.01s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01s !important;
+    scroll-behavior: auto !important;
+  }
+
+  .respect-motion-preference .parallax-element {
+    transform: none !important;
+  }
+
+  .respect-motion-preference .auto-play-animation {
+    animation-play-state: paused !important;
+  }
+}
+
+/* Battery optimization animations */
+.battery-saver * {
+  animation-duration: 0.1s !important;
+  transition-duration: 0.1s !important;
+  will-change: auto !important;
+}
+
+.battery-saver .energy-intensive {
+  display: none !important;
+}
+
+/* Network-aware animations */
+.slow-connection .heavy-animation {
+  display: none !important;
+}
+
+.slow-connection .lightweight-fallback {
+  display: block !important;
 }

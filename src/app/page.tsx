@@ -12,18 +12,17 @@ import Footer from "../../components/footer/footer";
 
 export default function Home() {
   return (
-    <>
-    <Navbar/>
-    <Heros/>
-    <Banner/>
-    <About/>
-    <Donation/>
-    <Events/>
-    <Teams/>
-    <Gallery/>
-    <Partners/>
-    <Footer/>
-    </>
-    
+    <div>
+      <Navbar/>
+      <Heros/>
+      <Banner/>
+      <About/>
+      <Donation/>
+      <Events/>
+      <Teams/>
+      <Gallery/>
+      <Partners/>
+      <Footer/>
+    </div>
   );
 }

@@ -1,26 +1,95 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+/* ==========================
+   Animation Keyframes
+========================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
 .carouselContainer {
   margin: 0 auto;
   padding: 1rem 0;
   overflow: hidden;
   background-color: rgba(10, 49, 10, 0.05);
   font-family: 'Montserrat', sans-serif;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
 }
 
 .carouselWrapper {
   position: relative;
   width: 100%;
   overflow: hidden;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.6s ease-out;
 }
 
 .carousel {
   display: flex;
   transition: transform 0.5s ease;
   will-change: transform;
+  width: calc(100% * 2); /* For the duplicated actions */
 }
 
+/* Dynamic positioning based on currentIndex */
+.carousel[data-current-index="0"] { transform: translateX(0%); }
+.carousel[data-current-index="1"] { transform: translateX(calc(-100% / 7)); }
+.carousel[data-current-index="2"] { transform: translateX(calc(-200% / 7)); }
+.carousel[data-current-index="3"] { transform: translateX(calc(-300% / 7)); }
+.carousel[data-current-index="4"] { transform: translateX(calc(-400% / 7)); }
+.carousel[data-current-index="5"] { transform: translateX(calc(-500% / 7)); }
+.carousel[data-current-index="6"] { transform: translateX(calc(-600% / 7)); }
+
 .actionCard {
-  flex: 0 0 calc(100% / 5 - 1rem); /* 5 cards on large screens */
+  flex: 0 0 calc(100% / 7); /* 7 cards total (including duplicates) for smooth loop */
   margin: 0 0.5rem;
   display: flex;
   flex-direction: column;
@@ -34,11 +103,14 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   min-height: 140px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateY(20px) scale(0.9);
 }
 
 .actionCard:hover {
-  transform: translateY(-3px);
+  transform: translateY(-3px) scale(1.02);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  animation: pulse 0.6s ease-in-out;
 }
 
 .iconWrapper {
@@ -63,6 +135,50 @@
   font-size: 0.8rem;
   opacity: 0.9;
 }
+
+/* ==========================
+   Color Classes for Action Cards
+========================== */
+.color1 { background-color: #4CAF50; } /* VOLUNTEER - Green */
+.color2 { background-color: #F44336; } /* HELP LIFE - Red */
+.color3 { background-color: #2196F3; } /* GIVE THOUGHTFULLY - Blue */
+.color4 { background-color: #FF9800; } /* SEND DONATION - Orange */
+.color5 { background-color: #9C27B0; } /* SUPPORT CAUSE - Purple */
+.color6 { background-color: #00BCD4; } /* CHANGE LIVES - Cyan */
+.color7 { background-color: #8BC34A; } /* BE THE CHANGE - Light Green */
+
+/* ==========================
+   Animation Classes
+========================== */
+.animated {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.wrapperAnimated {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+  animation: slideInFromLeft 0.8s ease-out forwards;
+}
+
+.carouselAnimated {
+  animation: fadeInUp 0.6s ease-out 0.3s forwards;
+}
+
+.cardAnimated {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+  animation: bounceIn 0.6s ease-out forwards;
+}
+
+/* Staggered card animations */
+.cardAnimated:nth-child(1) { animation-delay: 0.1s; }
+.cardAnimated:nth-child(2) { animation-delay: 0.2s; }
+.cardAnimated:nth-child(3) { animation-delay: 0.3s; }
+.cardAnimated:nth-child(4) { animation-delay: 0.4s; }
+.cardAnimated:nth-child(5) { animation-delay: 0.5s; }
+.cardAnimated:nth-child(6) { animation-delay: 0.6s; }
+.cardAnimated:nth-child(7) { animation-delay: 0.7s; }
 
 /* Responsive adjustments */
 @media (max-width: 1024px) {

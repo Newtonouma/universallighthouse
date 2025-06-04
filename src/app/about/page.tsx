@@ -8,15 +8,13 @@ import HeroSection from "../../../components/aboutcomponents/heros/heros";
 
 export default function Home() {
   return (
-    <>
-    <Navbar/>
-    <HeroSection/>
-    <About/>
-    <MissionVision/>
-    <Partners/>
-    
-    <Footer/>
-    </>
-    
+    <div>
+      <Navbar/>
+      <HeroSection/>
+      <About/>
+      <MissionVision/>
+      <Partners/>
+      <Footer/>
+    </div>
   );
 }

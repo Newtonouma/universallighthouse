@@ -11,6 +11,7 @@ import {
 } from 'react-icons/fa';
 import Link from 'next/link';
 import styles from './banner.module.css';
+import { useScrollAnimation, useStaggeredAnimation } from '../../../src/hooks/useScrollAnimation';
 
 interface ActionItem {
   title: string;
@@ -69,6 +70,12 @@ const DonationCarousel = () => {
   const [isPaused, setIsPaused] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
   const extendedActions = [...actions, ...actions];
+  // Scroll animations - retrigger on every downward scroll
+  const { ref: containerRef, isVisible } = useScrollAnimation({ 
+    threshold: 0.2, 
+    retriggerOnScroll: true 
+  });
+  const { ref: carouselAnimRef, visibleItems } = useStaggeredAnimation(actions.length, 150, true);
 
   useEffect(() => {
     if (isPaused) return;
@@ -94,28 +101,30 @@ const DonationCarousel = () => {
       return () => clearTimeout(timer);
     }
   }, [currentIndex]);
-
   return (
-    <div className={styles.carouselContainer}>
+    <div 
+      ref={containerRef}
+      className={`${styles.carouselContainer} ${isVisible ? styles.animated : ''}`}
+    >
       <div 
-        className={styles.carouselWrapper}
+        ref={carouselAnimRef}
+        className={`${styles.carouselWrapper} ${isVisible ? styles.wrapperAnimated : ''}`}
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
         <div 
           ref={carouselRef}
-          className={styles.carousel}
-          style={{
-            transform: `translateX(-${currentIndex * (100 / actions.length)}%)`,
-            width: `${extendedActions.length * (100 / actions.length)}%`
-          }}
+          className={`${styles.carousel} ${isVisible ? styles.carouselAnimated : ''}`}
+          data-current-index={currentIndex}
+          data-actions-length={actions.length}
         >
           {extendedActions.map((action, index) => (
             <Link
               href={action.link}
               key={`${action.title}-${index}`}
-              className={styles.actionCard}
-              style={{ backgroundColor: action.color }}
+              className={`${styles.actionCard} ${
+                visibleItems.includes(index % actions.length) ? styles.cardAnimated : ''
+              } ${styles[`color${(index % actions.length) + 1}`]}`}
               aria-label={action.title}
               passHref
             >

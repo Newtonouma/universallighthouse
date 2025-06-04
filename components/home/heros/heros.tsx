@@ -40,18 +40,14 @@ const HeroSlider = () => {
     "ctaSecondary": "Get Involved",
     "image": "/images/hero3.jpg"
   }
-];
-
-  useEffect(() => {
+];  useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 5000);
     return () => clearInterval(interval);
   }, [slides.length]);
-
   return (
-    <div className={styles.heroContainer}>
-      {slides.map((slide, index) => (
+    <div className={styles.heroContainer}>      {slides.map((slide, index) => (
         <div 
           key={index}
           className={`${styles.slide} ${index === currentSlide ? styles.activeSlide : ''}`}
@@ -67,14 +63,12 @@ const HeroSlider = () => {
           </div>
           
           <div className={styles.gradientOverlay} />
-          
-          <div className={styles.contentContainer}>
+            <div className={styles.contentContainer}>
             <div className={styles.contentWrapper}>
               <div className={`${styles.textContent} ${index === currentSlide ? styles.textVisible : ''}`}>
                 <h1 className={styles.title}>{slide.title}</h1>
                 <h2 className={styles.subtitle}>{slide.subtitle}</h2>
-                <p className={styles.description}>{slide.description}</p>
-                <div className={styles.buttonGroup}>
+                <p className={styles.description}>{slide.description}</p>                <div className={styles.buttonGroup}>
                   <button className={styles.primaryButton}>
                     {slide.ctaPrimary}
                   </button>

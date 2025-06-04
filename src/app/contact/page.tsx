@@ -5,11 +5,10 @@ import Contact from "../../../components/contactcomponents/contact";
 
 export default function Home() {
   return (
-    <>
-    <Navbar/>
-    <Contact/>
-    <Footer/>
-    </>
-    
+    <div>
+      <Navbar/>
+      <Contact/>
+      <Footer/>
+    </div>
   );
 }

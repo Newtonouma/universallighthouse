@@ -1,0 +1,19 @@
+.global-loading-content {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: auto;
+  filter: blur(5px);
+  visibility: hidden;
+}
+.global-loading-content.visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0px);
+}
+.global-loading-content.mounted {
+  visibility: visible;
+}
+.global-loading-content.loading {
+  pointer-events: none;
+}

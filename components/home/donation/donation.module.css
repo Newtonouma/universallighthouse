@@ -1,8 +1,67 @@
-.carouselWrapper {
-  padding: 3rem 2rem;
-  background: rgba(10, 49, 10, 0.05);  
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+/* ==========================
+   Animation Keyframes
+========================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.donation{  
+  padding-left: 70px;
+  padding-right: 70px;
+  background: rgba(10, 49, 10, 0.05); 
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.carouselWrapper {   
+  max-width: 1200px;
   margin: 0 auto;
   font-family: 'Montserrat', sans-serif;
+  position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease-out;
 }
 
 .sectionTitle {
@@ -15,6 +74,9 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
 }
 
 .sectionDescription {
@@ -24,178 +86,353 @@
   margin: 0 auto 2rem;
   font-size: 1.1rem;
   line-height: 1.6;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
 }
 
-.card {
-  margin: 0 40px !important;
-  max-width: 430px;
+/* Slide container for proper spacing */
+.slideContainer {
+  height: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+/* Main cause card styles - matching causes.tsx structure */
+.causeCard {
   background: white;
   border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);  
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: 550px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(10, 49, 10, 0.1);
+  height: 100%;
   display: flex;
   flex-direction: column;
-  border: 1px solid rgba(10, 49, 10, 0.1);
+  opacity: 0;
+  transform: translateY(40px) scale(0.95);
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+.causeCard:hover {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
 }
 
-.cardHeader {
+/* Image container */
+.imageContainer {
   position: relative;
+  height: 192px; /* h-48 = 12rem = 192px */
 }
 
-.categoryTag {
+.imageContainer img,
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Category badge */
+.categoryBadge {
   position: absolute;
   top: 1rem;
   left: 1rem;
+  z-index: 10;
   background: rgba(10, 49, 10, 0.9);
   color: white;
-  padding: 0.25rem 0.75rem;
-  border-radius: 20px;
   font-size: 0.75rem;
   font-weight: 600;
-  z-index: 1;
-  backdrop-filter: blur(5px);
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.image {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  display: block;
-}
-
-.content {
-  padding: 1rem;
+/* Card content */
+.cardContent {
+  padding: 1.5rem;
   flex: 1;
   display: flex;
   flex-direction: column;
 }
 
-.title {
+.cardTitle {
   font-size: 1.25rem;
   font-weight: 700;
   color: rgba(10, 49, 10, 0.9);
-  margin-bottom: 0.75rem;
-}
-
-.description {
-  font-size: 0.95rem;
-  color: rgba(10, 49, 10, 0.7);
-  margin-bottom: 1.5rem;
-  line-height: 1.5;
-  flex: 1;
-}
-
-.progressContainer {
-  margin-bottom: 1.5rem;
-}
-
-.progressBarContainer {
-  background: rgba(10, 49, 10, 0.1);
-  height: 8px;
-  border-radius: 4px;
-  overflow: hidden;
   margin-bottom: 0.5rem;
 }
 
-.progressBar {
-  height: 100%;
-  background: linear-gradient(90deg, #22c55e 0%, #f87171 100%);
-  transition: width 0.4s ease;
+.cardDescription {
+  color: rgba(10, 49, 10, 0.7);
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-.percentage {
-  font-size: 0.9rem;
+/* Progress section */
+.progressSection {
+  margin-top: auto;
+  margin-bottom: 1rem;
+}
+
+.progressHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.progressLabel {
+  font-size: 0.75rem;
+  color: rgba(10, 49, 10, 0.6);
+}
+
+.progressPercentage {
+  font-size: 0.75rem;
   font-weight: 600;
   color: #22c55e;
-  display: block;
-  text-align: right;
 }
 
-.stats {
+.progressBackground {
+  width: 100%;
+  background: rgba(10, 49, 10, 0.1);
+  border-radius: 9999px;
+  height: 8px;
+}
+
+.progressFill {
+  background: linear-gradient(90deg, #22c55e 0%, #f87171 100%);
+  height: 8px;
+  border-radius: 9999px;
+  transition: width 0.3s ease;
+  width: 0%;
+}
+
+/* Dynamic width based on data attribute - using calc for flexibility */
+.progressFill[data-progress] {
+  width: calc(var(--progress, 0) * 1%);
+}
+
+/* Stats container */
+.statsContainer {
   display: flex;
   justify-content: space-between;
   margin-bottom: 1.5rem;
 }
 
-.statItem {
-  display: flex;
-  flex-direction: column;
+.statBox {
+  background: #f9fafb;
+  padding: 0.75rem;
+  border-radius: 8px;
+  flex: 1;
+}
+
+.statBox:first-child {
+  margin-right: 0.5rem;
 }
 
 .statLabel {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: rgba(10, 49, 10, 0.6);
-  margin-bottom: 0.25rem;
 }
 
 .statValue {
-  font-size: 0.95rem;
   font-weight: 600;
   color: rgba(10, 49, 10, 0.9);
 }
 
-.donateButton {
+/* Actions container */
+.actionsContainer {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
+.learnMoreButton {
+  flex: 1;
+  text-align: center;
+  border: 1px solid rgba(10, 49, 10, 0.3);
+  color: rgba(10, 49, 10, 0.9);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-size: 0.875rem;
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.learnMoreButton:hover {
+  background: rgba(10, 49, 10, 0.05);
+}
+
+.supportButton {
+  flex: 1;
   background: linear-gradient(90deg, #22c55e 0%, #f87171 100%);
   color: white;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-size: 0.875rem;
   border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 6px;
-  font-weight: 600;
+  cursor: pointer;
+}
+
+.supportButton:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+/* Custom arrow styles */
+.customArrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(10, 49, 10, 0.2);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  width: 100%;
-  margin-top: auto;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.donateButton:hover {
-  opacity: 0.9;
-  transform: translateY(-2px);
+.customArrow:hover {
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-50%) scale(1.05);
 }
+
+.customArrow:before {
+  display: none !important;
+}
+
+.prevArrow {
+  left: -60px;
+}
+
+.nextArrow {
+  right: -60px;
+}
+
+.customArrow svg {
+  width: 20px;
+  height: 20px;
+  color: rgba(10, 49, 10, 0.8);
+}
+
+/* Carousel container adjustments */
 .slick-list {
-  margin: 0 -40px !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-/* Slick carousel overrides */
-.slick-prev:before,
-.slick-next:before {
-  color: rgba(10, 49, 10, 0.9) !important;
-  font-size: 40px !important;
+.slick-track {
+  display: flex !important;
+  align-items: stretch;
 }
 
+.slick-slide {
+  height: inherit !important;
+}
+
+.slick-slide > div {
+  height: 100%;
+}
+
+/* Hide default arrows */
+.slick-prev,
+.slick-next {
+  display: none !important;
+}
+
+/* Dots styling */
 .slick-dots {
   position: relative;
-  bottom: -20px;
+  bottom: -30px;
+  text-align: center;
+}
+
+.slick-dots li {
+  margin: 0 4px;
 }
 
 .slick-dots li button:before {
-  color: rgba(10, 49, 10, 0.2) !important;
-  font-size: 10px !important;
+  color: rgba(10, 49, 10, 0.3) !important;
+  font-size: 12px !important;
+  opacity: 1 !important;
 }
 
 .slick-dots li.slick-active button:before {
-  color: rgba(10, 49, 10, 0.9) !important;
+  color: rgba(10, 49, 10, 0.8) !important;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .prevArrow {
+    left: -40px;
+  }
+  
+  .nextArrow {
+    right: -40px;
+  }
+  
+  .customArrow {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .customArrow svg {
+    width: 16px;
+    height: 16px;
+  }
 }
 
 @media (max-width: 768px) {
-  .card {
-    margin: 0 10px !important;
-    max-width: 90vw;
+  .donation {
+    padding-left: 20px;
+    padding-right: 20px;
   }
-  .slick-list {
-    margin: 0 -10px !important;
-  }
+  
   .carouselWrapper {
-    padding: 2rem 1rem;
+    min-width: 70vw;
+  }
+  
+  .prevArrow,
+  .nextArrow {
+    display: none;
+  }
+  
+  .imageContainer {
+    height: 160px;
+  }
+  
+  .cardContent {
+    padding: 1rem;
+  }
+  
+  .cardTitle {
+    font-size: 1.125rem;
+  }
+  
+  .cardDescription {
+    font-size: 0.8rem;
   }
   
   .sectionTitle {
@@ -205,4 +442,125 @@
   .sectionDescription {
     font-size: 1rem;
   }
+  
+  .statsContainer {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .statBox {
+    margin-right: 0;
+  }
+  
+  .actionsContainer {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .learnMoreButton,
+  .supportButton {
+    width: 100%;
+  }
+}
+
+/* Additional mobile responsiveness for very small screens */
+@media (max-width: 480px) {
+  .donation {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  .sectionTitle {
+    font-size: 1.5rem;
+  }
+  
+  .sectionDescription {
+    font-size: 0.9rem;
+  }
+  
+  .cardTitle {
+    font-size: 1rem;
+  }
+  
+  .cardDescription {
+    font-size: 0.75rem;
+  }
+  
+  .imageContainer {
+    height: 140px;
+  }
+  
+  .categoryBadge {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+  }
+  
+  .progressLabel,
+  .progressPercentage {
+    font-size: 0.7rem;
+  }
+  
+  .statLabel {
+    font-size: 0.7rem;
+  }
+  
+  .statValue {
+    font-size: 0.875rem;
+  }
+    .learnMoreButton,
+  .supportButton {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* ==========================
+   Animation Classes
+========================== */
+
+/* Animated states */
+.animated {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.wrapperAnimated {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.titleAnimated {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  animation: fadeInUp 0.6s ease-out 0.2s forwards;
+}
+
+.descriptionAnimated {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  animation: fadeInUp 0.6s ease-out 0.4s forwards;
+}
+
+.sliderAnimated {
+  animation: slideInFromBottom 0.8s ease-out 0.6s forwards;
+}
+
+.cardAnimated {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+  animation: fadeInScale 0.6s ease-out forwards;
+}
+
+/* Staggered card animations - if needed */
+.slick-slide:nth-child(1) .cardAnimated {
+  animation-delay: 0.7s;
+}
+
+.slick-slide:nth-child(2) .cardAnimated {
+  animation-delay: 0.9s;
+}
+
+.slick-slide:nth-child(3) .cardAnimated {
+  animation-delay: 1.1s;
 }

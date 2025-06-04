@@ -5,12 +5,11 @@ import Causes from "../../../components/causescomponents/causes/causes";
 
 export default function Home() {
   return (
-    <>
-    <Navbar/>
-    <Causes/>    
-    <Footer/>
-    </>
-    
+    <div>
+      <Navbar/>
+      <Causes/>    
+      <Footer/>
+    </div>
   );
 }
 
