@@ -19,13 +19,21 @@ interface CTAButtonProps {
 }
 
 // Generate metadata dynamically
+// Helper function to get the correct API URL
+function getApiUrl() {
+  if (process.env.NODE_ENV === 'production') {
+    return process.env.NEXT_PUBLIC_API_URL || 'https://universallighthouse.vercel.app';
+  }
+  return 'http://localhost:3000';
+}
+
 export async function generateMetadata(
   { params }: { params: Promise<{ id: string }> }
 ): Promise<Metadata> {
   const { id } = await params;
   
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'}/api/causes/${id}`);
+    const response = await fetch(`${getApiUrl()}/api/causes/${id}`);
     const result = await response.json();
     
     if (result.success && result.data) {
@@ -52,7 +60,7 @@ export default async function CauseDetailsPage(
   
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'}/api/causes/${id}`,
+      `${getApiUrl()}/api/causes/${id}`,
       { cache: 'no-store' }
     );
     const result = await response.json();
