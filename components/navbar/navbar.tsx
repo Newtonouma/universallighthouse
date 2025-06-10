@@ -53,13 +53,12 @@ const Navbar = () => {
           />
           <span className={styles.name}>Universal Lighthouse</span>
         </div>
-        </Link>
-
-        {/* Desktop Navigation */}
+        </Link>        {/* Desktop Navigation */}
         <div className={styles.desktopLinks}>
           <Link href="/">Home</Link>
           <Link href="/about">About Us</Link>
           <Link href="/causes" onClick={toggleMenu}>Our Causes</Link>
+          <Link href="/gallery">Gallery</Link>
           <a href="#stories">Success Stories</a>
           <a href="#volunteer">Volunteer</a>
           <Link href="/contact">Contact</Link>
@@ -85,13 +84,12 @@ const Navbar = () => {
             <span></span>
             <span></span>
           </div>
-        </button>
-
-        {/* Mobile Navigation */}
+        </button>        {/* Mobile Navigation */}
         <div className={`${styles.mobileLinks} ${isOpen ? styles.open : ''}`}>
           <Link href="/" onClick={toggleMenu}>Home</Link>
           <Link href="/about" onClick={toggleMenu}>About Us</Link>
           <Link href="/causes" onClick={toggleMenu}>Our Causes</Link>
+          <Link href="/gallery" onClick={toggleMenu}>Gallery</Link>
           <a href="#stories" onClick={toggleMenu}>Success Stories</a>
           <a href="#volunteer" onClick={toggleMenu}>Volunteer</a>
           <Link href="/contact" onClick={toggleMenu}>Contact</Link>

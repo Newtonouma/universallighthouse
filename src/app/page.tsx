@@ -6,7 +6,7 @@ import Navbar from "../../components/navbar/navbar";
 import Donation from "../../components/home/donation/donation";
 import Events from "../../components/home/events/events";
 import Teams from "../../components/home/teams/teams";
-import Gallery from "../../components/home/gallery/gallery";
+import GalleryPreview from "../../components/home/gallery/gallery-preview";
 import Partners from "../../components/partners/partners";
 import Footer from "../../components/footer/footer";
 
@@ -20,7 +20,7 @@ export default function Home() {
       <Donation/>
       <Events/>
       <Teams/>
-      <Gallery/>
+      <GalleryPreview/>
       <Partners/>
       <Footer/>
     </div>
