@@ -4,6 +4,7 @@ import Banner from "../../components/home/banner/banner";
 import About from "../../components/home/about/about";
 import Navbar from "../../components/navbar/navbar";
 import Donation from "../../components/home/donation/donation";
+import Impact from "../../components/home/impact/impact";
 import Events from "../../components/home/events/events";
 import Teams from "../../components/home/teams/teams";
 import GalleryPreview from "../../components/home/gallery/gallery-preview";
@@ -18,7 +19,8 @@ export default function Home() {
       <Banner/>
       <About/>
       <Donation/>
-      <Events/>
+      <Events/>      
+      <Impact/>
       <Teams/>
       <GalleryPreview/>
       <Partners/>

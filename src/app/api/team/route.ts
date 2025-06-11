@@ -48,7 +48,7 @@ export async function GET(request: NextRequest) {
       const filtered: Record<string, unknown> = {
         id: member.id,
         name: member.name || 'Unknown',
-        description: member.description || '',
+        description: typeof member.description === 'string' ? member.description.trim() : '',
         imageUrl: member.imageUrl || 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&auto=format&fit=crop'
       };
 
@@ -72,15 +72,27 @@ export async function GET(request: NextRequest) {
       }
       if (member.linkedin && member.linkedin !== null) {
         filtered.linkedin = member.linkedin;
-      }
+      }      return filtered;
+    }).filter((member: Record<string, unknown>) => {
+      // Enhanced filtering to prevent duplicates and invalid entries
+      return member.name && 
+             member.name !== 'Unknown' && 
+             typeof member.name === 'string' && 
+             member.name.trim().length > 0 &&
+             member.description &&
+             typeof member.description === 'string' &&
+             member.description.trim().length > 0;
+    }) : [];
 
-      return filtered;
-    }).filter((member: Record<string, unknown>) => member.name && member.name !== 'Unknown') : [];
-
-    return NextResponse.json({
+    // Remove duplicate team members based on name and description combination
+    const uniqueMembers = transformedData.filter((member, index, self) => 
+      index === self.findIndex((m) => 
+        m.name === member.name && m.description === member.description
+      )
+    );    return NextResponse.json({
       success: true,
-      data: transformedData,
-      total: transformedData.length
+      data: uniqueMembers,
+      total: uniqueMembers.length
     });
   } catch (error) {
     console.error('Error fetching team members from backend:', error);

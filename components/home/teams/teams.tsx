@@ -97,47 +97,10 @@ const EmailIcon = () => (
 );
 
 const TeamsComponent = () => {
-  const [activeCategory, setActiveCategory] = useState<string>('All');
-  const { teamMembers, loading, error } = useTeamMembers(activeCategory);
+  const [activeCategory, setActiveCategory] = useState<string>('All');  const { teamMembers, loading, error } = useTeamMembers(activeCategory);
   // Scroll animations
   const { ref: sectionRef, isVisible } = useScrollAnimation({ threshold: 0.1, retriggerOnScroll: true });
   const { ref: cardsRef, visibleItems } = useStaggeredAnimation(6, 200, true);
-
-  // Carousel settings
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    centerMode: false,
-    variableWidth: false,
-    autoplay: true,
-    autoplaySpeed: 4000,
-    pauseOnHover: true,
-    pauseOnFocus: true,
-    arrows: true,
-    swipeToSlide: true,
-    focusOnSelect: false,
-    prevArrow: <CustomPrevArrow />,
-    nextArrow: <CustomNextArrow />,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          centerMode: false
-        }
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          centerMode: false
-        }
-      }
-    ]
-  };
 
   if (loading) {
     return (
@@ -166,11 +129,72 @@ const TeamsComponent = () => {
         </div>
       </section>
     );
-  }
-  const categories = ['All', ...new Set(teamMembers.map(member => member.description))];
+  }  // Enhanced category generation with better deduplication
+  const categories = [
+    'All', 
+    ...new Set(
+      teamMembers
+        .map(member => member.description?.trim()) // Remove whitespace
+        .filter(desc => desc && desc.length > 0) // Remove empty descriptions
+        .map(desc => desc!) // TypeScript assertion after filter
+    )
+  ];
+    // Enhanced filtering with case-insensitive and whitespace-resistant comparison
   const filteredMembers = activeCategory === 'All' 
     ? teamMembers 
-    : teamMembers.filter(member => member.description === activeCategory);
+    : teamMembers.filter(member => 
+        member.description?.trim().toLowerCase() === activeCategory.toLowerCase().trim()
+      );
+  // Dynamic carousel settings based on the number of filtered members
+  const getCarouselSettings = () => {
+    const memberCount = filteredMembers.length;
+    const baseSlidesToShow = Math.min(memberCount, 3); // Never show more slides than available members
+    
+    return {
+      dots: memberCount > 1,
+      infinite: memberCount > 3, // Only enable infinite scroll if we have more than 3 members
+      speed: 500,
+      slidesToShow: baseSlidesToShow,
+      slidesToScroll: 1,
+      centerMode: memberCount === 1, // Center single items
+      centerPadding: memberCount === 1 ? '0px' : '0',
+      variableWidth: false,
+      autoplay: memberCount > 1, // Only autoplay if we have more than 1 member
+      autoplaySpeed: 4000,
+      pauseOnHover: true,
+      pauseOnFocus: true,
+      arrows: memberCount > baseSlidesToShow, // Only show arrows if there are more members than visible
+      swipeToSlide: memberCount > 1,
+      focusOnSelect: false,
+      prevArrow: <CustomPrevArrow />,
+      nextArrow: <CustomNextArrow />,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: Math.min(memberCount, 2),
+            centerMode: memberCount === 1,
+            centerPadding: memberCount === 1 ? '0px' : '0',
+            infinite: memberCount > 2,
+            arrows: memberCount > Math.min(memberCount, 2),
+            autoplay: memberCount > 1
+          }
+        },
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 1,
+            centerMode: true,
+            centerPadding: '0px',
+            infinite: memberCount > 1,
+            arrows: memberCount > 1,
+            autoplay: memberCount > 1
+          }
+        }
+      ]
+    };
+  };
+
   return (
     <section 
       className={`${styles.teamsSection} ${isVisible ? styles.animated : ''}`} 
@@ -180,9 +204,7 @@ const TeamsComponent = () => {
         <div className={`${styles.sectionHeader} ${isVisible ? styles.headerAnimated : ''}`}>
           <h2 className={styles.sectionTitle}>Our Team</h2>
           <p className={styles.sectionSubtitle}>At the heart of our organization is a dedicated team committed to creating lasting change. Each member brings unique expertise, compassion, and leadership working together to uplift communities, advocate for rights, and ensure every voice is heard.</p>
-        </div>
-
-        <div className={`${styles.departmentFilters} ${isVisible ? styles.filtersAnimated : ''}`}>
+        </div>        <div className={`${styles.departmentFilters} ${isVisible ? styles.filtersAnimated : ''}`}>
           {categories.map(category => (
             <button
               key={category}
@@ -192,13 +214,16 @@ const TeamsComponent = () => {
               {category}
             </button>
           ))}
-        </div>
-
-        <div 
-          className={`${styles.carouselWrapper} ${isVisible ? styles.carouselAnimated : ''}`}
-          ref={cardsRef}
-        >
-          <Slider {...settings}>
+        </div>        {filteredMembers.length === 0 ? (
+          <div className={`${styles.noResults} ${isVisible ? styles.noResultsAnimated : ''}`}>
+            <p>No team members found for &ldquo;{activeCategory}&rdquo; category.</p>
+          </div>
+        ) : (
+          <div 
+            className={`${styles.carouselWrapper} ${isVisible ? styles.carouselAnimated : ''}`}
+            ref={cardsRef}
+          >
+            <Slider {...getCarouselSettings()}>
             {filteredMembers.map((member, index) => (
               <div 
                 key={member.id} 
@@ -256,14 +281,14 @@ const TeamsComponent = () => {
                           <EmailIcon />
                           <span>{member.email}</span>
                         </div>
-                      )}
-                    </div>
+                      )}                    </div>
                   </div>
                 </div>
               </div>
             ))}
           </Slider>
-        </div>
+          </div>
+        )}
       </div>
     </section>
   );

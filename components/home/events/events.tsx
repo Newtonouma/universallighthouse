@@ -112,18 +112,17 @@ const EventsComponent: React.FC = () => {
       </section>
     );
   }
-
   if (events.length === 0) {
     return (
       <section className={styles.eventsSection}>
         <div className={styles.eventsContainer}>
           <div className={styles.emptyState}>
-            <p>No events available at the moment.</p>
+            <p>No upcoming events at the moment. Check back soon for new events!</p>
           </div>
         </div>
       </section>
     );
-  }  return (
+  }return (
     <section 
       ref={sectionRef}
       className={`${styles.eventsSection} ${isVisible ? styles.animated : ''}`}

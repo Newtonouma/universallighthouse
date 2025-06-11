@@ -53,6 +53,37 @@ const formatEventData = (event: EventItem): EventItemFormatted => {
   };
 };
 
+// Helper function to filter out past events
+const filterUpcomingAndOngoingEvents = (events: EventItemFormatted[]): EventItemFormatted[] => {
+  const now = new Date();
+  
+  return events
+    .filter(event => {
+      const endDate = new Date(event.endTime);
+      
+      // Only show events that haven't ended yet (ongoing or upcoming)
+      return endDate >= now;
+    })
+    .sort((a, b) => {
+      const nowTime = now.getTime();
+      const aStart = new Date(a.date).getTime();
+      const aEnd = new Date(a.endTime).getTime();
+      const bStart = new Date(b.date).getTime();
+      const bEnd = new Date(b.endTime).getTime();
+      
+      // Check if events are ongoing
+      const aIsOngoing = nowTime >= aStart && nowTime <= aEnd;
+      const bIsOngoing = nowTime >= bStart && nowTime <= bEnd;
+      
+      // Prioritize ongoing events first
+      if (aIsOngoing && !bIsOngoing) return -1;
+      if (!aIsOngoing && bIsOngoing) return 1;
+      
+      // If both are ongoing or both are upcoming, sort by start date
+      return aStart - bStart;
+    });
+};
+
 // Hook to fetch all events
 export function useEvents(): UseEventsReturn {  const [events, setEvents] = useState<EventItemFormatted[]>([]);
   const [loading, setLoading] = useState(true);
@@ -70,10 +101,13 @@ export function useEvents(): UseEventsReturn {  const [events, setEvents] = useS
       if (!response.ok || !result.success) {
         throw new Error(result.error || 'Failed to fetch events');
       }
-      
-      // Format events data for frontend compatibility
+        // Format events data for frontend compatibility
       const formattedEvents = result.data.map(formatEventData);
-      setEvents(formattedEvents);
+      
+      // Filter to show only upcoming and ongoing events
+      const upcomingAndOngoingEvents = filterUpcomingAndOngoingEvents(formattedEvents);
+      
+      setEvents(upcomingAndOngoingEvents);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');      setEvents([]);    } finally {
       setLoading(false);
@@ -115,10 +149,20 @@ export function useEvent(id: string | null): UseEventReturn {
       if (!response.ok || !result.success) {
         throw new Error(result.error || 'Failed to fetch event');
       }
-      
-      // Format event data for frontend compatibility
+        // Format event data for frontend compatibility
       const formattedEvent = formatEventData(result.data);
-      setEvent(formattedEvent);
+      
+      // Check if the event is past
+      const now = new Date();
+      const endDate = new Date(formattedEvent.endTime);
+      
+      if (endDate < now) {
+        // Event has ended, return null or handle as needed
+        setError('This event has already ended');
+        setEvent(null);
+      } else {
+        setEvent(formattedEvent);
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
       setEvent(null);
