@@ -30,7 +30,7 @@ const HeroSlider = () => {
     "description": "Your generosity helps us deliver prosthetics, wheelchairs, and walking aids to those who need them most. Every contribution brings hope and dignity.",
     "ctaPrimary": "Give Support",
     "ctaSecondary": "Our Impact",
-    "image": "/images/hero2.jpg"
+    "image": "/images/assesment.jpg"
   },
   {
     "title": "Together, We Lift",
@@ -38,7 +38,7 @@ const HeroSlider = () => {
     "description": "We believe mobility is a human right. Help us bring assistive devices to children and adults living with disabilities. Let’s move forward together.",
     "ctaPrimary": "Join the Cause",
     "ctaSecondary": "Get Involved",
-    "image": "/images/hero3.jpg"
+    "image": "/images/en.jpg"
   }
 ];  useEffect(() => {
     const interval = setInterval(() => {
