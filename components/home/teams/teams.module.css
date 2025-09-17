@@ -257,7 +257,7 @@
 }
 
 .cardImage {
-  height: 200px;
+  height: 300px;
   overflow: hidden;
   position: relative;
 }
@@ -460,7 +460,7 @@
   }
   
   .cardImage {
-    height: 150px;
+    height: 220px;
   }
   
   .cardContent {

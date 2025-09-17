@@ -17,7 +17,7 @@ export const teamMembers: TeamMember[] = [
     id: 'emmily-akech',
     name: 'Emmily Akech',
     description: 'Founder & Director',
-    imageUrl: '/images/team/emmily-akech.jpg',
+    imageUrl: '/images/teams/emilly.webp',
     email: 'emmily.akech@universallighthouse.org',
     linkedin: 'https://linkedin.com/in/emmilyakech',
     twitter: 'https://twitter.com/emmilyakech'
@@ -62,7 +62,7 @@ export const teamMembers: TeamMember[] = [
     id: 'ellias-oriya',
     name: 'Ellias Oriya',
     description: 'Community Liaison Officer',
-    imageUrl: '/images/team/ellias-oriya.jpg',
+    imageUrl: '/images/teams/ellias.jpg',
     email: 'ellias.oriya@universallighthouse.org',
     contact: '+254 734 567 890',
     twitter: 'https://twitter.com/elliasoriya'
