@@ -32,9 +32,9 @@ export const partnersData: Partner[] = [
   },
   {
     id: 3,
-    name: 'Legs4Africa',
-    logoUrl: '/images/partners/legs4africa.svg',
-    website: 'https://legs4africa.org/',
+    name: 'Stand',
+    logoUrl: '/images/partners/stand.jpg',
+    website: 'https://stand.org/',
     description: 'Providing prosthetic limbs and mobility aids across Africa',
     category: 'Healthcare',
     isActive: true,

@@ -85,7 +85,7 @@ const AboutUs = () => {
             
             <div className={`${styles.smallImageWrapper} ${isVisible ? styles.smallImageAnimated : ''}`}>
               <Image
-                src="/images/hero1.jpg"
+                src="/images/all.jpg"
                 alt="Mission icon"
                 fill
                 className={styles.smallImage}

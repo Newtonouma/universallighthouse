@@ -18,15 +18,15 @@ const HeroSlider = () => {
   const slides: Slide[] = [
   {
     "title": "Empowering Every Step",
-    "subtitle": "Support Mobility for All",
+    "subtitle": "Building Stronger Communities Together",
     "description": "Join us in providing movement aids to people with disabilities and amputees. Your support gives them freedom, independence, and a better quality of life.",
     "ctaPrimary": "Donate Now",
     "ctaSecondary": "Learn More",
-    "image": "/images/hero1.jpg"
+    "image": "/images/all.jpg"
   },
   {
     "title": "Change a Life Today",
-    "subtitle": "Help Someone Walk Again",
+    "subtitle": "Transforming Lives Through Compassion",
     "description": "Your generosity helps us deliver prosthetics, wheelchairs, and walking aids to those who need them most. Every contribution brings hope and dignity.",
     "ctaPrimary": "Give Support",
     "ctaSecondary": "Our Impact",
@@ -34,7 +34,7 @@ const HeroSlider = () => {
   },
   {
     "title": "Together, We Lift",
-    "subtitle": "Restoring Mobility & Hope",
+    "subtitle": "Creating Hope & Opportunity for All",
     "description": "We believe mobility is a human right. Help us bring assistive devices to children and adults living with disabilities. Let’s move forward together.",
     "ctaPrimary": "Join the Cause",
     "ctaSecondary": "Get Involved",
