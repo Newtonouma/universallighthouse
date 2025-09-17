@@ -1,14 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import { CauseItem } from '../data/causesData';
+import { CauseItem, causes as causesData } from '../data/causesData';
 import { useLoadingContext } from '../contexts/LoadingContext';
-
-// API Response types
-interface ApiResponse<T> {
-  success: boolean;
-  data: T;
-  error?: string;
-  total?: number;
-}
 
 interface UseCausesReturn {
   causes: CauseItem[];
@@ -25,24 +17,27 @@ interface UseCauseReturn {
 }
 
 // Hook to fetch all causes
-export function useCauses(): UseCausesReturn {  const [causes, setCauses] = useState<CauseItem[]>([]);
+export function useCauses(): UseCausesReturn {
+  const [causes, setCauses] = useState<CauseItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const { updateLoadingState } = useLoadingContext();  const fetchCauses = useCallback(async () => {    try {
+  const { updateLoadingState } = useLoadingContext();
+
+  const fetchCauses = useCallback(async () => {
+    try {
       setLoading(true);
       updateLoadingState('causes', true);
       setError(null);
       
-      const response = await fetch('/api/causes');
-      const result: ApiResponse<CauseItem[]> = await response.json();
+      // Simulate a brief loading delay for better UX
+      await new Promise(resolve => setTimeout(resolve, 500));
       
-      if (!response.ok || !result.success) {
-        throw new Error(result.error || 'Failed to fetch causes');
-      }
-      
-      setCauses(result.data);
+      // Use local data instead of API
+      setCauses(causesData);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');      setCauses([]);    } finally {
+      setError(err instanceof Error ? err.message : 'An error occurred');
+      setCauses([]);
+    } finally {
       setLoading(false);
       updateLoadingState('causes', false);
     }
@@ -75,14 +70,17 @@ export function useCause(id: string | null): UseCauseReturn {
       setLoading(true);
       setError(null);
       
-      const response = await fetch(`/api/causes/${id}`);
-      const result: ApiResponse<CauseItem> = await response.json();
+      // Simulate a brief loading delay for better UX
+      await new Promise(resolve => setTimeout(resolve, 300));
       
-      if (!response.ok || !result.success) {
-        throw new Error(result.error || 'Failed to fetch cause');
+      // Find cause in local data
+      const foundCause = causesData.find(c => c.id === id);
+      
+      if (!foundCause) {
+        throw new Error('Cause not found');
       }
       
-      setCause(result.data);
+      setCause(foundCause);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
       setCause(null);

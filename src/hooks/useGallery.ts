@@ -1,14 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import { GalleryItem } from '../data/galleryData';
+import { GalleryItem, galleryItems as galleryData } from '../data/galleryData';
 import { useLoadingContext } from '../contexts/LoadingContext';
-
-// API Response types
-interface ApiResponse<T> {
-  success: boolean;
-  data: T;
-  error?: string;
-  total?: number;
-}
 
 interface UseGalleryReturn {
   galleryItems: GalleryItem[];
@@ -25,30 +17,36 @@ interface UseGalleryItemReturn {
 }
 
 // Hook to fetch all gallery items
-export function useGallery(): UseGalleryReturn {  const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
+export function useGallery(): UseGalleryReturn {
+  const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const { updateLoadingState } = useLoadingContext();
 
-  const fetchGalleryItems = useCallback(async () => {    try {
+  const fetchGalleryItems = useCallback(async () => {
+    try {
       setLoading(true);
       updateLoadingState('gallery', true);
       setError(null);
       
-      const response = await fetch('/api/gallery');
-      const result: ApiResponse<GalleryItem[]> = await response.json();
+      // Simulate a brief loading delay for better UX
+      await new Promise(resolve => setTimeout(resolve, 500));
       
-      if (!response.ok || !result.success) {
-        throw new Error(result.error || 'Failed to fetch gallery items');
-      }
+      // Filter to only active items and sort by order
+      const activeItems = galleryData
+        .filter(item => item.isActive)
+        .sort((a, b) => a.order - b.order);
       
-      setGalleryItems(result.data);
+      setGalleryItems(activeItems);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');      setGalleryItems([]);    } finally {
+      setError(err instanceof Error ? err.message : 'An error occurred');
+      setGalleryItems([]);
+    } finally {
       setLoading(false);
       updateLoadingState('gallery', false);
     }
   }, [updateLoadingState]);
+
   useEffect(() => {
     fetchGalleryItems();
   }, [fetchGalleryItems]);
@@ -77,14 +75,17 @@ export function useGalleryItem(id: number): UseGalleryItemReturn {
       setLoading(true);
       setError(null);
       
-      const response = await fetch(`/api/gallery/${id}`);
-      const result: ApiResponse<GalleryItem> = await response.json();
+      // Simulate a brief loading delay for better UX
+      await new Promise(resolve => setTimeout(resolve, 300));
       
-      if (!response.ok || !result.success) {
-        throw new Error(result.error || 'Failed to fetch gallery item');
+      // Find gallery item in local data
+      const foundItem = galleryData.find(item => item.id === id && item.isActive);
+      
+      if (!foundItem) {
+        throw new Error('Gallery item not found');
       }
       
-      setGalleryItem(result.data);
+      setGalleryItem(foundItem);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
       setGalleryItem(null);

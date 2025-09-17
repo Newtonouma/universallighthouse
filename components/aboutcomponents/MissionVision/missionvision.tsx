@@ -5,9 +5,9 @@ import './missionvision.css';
 const tabs = ['Our Mission', 'Our Vision', 'Charity History'];
 
 const tabContent: { [key: string]: string } = {
-  'Our Mission': `Our mission is to bring hope, resources, & opportunities to communities in need, empowering individuals to build brighter, sustainable futures. We are committed to tackling critical challenges.`,
-  'Our Vision': `Our vision is a world where everyone has the opportunity to thrive, with access to the resources and support necessary for lasting change guided by compassion, integrity.`,
-  'Charity History': `Since our founding, we've partnered with donors, volunteers, and organizations to create sustainable solutions and long-term impacts in local communities around the world.`,
+  'Our Mission': `To champion inclusivity as our guiding light and uplifting the vulnerable groups in our society`,
+  'Our Vision': `A society where every person with a disability can live with dignity, independence, and opportunity.`,
+  'Charity History': `Universal Lighthouse was founded with a commitment to transforming lives through disability inclusion and rights advocacy. Since our inception, we have worked at county and national levels to advance policy change, provide integrated health services, and empower individuals through skills training and capacity building programs.`,
 };
 
 const PurposeSection: React.FC = () => {
@@ -35,9 +35,9 @@ const PurposeSection: React.FC = () => {
           </h2>
 
           <p className="section-description">
-            Our mission to bring hope, resources, & opportunity to communities
-            in need, empowering individuals to build brighter, sustainable
-            futures we are committed to tackling critical challenges.
+            Universal Lighthouse is dedicated to advancing disability inclusion, health, and human rights. 
+            Through advocacy, support services, and empowerment programs, we work to create a world where 
+            every person with disabilities can live with dignity and reach their full potential.
           </p>
 
           {/* Tabs */}

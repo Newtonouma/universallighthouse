@@ -10,13 +10,13 @@ const AboutUs: React.FC = () => {
         <div className="about-content">
           <span className="section-badge">About Us</span>
           <h2 className="section-title">
-            <span className="gradient-text">Stronger Communities</span><br />
-            One Gift at a Time
+            <span className="gradient-text">Empowering Lives</span><br />
+            Transforming Communities
           </h2>
           
           <p className="section-description">
-            Our organization is built on a simple yet powerful belief: together, we can create lasting change.
-            Through compassion, dedication, and the generous support of our community, we work to uplift.
+            Universal Lighthouse is dedicated to advancing disability inclusion, health, and human rights. 
+            We believe every person deserves dignity, opportunity, and the chance to thrive regardless of their abilities.
           </p>
 
           {/* Image Grid */}
@@ -39,28 +39,10 @@ const AboutUs: React.FC = () => {
             </div>
           </div>
 
-          <p className="section-description">
-            From providing essential resources to funding life-changing projects, every effort is directed toward building a better,
-            more equitable world. By uniting individuals, businesses, and communities:
-          </p>
 
-          {/* Benefits List */}
-          <ul className="benefits-list">
-            <li>
-              <CheckCircle className="benefit-icon" />
-              <span>Join Our Mission to Make a Difference</span>
-            </li>
-            <li>
-              <CheckCircle className="benefit-icon" />
-              <span>Transforming Lives and Communities</span>
-            </li>
-            <li>
-              <CheckCircle className="benefit-icon" />
-              <span>Standing Up for Human Rights</span>
-            </li>
-          </ul>
+
+          
         </div>
-
         {/* Right Column */}
         <div className="main-image-container">
           <img
@@ -69,6 +51,106 @@ const AboutUs: React.FC = () => {
             className="main-image"
           />
           <div className="image-overlay" />
+        </div>
+      </div>
+
+      {/* New Two-Column Section for Detailed Information */}
+      <div className="detailed-info-section">
+        <div className="detailed-info-container">
+          <div className="section-header">
+            <h2 className="section-title">
+              <span className="gradient-text">Our Impact</span><br />
+              Areas & Approach
+            </h2>
+          </div>
+          
+          <div className="two-column-layout">
+            {/* Left Column */}
+            <div className="left-column">
+              <div className="info-block">
+                <h3 className="section-heading">What We Do (Thematic Areas)</h3>
+                
+                <div className="thematic-area">
+                  <h4 className="area-title">1. Disability Inclusion & Rights Advocacy</h4>
+                  <p className="area-description">
+                    We advance policy change, inclusive health budgeting, and legal protection for persons with disabilities at both county and national levels.
+                  </p>
+                </div>
+
+                <div className="thematic-area">
+                  <h4 className="area-title">2. Integrated Health & Well-being</h4>
+                  <p className="area-description">
+                    We provide psychosocial support, peer rehabilitation, and access to prosthetics and mental health services for our beneficiaries.
+                  </p>
+                </div>
+
+                <div className="thematic-area">
+                  <h4 className="area-title">3. Economic Empowerment & Skills Training</h4>
+                  <p className="area-description">
+                    We equip survivors with income-generating skills—from tailoring to digital literacy—so they can rebuild lives with financial dignity.
+                  </p>
+                </div>
+
+                <div className="thematic-area">
+                  <h4 className="area-title">4. Capacity Building</h4>
+                  <p className="area-description">
+                    We train caregivers, youth, local leaders, and advocates to drive lasting change in their communities.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column */}
+            <div className="right-column">
+              <div className="info-block">
+                <h3 className="section-heading">Our Target Groups</h3>
+                <ul className="target-list">
+                  <li>
+                    <CheckCircle className="list-icon" />
+                    <span>Persons with Disabilities, especially limb loss and mobility impairments</span>
+                  </li>
+                  <li>
+                    <CheckCircle className="list-icon" />
+                    <span>Caregivers and family members</span>
+                  </li>
+                  <li>
+                    <CheckCircle className="list-icon" />
+                    <span>Local community champions, leaders, and youth advocates</span>
+                  </li>
+                  <li>
+                    <CheckCircle className="list-icon" />
+                    <span>County health stakeholders and policymakers</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="info-block">
+                <h3 className="section-heading">The Challenges We Address</h3>
+                <ul className="challenges-list">
+                  <li>
+                    <CheckCircle className="list-icon" />
+                    <span>Limited and lack of mobility support for disabled individuals</span>
+                  </li>
+                  <li>
+                    <CheckCircle className="list-icon" />
+                    <span>Social stigma and emotional isolation faced by Persons with disabilities</span>
+                  </li>
+                  <li>
+                    <CheckCircle className="list-icon" />
+                    <span>Exclusion from health funding and services</span>
+                  </li>
+                  <li>
+                    <CheckCircle className="list-icon" />
+                    <span>Lack of vocational access and economic opportunity</span>
+                  </li>
+                  <li>
+                    <CheckCircle className="list-icon" />
+                    <span>Invisibility in policymaking and community planning</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

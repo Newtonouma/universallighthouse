@@ -73,8 +73,13 @@
 
 .carousel-track {
   display: flex;
-  animation: scroll 30s linear infinite;
   width: calc(250px * 14);
+  animation: scroll 20s linear infinite;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-250px * 7)); }
 }
 
 .carousel-slide {
@@ -93,18 +98,11 @@
   object-fit: contain;
   filter: grayscale(100%);
   opacity: 0.7;
-  transition: var(--transition);
 }
 
 .partner-logo:hover {
   filter: grayscale(0%);
   opacity: 1;
-  transform: scale(1.05);
-}
-
-@keyframes scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(calc(-250px * 7))}
 }
 
 @media (max-width: 768px) {
@@ -129,82 +127,4 @@
   .partners-carousel::after {
     width: 50px;
   }
-}
-
-/* Animation Keyframes */
-@keyframes partnersFadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes partnersSlideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes partnersSlideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes partnersScaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Animation Classes */
-.partners-section.animate {
-  animation: partnersFadeInUp 0.8s ease-out forwards;
-}
-
-.partners-title.animate {
-  animation: partnersSlideInLeft 0.8s ease-out 0.2s forwards;
-}
-
-.partners-carousel.animate {
-  animation: partnersScaleIn 1s ease-out 0.4s forwards;
-}
-
-.partners-carousel.animate .carousel-track {
-  animation-delay: 0.6s;
-}
-
-/* Ensure elements are hidden initially */
-.partners-section:not(.animate) {
-  opacity: 0;
-  transform: translateY(30px);
-}
-
-.partners-title:not(.animate) {
-  opacity: 0;
-  transform: translateX(-50px);
-}
-
-.partners-carousel:not(.animate) {
-  opacity: 0;
-  transform: scale(0.9);
 }

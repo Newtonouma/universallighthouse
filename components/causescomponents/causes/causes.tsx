@@ -138,8 +138,7 @@ export default function CausesGrid() {
                   </div>
                   <div className="w-full bg-[rgba(10,49,10,0.1)] rounded-full h-2">
                     <div
-                      className="bg-gradient-to-r from-green-500 to-red-500 h-2 rounded-full"
-                      style={{ width: `${percentage}%` }}
+                      className={`bg-gradient-to-r from-green-500 to-red-500 h-2 rounded-full transition-all duration-500 ${getProgressWidthClass(Number(percentage))}`}
                     ></div>
                   </div>
                 </div>
@@ -187,4 +186,21 @@ export default function CausesGrid() {
       </div>
     </div>
   );
+}
+
+// Helper function to get Tailwind width class based on percentage
+function getProgressWidthClass(percentage: number): string {
+  if (percentage >= 100) return 'w-full';
+  if (percentage >= 90) return 'w-11/12';
+  if (percentage >= 80) return 'w-4/5';
+  if (percentage >= 75) return 'w-3/4';
+  if (percentage >= 66) return 'w-2/3';
+  if (percentage >= 60) return 'w-3/5';
+  if (percentage >= 50) return 'w-1/2';
+  if (percentage >= 40) return 'w-2/5';
+  if (percentage >= 33) return 'w-1/3';
+  if (percentage >= 25) return 'w-1/4';
+  if (percentage >= 20) return 'w-1/5';
+  if (percentage >= 10) return 'w-1/12';
+  return 'w-0';
 }

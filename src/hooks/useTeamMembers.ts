@@ -1,25 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useLoadingContext } from '../contexts/LoadingContext';
+import { TeamMember, teamMembers as teamMembersData } from '../data/teamMembersData';
 
-export interface TeamMember {
-  id: string;
-  name: string;
-  description: string;
-  imageUrl: string;
-  contact?: string;
-  email?: string;
-  facebook?: string;
-  tiktok?: string;
-  twitter?: string;
-  linkedin?: string;
-}
-
-interface ApiResponse<T> {
-  success: boolean;
-  data: T;
-  total?: number;
-  error?: string;
-}
+// Re-export TeamMember interface for components
+export type { TeamMember };
 
 interface UseTeamMembersResult {
   teamMembers: TeamMember[];
@@ -40,28 +24,30 @@ export function useTeamMembers(category?: string): UseTeamMembersResult {  const
   const [error, setError] = useState<string | null>(null);
   const { updateLoadingState } = useLoadingContext();
 
-  const fetchTeamMembers = useCallback(async () => {    try {
+  const fetchTeamMembers = useCallback(async () => {
+    try {
       setLoading(true);
       updateLoadingState('teams', true);
       setError(null);
 
-      const url = new URL('/api/team', window.location.origin);
+      // Simulate a brief loading delay for better UX
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      // Use local data instead of API
+      let filteredMembers = teamMembersData;
+      
+      // Apply category filter if specified
       if (category && category !== 'All') {
-        url.searchParams.set('category', category);
-      }      const response = await fetch(url.toString());
-      const result: ApiResponse<TeamMember[]> = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.error || 'Failed to fetch team members');
+        // For now, return all members since we don't have categories in our data
+        // You can extend the TeamMember interface to include category if needed
+        filteredMembers = teamMembersData;
       }
-
-      if (result.success) {
-        setTeamMembers(result.data);
-      } else {
-        throw new Error(result.error || 'Failed to fetch team members');
-      }
+      
+      setTeamMembers(filteredMembers);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');      setTeamMembers([]);    } finally {
+      setError(err instanceof Error ? err.message : 'An error occurred');
+      setTeamMembers([]);
+    } finally {
       setLoading(false);
       updateLoadingState('teams', false);
     }
@@ -92,18 +78,17 @@ export function useTeamMember(id: string): UseTeamMemberResult {
       setLoading(true);
       setError(null);
 
-      const response = await fetch(`/api/team/${id}`);
-      const result: ApiResponse<TeamMember> = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.error || 'Failed to fetch team member');
+      // Simulate a brief loading delay for better UX
+      await new Promise(resolve => setTimeout(resolve, 300));
+      
+      // Find team member in local data
+      const foundMember = teamMembersData.find(member => member.id === id);
+      
+      if (!foundMember) {
+        throw new Error('Team member not found');
       }
-
-      if (result.success) {
-        setTeamMember(result.data);
-      } else {
-        throw new Error(result.error || 'Failed to fetch team member');
-      }
+      
+      setTeamMember(foundMember);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
       setTeamMember(null);

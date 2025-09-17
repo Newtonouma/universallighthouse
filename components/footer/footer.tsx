@@ -8,7 +8,7 @@ const footerLinks = {
   "Our Services": ["Donation Online", "Donor Centres", "Volunteering", "Your Philanthropy", "Senior Care"],
   "Contact Us": [
     { icon: "📧", label: "info@universallighthouse.org" },
-    { icon: "📍", label: "Friends Quakers Church Compound, Next to Kisumu National Library" },
+    { icon: "📍", label: "Mountain View Estate (Kisumu), Opposite KIWASCO main office" },
     { icon: "📞", label: "+254 728 000 747" }
   ],
 };

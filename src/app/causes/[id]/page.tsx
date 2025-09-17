@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import PaypalCheckout from '../../../../components/paypal/PaypalCheckout';
 import Navbar from '../../../../components/navbar/navbar';
 import Footer from '../../../../components/footer/footer';
+import { causes } from '../../../../src/data/causesData';
 
 interface StatCardProps {
   iconColor: string;
@@ -19,12 +20,24 @@ interface CTAButtonProps {
   onClick?: () => void;
 }
 
-// Helper function to get the correct API URL
-function getApiUrl() {
-  if (process.env.NODE_ENV === 'production') {
-    return process.env.NEXT_PUBLIC_API_URL || 'https://universallighthouse.vercel.app';
-  }
-  return 'http://localhost:3000';
+// Helper function to find a cause by ID
+function findCauseById(id: string) {
+  return causes.find(cause => cause.id === id);
+}
+
+// Helper function to strip HTML tags from text for metadata
+function stripHtmlTags(html: string): string {
+  if (!html) return '';
+  return html
+    .replace(/<[^>]*>/g, '')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
 export async function generateMetadata(
@@ -32,18 +45,13 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { id } = await params;
   
-  try {
-    const response = await fetch(`${getApiUrl()}/api/causes/${id}`);
-    const result = await response.json();
-    
-    if (result.success && result.data) {
-      return {
-        title: result.data.title || 'Cause Not Found',
-        description: result.data.description || '',
-      };
-    }
-  } catch (error) {
-    console.error('Error fetching cause for metadata:', error);
+  const cause = findCauseById(id);
+  
+  if (cause) {
+    return {
+      title: cause.title || 'Cause Not Found',
+      description: stripHtmlTags(cause.description) || '',
+    };
   }
   
   return {
@@ -58,19 +66,13 @@ export default async function CauseDetailsPage(
 ) {
   const { id } = await params;
   
-  try {
-    const response = await fetch(
-      `${getApiUrl()}/api/causes/${id}`,
-      { cache: 'no-store' }
-    );
-    const result = await response.json();
-    
-    if (!response.ok || !result.success || !result.data) {
-      return notFound();
-    }
-    
-    const cause = result.data;
-    const progressPercentage = calculateProgress(cause.raised, cause.goal);
+  const cause = findCauseById(id);
+  
+  if (!cause) {
+    return notFound();
+  }
+  
+  const progressPercentage = calculateProgress(cause.raised, cause.goal);
 
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
@@ -163,10 +165,6 @@ export default async function CauseDetailsPage(
         <Footer />
       </div>
     );
-  } catch (error) {
-    console.error('Error fetching cause:', error);
-    return notFound();
-  }
 }
 
 // Helper function
@@ -219,6 +217,23 @@ function CauseHeader({ title, description }: { title?: string; description?: str
 
 // Component: Progress Bar
 function ProgressBar({ percentage }: { percentage: string }) {
+  const getWidthClass = (percent: string) => {
+    const num = Math.min(parseFloat(percent), 100);
+    if (num >= 100) return 'w-full';
+    if (num >= 90) return 'w-11/12';
+    if (num >= 80) return 'w-4/5';
+    if (num >= 75) return 'w-3/4';
+    if (num >= 66) return 'w-2/3';
+    if (num >= 60) return 'w-3/5';
+    if (num >= 50) return 'w-1/2';
+    if (num >= 40) return 'w-2/5';
+    if (num >= 33) return 'w-1/3';
+    if (num >= 25) return 'w-1/4';
+    if (num >= 20) return 'w-1/5';
+    if (num >= 10) return 'w-1/12';
+    return 'w-0';
+  };
+
   return (
     <div className="space-y-3">
       <div className="flex justify-between items-center">
@@ -228,8 +243,7 @@ function ProgressBar({ percentage }: { percentage: string }) {
       <div className="relative">
         <div className="w-full bg-gray-200 rounded-full h-4 overflow-hidden shadow-inner">
           <div
-            className="h-full bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-500 rounded-full transition-all duration-1000 ease-out relative overflow-hidden"
-            style={{ width: `${percentage}%` }}
+            className={`h-full bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-500 rounded-full transition-all duration-1000 ease-out relative overflow-hidden ${getWidthClass(percentage)}`}
           >
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse" />
           </div>

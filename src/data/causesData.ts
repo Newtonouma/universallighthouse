@@ -11,57 +11,118 @@ export type CauseItem = {
 
 export const causes: CauseItem[] = [
   {
-    id: '1',
-    title: 'Psychosocial Support',
-    raised: 70000,
-    goal: 85000,
-    category: 'Psychosocial Support',
-    description: 'Long-term recovery requires sustainable livelihoods. We support individuals & families in rebuilding.',
+    id: 'restoring-mobility-limb-loss',
+    title: 'Restoring Mobility for Limb Loss Survivors',
+    raised: 23500,
+    goal: 50000,
+    category: 'Medical Support',
+    description: `
+      <p><strong>Providing access to quality prosthetic limbs and assistive devices for amputees in Western Kenya who cannot afford them.</strong></p>
+      
+      <h3>Challenge Statement</h3>
+      <p>The high cost and poor availability of prosthetics block rehabilitation and independence.</p>
+      
+      <h3>Our Response</h3>
+      <p>Local workshop, technician support, and partnerships (like STAND) to deliver quality limbs.</p>
+      
+      <h3>Impact</h3>
+      <p>Number of clients served, testimonials, before-and-after stories.</p>
+      
+      <h3>How You Can Help</h3>
+      <p>Donate components, fund fittings, volunteer expertise.</p>
+    `,
     image: '/images/hero1.jpg',
   },
   {
-    id: '2',
-    title: 'Skills Empowerment for Independent Living',
-    raised: 26000,
-    goal: 90000,
-    category: 'Skills Empowerment for Independent Living',
-    description: 'Access healthcare becomes a lifeline in times of crisis. We offer medical support, mobile clinics, & mental health services.',
+    id: 'holistic-rehabilitation-mental-health',
+    title: 'Holistic Rehabilitation – Mental Health & Nutrition',
+    raised: 18750,
+    goal: 35000,
+    category: 'Mental Health',
+    description: `
+      <p><strong>Supporting emotional healing and physical wellness through psychosocial support groups and accessible nutrition education.</strong></p>
+      
+      <h3>The Need</h3>
+      <p>Disability-related trauma and malnutrition worsen outcomes.</p>
+      
+      <h3>Our Approach</h3>
+      <p>Peer-led circles, mental health talks, and basic nutrition sessions for families and clients.</p>
+      
+      <h3>Impact</h3>
+      <p>Better mental health outcomes, community resilience, and improved recovery.</p>
+      
+      <h3>Get Involved</h3>
+      <p>Sponsor support groups, donate wellness kits, collaborate on campaigns.</p>
+    `,
     image: '/images/hero2.jpg',
   },
   {
-    id: '3',
-    title: 'Limb Empowerment Initiative',
-    raised: 40701,
-    goal: 60000,
-    category: 'Limb Empowerment Initiative',
-    description: 'In the aftermath of a disaster access to nutritious food is often disrupted. We work to provide emergency meals.',
+    id: 'empowering-caregivers-advocates',
+    title: 'Empowering Caregivers & Community Advocates',
+    raised: 14200,
+    goal: 28000,
+    category: 'Education & Training',
+    description: `
+      <p><strong>Training caregivers and grassroots leaders to become champions of inclusion and support systems for persons with disabilities.</strong></p>
+      
+      <h3>The Gap</h3>
+      <p>Families lack guidance and support; communities lack training.</p>
+      
+      <h3>Our Solution</h3>
+      <p>Disability rights workshops, practical caregiving skills, advocacy mentoring.</p>
+      
+      <h3>Impact</h3>
+      <p>Trained caregivers, visible champions, stronger community support.</p>
+      
+      <h3>Ways to Support</h3>
+      <p>Fund trainings, provide venues, offer technical expertise.</p>
+    `,
     image: '/images/hero3.jpg',
   },
   {
-    id: '4',
-    title: 'Mental Health Sand Counseling Services',
-    raised: 18000,
-    goal: 75000,
-    category: 'Shelter',
-    description: 'Rebuilding home & shelter essential for recovery. We help restore safe living conditions by offering temporary housing.',
-    image: '/images/hero2.jpg',
+    id: 'economic-empowerment-disabilities',
+    title: 'Economic Empowerment for Persons with Disabilities',
+    raised: 26800,
+    goal: 42000,
+    category: 'Economic Development',
+    description: `
+      <p><strong>Breaking cycles of poverty by offering business skills, digital literacy, and training in accessible income-generating activities.</strong></p>
+      
+      <h3>The Challenge</h3>
+      <p>Limb loss leads to income loss and financial exclusion.</p>
+      
+      <h3>Our Initiative</h3>
+      <p>Vocational workshops, self-employment toolkits, business mentorship.</p>
+      
+      <h3>Impact</h3>
+      <p>Clients who started businesses or re-entered jobs.</p>
+      
+      <h3>Partner with Us</h3>
+      <p>Sponsor trainings, mentor entrepreneurs, provide market access.</p>
+    `,
+    image: '/images/hero1.jpg',
   },
   {
-    id: '5',
-    title: 'Mental Health Sand Counseling Services',
-    raised: 18000,
-    goal: 75000,
-    category: 'Shelter',
-    description: 'Rebuilding home & shelter essential for recovery. We help restore safe living conditions by offering temporary housing.',
-    image: '/images/hero2.jpg',
-  },
-  {
-    id: '6',
-    title: 'Hospital Visits for Newly Amputees',
-    raised: 18000,
-    goal: 75000,
-    category: 'Hospital Visits for Newly Amputees',
-    description: 'Rebuilding home & shelter essential for recovery. We help restore safe living conditions by offering temporary housing.',
+    id: 'advocacy-inclusive-health-policy',
+    title: 'Advocacy for Inclusive Health & Policy Reform',
+    raised: 31200,
+    goal: 60000,
+    category: 'Policy & Advocacy',
+    description: `
+      <p><strong>Pushing for disability-inclusive budgeting, policy change, and equitable service delivery at county and national levels.</strong></p>
+      
+      <h3>The Problem</h3>
+      <p>PWDs excluded from planning and budgets.</p>
+      
+      <h3>Our Strategy</h3>
+      <p>Budget advocacy, community-led monitoring, stakeholder engagement.</p>
+      
+      <h3>Impact</h3>
+      <p>Kisumu County funding win, disability health financing bill draft, trained budget monitors.</p>
+      
+      <h3>Support the Movement</h3>
+      <p>Sign petitions, fund campaigns, join coalitions.</p>
+    `,
     image: '/images/hero2.jpg',
   },
 ];

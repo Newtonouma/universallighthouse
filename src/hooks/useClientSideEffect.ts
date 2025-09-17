@@ -18,7 +18,7 @@ export const useClientSideEffect = <T>(
     if (isMounted) {
       setValue(clientSideFunction());
     }
-  }, [isMounted, ...(deps || [])]);
+  }, [isMounted, clientSideFunction, ...(deps || [])]);
 
   return value;
 };

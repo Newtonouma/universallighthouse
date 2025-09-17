@@ -75,8 +75,10 @@
   grid-template-columns: 1fr 1.2fr 1fr;
   max-width: 1200px;
   margin: 0 auto;
-  gap: 2rem;
+  gap: 1.5rem;
   align-items: stretch;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* ==========================
@@ -85,10 +87,13 @@
 .leftColumn {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .textContent {
-  padding-right: 1.5rem;
+  padding-right: 1rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .sectionTitle {
@@ -107,19 +112,31 @@
 }
 
 .mainParagraph {
-  font-size: 1.1rem;
-  margin-bottom: 2rem;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .highlightItem {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .highlightItem h4 {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 600;
   color: #d32f2f;
   margin-bottom: 0.5rem;
+}
+
+.highlightItem p {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 /* ==========================
@@ -127,6 +144,10 @@
 ========================== */
 .middleColumn {
   position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .imageWrapper {
@@ -147,6 +168,7 @@
 .rightColumn {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .rightContent {
@@ -154,6 +176,8 @@
   flex-direction: column;
   height: 100%;
   justify-content: space-between;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .shortParagraph {
@@ -182,8 +206,8 @@
   background-color: #2e7d32;
   color: #fff;
   border: none;
-  padding: 1rem 2rem;
-  font-size: 1rem;
+  padding: 0.8rem 1.5rem;
+  font-size: 0.9rem;
   font-weight: 600;
   border-radius: 4px;
   cursor: pointer;
@@ -191,7 +215,11 @@
   text-transform: uppercase;
   align-self: flex-start;
   width: 100%;
-  max-width: 200px;
+  max-width: 180px;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  box-sizing: border-box;
 }
 
 .volunteerButton:hover {

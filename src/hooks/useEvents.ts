@@ -1,14 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import { EventItem, EventItemFormatted } from '../data/eventsData';
+import { EventItem, EventItemFormatted, events as eventsData } from '../data/eventsData';
 import { useLoadingContext } from '../contexts/LoadingContext';
-
-// API Response types
-interface ApiResponse<T> {
-  success: boolean;
-  data: T;
-  error?: string;
-  total?: number;
-}
 
 interface UseEventsReturn {
   events: EventItemFormatted[];
@@ -90,26 +82,26 @@ export function useEvents(): UseEventsReturn {  const [events, setEvents] = useS
   const [error, setError] = useState<string | null>(null);
   const { updateLoadingState } = useLoadingContext();
 
-  const fetchEvents = useCallback(async () => {    try {
+  const fetchEvents = useCallback(async () => {
+    try {
       setLoading(true);
       updateLoadingState('events', true);
       setError(null);
       
-      const response = await fetch('/api/events');
-      const result: ApiResponse<EventItem[]> = await response.json();
+      // Simulate a brief loading delay for better UX
+      await new Promise(resolve => setTimeout(resolve, 500));
       
-      if (!response.ok || !result.success) {
-        throw new Error(result.error || 'Failed to fetch events');
-      }
-        // Format events data for frontend compatibility
-      const formattedEvents = result.data.map(formatEventData);
+      // Format events data for frontend compatibility
+      const formattedEvents = eventsData.map(formatEventData);
       
       // Filter to show only upcoming and ongoing events
       const upcomingAndOngoingEvents = filterUpcomingAndOngoingEvents(formattedEvents);
       
       setEvents(upcomingAndOngoingEvents);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');      setEvents([]);    } finally {
+      setError(err instanceof Error ? err.message : 'An error occurred');
+      setEvents([]);
+    } finally {
       setLoading(false);
       updateLoadingState('events', false);
     }
@@ -143,14 +135,18 @@ export function useEvent(id: string | null): UseEventReturn {
       setLoading(true);
       setError(null);
       
-      const response = await fetch(`/api/events/${id}`);
-      const result: ApiResponse<EventItem> = await response.json();
+      // Simulate a brief loading delay for better UX
+      await new Promise(resolve => setTimeout(resolve, 300));
       
-      if (!response.ok || !result.success) {
-        throw new Error(result.error || 'Failed to fetch event');
+      // Find event in local data
+      const foundEvent = eventsData.find(e => e.id === id);
+      
+      if (!foundEvent) {
+        throw new Error('Event not found');
       }
-        // Format event data for frontend compatibility
-      const formattedEvent = formatEventData(result.data);
+      
+      // Format event data for frontend compatibility
+      const formattedEvent = formatEventData(foundEvent);
       
       // Check if the event is past
       const now = new Date();

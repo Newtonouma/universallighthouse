@@ -73,7 +73,7 @@ const Contact = () => {
       ),
       title: 'Visit Us',
       description: 'Come see us in person',
-      details: ['Kisumu County, Kenya', 'Monday - Friday, 9AM - 5PM'],
+      details: ['Mountain View Estate (Kisumu)', 'Opposite KIWASCO main office', 'Monday - Friday, 9AM - 5PM'],
       color: 'from-[#22c55e] to-[#f87171]',
       bgColor: 'bg-[#f87171]/10',
       textColor: 'text-[#f87171]'
@@ -365,8 +365,8 @@ const Contact = () => {
                     className={`${styles.contactIframeFullheight} ${styles.contactIframe}`}
                     allowFullScreen
                     referrerPolicy="no-referrer-when-downgrade"
-                    title="Universal Lighthouse Location Map - Kisumu, Kenya"
-                    aria-label="Interactive map showing Universal Lighthouse location in Kisumu, Kenya"
+                    title="Universal Lighthouse Location Map - Mountain View Estate, Kisumu"
+                    aria-label="Interactive map showing Universal Lighthouse location in Mountain View Estate, Kisumu"
                   ></iframe>
                 </div>
               </div>

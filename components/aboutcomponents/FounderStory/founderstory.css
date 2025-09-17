@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+.founder-story-wrapper {
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, rgba(10, 49, 10, 0.03) 0%, rgba(34, 197, 94, 0.03) 100%);
+  border-top: 1px solid rgba(10, 49, 10, 0.1);
+  font-family: 'Montserrat', sans-serif;
+}
+
+.founder-story-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.story-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-badge {
+  background: rgba(10, 49, 10, 0.9);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: rgba(10, 49, 10, 0.9);
+  line-height: 1.3;
+  margin: 0;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #22c55e 0%, #f87171 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.story-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.story-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.quote-section {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.05) 0%, rgba(10, 49, 10, 0.05) 100%);
+  padding: 2rem;
+  border-radius: 12px;
+  border-left: 4px solid #22c55e;
+  position: relative;
+}
+
+.quote-section::before {
+  content: '"';
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  font-size: 4rem;
+  color: #22c55e;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.founder-quote {
+  font-size: 1.1rem;
+  font-style: italic;
+  color: rgba(10, 49, 10, 0.8);
+  line-height: 1.6;
+  margin: 0;
+  font-weight: 500;
+}
+
+.story-paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.story-paragraphs p {
+  font-size: 1rem;
+  color: rgba(10, 49, 10, 0.8);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.story-conclusion {
+  background: rgba(34, 197, 94, 0.03);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  font-weight: 500;
+}
+
+.founder-image-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: sticky;
+  top: 2rem;
+}
+
+.founder-image-container {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.founder-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.founder-image-container:hover .founder-image {
+  transform: scale(1.02);
+}
+
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10, 49, 10, 0.6), transparent 60%);
+}
+
+.image-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  color: white;
+  z-index: 10;
+}
+
+.image-caption h4 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem 0;
+}
+
+.image-caption p {
+  font-size: 0.9rem;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.impact-highlight {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(10, 49, 10, 0.1);
+}
+
+.impact-highlight h4 {
+  color: #2e7d32;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  border-bottom: 2px solid #22c55e;
+  padding-bottom: 0.5rem;
+}
+
+.impact-highlight p {
+  color: rgba(10, 49, 10, 0.8);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .story-content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .founder-image-section {
+    position: static;
+  }
+  
+  .founder-story-wrapper {
+    padding: 3rem 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .founder-story-wrapper {
+    padding: 2rem 1rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .story-content {
+    gap: 2rem;
+  }
+  
+  .quote-section {
+    padding: 1.5rem;
+  }
+  
+  .founder-quote {
+    font-size: 1rem;
+  }
+  
+  .founder-image {
+    height: 300px;
+  }
+  
+  .impact-highlight {
+    padding: 1.5rem;
+  }
+}
