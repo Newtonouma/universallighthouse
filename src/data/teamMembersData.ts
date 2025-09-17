@@ -80,7 +80,7 @@ export const teamMembers: TeamMember[] = [
     id: 'newton-ouma',
     name: 'Newton Ouma',
     description: 'IT Services',
-    imageUrl: '/images/team/newton-ouma.jpg',
+    imageUrl: '/images/teams/Newton.jpg',
     email: 'newton.ouma@universallighthouse.org',
     twitter: 'https://twitter.com/newtonouma',
     linkedin: 'https://linkedin.com/in/newtonouma'

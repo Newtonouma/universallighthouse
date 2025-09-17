@@ -68,7 +68,7 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     id: 5,
-    src: '/images/gallery/cycling.jpg',
+    src: '/images/gallery/6.jpg',
     alt: 'Community cycling event for fitness and inclusion',
     title: 'Inclusive Cycling Event',
     description: 'Promoting fitness and inclusion through adaptive cycling programs for all abilities.',
@@ -79,7 +79,7 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     id: 6,
-    src: '/images/gallery/collaboration.jpg',
+    src: '/images/gallery/5.jpg',
     alt: 'Community collaboration and teamwork',
     title: 'Community Collaboration',
     description: 'Working together to build a more inclusive and supportive community for everyone.',
@@ -90,7 +90,7 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     id: 7,
-    src: '/images/gallery/gendersummit.jpg',
+    src: '/images/gallery/7.jpg',
     alt: 'Gender summit and empowerment conference',
     title: 'Gender Summit',
     description: 'Promoting gender equality and empowerment through awareness and advocacy.',
