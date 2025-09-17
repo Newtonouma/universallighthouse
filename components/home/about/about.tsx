@@ -62,10 +62,11 @@ const AboutUs = () => {
           
           <div className={`${styles.imageWrapper} ${isVisible ? styles.imageAnimated : ''}`}>
             <Image
-              src="/images/hero2.jpg"
+              src="/images/about1.jpg"
               alt="Our team helping community"
               fill
               className={styles.mainImage}
+              style={{ objectFit: 'cover', objectPosition: 'center' }}
               priority
             />
           </div>
