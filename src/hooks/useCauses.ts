@@ -18,33 +18,28 @@ interface UseCauseReturn {
 
 // Hook to fetch all causes
 export function useCauses(): UseCausesReturn {
-  const [causes, setCauses] = useState<CauseItem[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [causes, setCauses] = useState<CauseItem[]>(causesData); // Initialize with data
+  const [loading, setLoading] = useState(false); // No loading for local data
   const [error, setError] = useState<string | null>(null);
   const { updateLoadingState } = useLoadingContext();
 
   const fetchCauses = useCallback(async () => {
     try {
-      setLoading(true);
-      updateLoadingState('causes', true);
       setError(null);
-      
-      // Simulate a brief loading delay for better UX
-      await new Promise(resolve => setTimeout(resolve, 500));
-      
-      // Use local data instead of API
+      // Use local data directly - no loading state needed
       setCauses(causesData);
+      updateLoadingState('causes', false); // Ensure loading context knows we're done
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
       setCauses([]);
-    } finally {
-      setLoading(false);
-      updateLoadingState('causes', false);
     }
   }, [updateLoadingState]);
+  
   useEffect(() => {
+    // Immediately set causes as not loading since we have local data
+    updateLoadingState('causes', false);
     fetchCauses();
-  }, [fetchCauses]);
+  }, [fetchCauses, updateLoadingState]);
 
   return {
     causes,
@@ -70,10 +65,7 @@ export function useCause(id: string | null): UseCauseReturn {
       setLoading(true);
       setError(null);
       
-      // Simulate a brief loading delay for better UX
-      await new Promise(resolve => setTimeout(resolve, 300));
-      
-      // Find cause in local data
+      // Find cause in local data directly without artificial delay
       const foundCause = causesData.find(c => c.id === id);
       
       if (!foundCause) {

@@ -18,7 +18,7 @@ interface UseGlobalLoadingResult {
 
 export function useGlobalLoading(): UseGlobalLoadingResult {
   const [loadingStates, setLoadingStates] = useState<LoadingState>({
-    causes: true,
+    causes: false, // Local data loads instantly, no loading needed
     events: true,
     gallery: true,
     partners: true,

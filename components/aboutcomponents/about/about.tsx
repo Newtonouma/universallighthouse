@@ -23,16 +23,16 @@ const AboutUs: React.FC = () => {
           <div className="image-grid">
             <div className="image-container">
               <img
-                src="https://img.freepik.com/free-photo/group-young-volunteers-collecting-donations-charity_23-2149151032.jpg"
-                alt="Volunteers packing food donations"
+                src="/images/all.jpg"
+                alt="Universal Lighthouse community members"
                 className="about-image"
               />
               <div className="image-overlay" />
             </div>
             <div className="image-container">
               <img
-                src="https://img.freepik.com/free-photo/volunteer-woman-charity-donation_23-2149214132.jpg"
-                alt="Volunteer smiling beside food items"
+                src="/images/assesment.jpg"
+                alt="Community assessment and support"
                 className="about-image"
               />
               <div className="image-overlay" />
@@ -46,8 +46,8 @@ const AboutUs: React.FC = () => {
         {/* Right Column */}
         <div className="main-image-container">
           <img
-            src="https://img.freepik.com/free-photo/volunteer-with-down-syndrome-food-bank_23-2149214146.jpg"
-            alt="Smiling volunteer raising arms"
+            src="/images/en.jpg"
+            alt="Universal Lighthouse empowerment program"
             className="main-image"
           />
           <div className="image-overlay" />

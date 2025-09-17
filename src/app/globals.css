@@ -1,13 +1,8 @@
 @import "tailwindcss";
-@import "../styles/animations.css";
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --animation-duration: 0.6s;
-  --animation-easing: cubic-bezier(0.4, 0, 0.2, 1);
-  --hover-duration: 0.3s;
-  --hover-easing: ease-in-out;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -27,24 +22,16 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* =============================================
-   ENHANCED ANIMATION UTILITIES
-   ============================================= */
-
-/* Smooth scroll behavior with enhanced easing */
+/* Basic scroll behavior only */
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
 }
 
-/* Base transition for all elements */
-*, *::before, *::after {
-  transition: transform var(--hover-duration) var(--hover-easing),
-              opacity var(--hover-duration) var(--hover-easing),
-              box-shadow var(--hover-duration) var(--hover-easing),
-              background-color var(--hover-duration) var(--hover-easing),
-              border-color var(--hover-duration) var(--hover-easing),
-              color var(--hover-duration) var(--hover-easing);
+/* Basic scroll behavior only */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
 /* Enhanced button animations */
