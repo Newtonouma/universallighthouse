@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
 import { EventItem, EventItemFormatted, events as eventsData } from '../data/eventsData';
-import { useLoadingContext } from '../contexts/LoadingContext';
 
 interface UseEventsReturn {
   events: EventItemFormatted[];
@@ -77,19 +76,15 @@ const filterUpcomingAndOngoingEvents = (events: EventItemFormatted[]): EventItem
 };
 
 // Hook to fetch all events
-export function useEvents(): UseEventsReturn {  const [events, setEvents] = useState<EventItemFormatted[]>([]);
+export function useEvents(): UseEventsReturn {
+  const [events, setEvents] = useState<EventItemFormatted[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const { updateLoadingState } = useLoadingContext();
 
   const fetchEvents = useCallback(async () => {
     try {
       setLoading(true);
-      updateLoadingState('events', true);
       setError(null);
-      
-      // Simulate a brief loading delay for better UX
-      await new Promise(resolve => setTimeout(resolve, 500));
       
       // Format events data for frontend compatibility
       const formattedEvents = eventsData.map(formatEventData);
@@ -103,9 +98,8 @@ export function useEvents(): UseEventsReturn {  const [events, setEvents] = useS
       setEvents([]);
     } finally {
       setLoading(false);
-      updateLoadingState('events', false);
     }
-  }, [updateLoadingState]);
+  }, []);
 
   useEffect(() => {
     fetchEvents();

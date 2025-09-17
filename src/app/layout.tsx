@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { LoadingProvider } from "../contexts/LoadingContext";
 import GlobalLoadingWrapper from "../../components/ui/GlobalLoadingWrapper";
 
 const geistSans = Geist({
@@ -43,11 +42,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <LoadingProvider>
-          <GlobalLoadingWrapper>
-            {children}
-          </GlobalLoadingWrapper>
-        </LoadingProvider>
+        <GlobalLoadingWrapper>
+          {children}
+        </GlobalLoadingWrapper>
       </body>
     </html>
   );

@@ -31,7 +31,7 @@ export const causes: CauseItem[] = [
       <h3>How You Can Help</h3>
       <p>Donate components, fund fittings, volunteer expertise.</p>
     `,
-    image: '/images/hero1.jpg',
+    image: '/images/causes/RestoringMobilityforLimbLossSurvivors.jpg',
   },
   {
     id: 'holistic-rehabilitation-mental-health',
@@ -54,7 +54,7 @@ export const causes: CauseItem[] = [
       <h3>Get Involved</h3>
       <p>Sponsor support groups, donate wellness kits, collaborate on campaigns.</p>
     `,
-    image: '/images/hero2.jpg',
+    image: '/images/causes/HolisticRehabilitation-MentalHealth-Nutrition.jpg',
   },
   {
     id: 'empowering-caregivers-advocates',
@@ -77,7 +77,7 @@ export const causes: CauseItem[] = [
       <h3>Ways to Support</h3>
       <p>Fund trainings, provide venues, offer technical expertise.</p>
     `,
-    image: '/images/hero3.jpg',
+    image: '/images/causes/EmpoweringCaregivers-CommunityAdvocates.jpg',
   },
   {
     id: 'economic-empowerment-disabilities',
@@ -100,7 +100,7 @@ export const causes: CauseItem[] = [
       <h3>Partner with Us</h3>
       <p>Sponsor trainings, mentor entrepreneurs, provide market access.</p>
     `,
-    image: '/images/hero1.jpg',
+    image: '/images/causes/HolisticRehabilitation-MentalHealth-Nutrition.jpg',
   },
   {
     id: 'advocacy-inclusive-health-policy',
@@ -123,6 +123,6 @@ export const causes: CauseItem[] = [
       <h3>Support the Movement</h3>
       <p>Sign petitions, fund campaigns, join coalitions.</p>
     `,
-    image: '/images/hero2.jpg',
+    image: '/images/causes/EmpoweringCaregivers-CommunityAdvocates.jpg',
   },
 ];

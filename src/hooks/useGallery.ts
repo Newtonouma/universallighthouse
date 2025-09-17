@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
 import { GalleryItem, galleryItems as galleryData } from '../data/galleryData';
-import { useLoadingContext } from '../contexts/LoadingContext';
 
 interface UseGalleryReturn {
   galleryItems: GalleryItem[];
@@ -21,21 +20,16 @@ export function useGallery(): UseGalleryReturn {
   const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const { updateLoadingState } = useLoadingContext();
 
   const fetchGalleryItems = useCallback(async () => {
     try {
       setLoading(true);
-      updateLoadingState('gallery', true);
       setError(null);
-      
-      // Simulate a brief loading delay for better UX
-      await new Promise(resolve => setTimeout(resolve, 500));
       
       // Filter to only active items and sort by order
       const activeItems = galleryData
-        .filter(item => item.isActive)
-        .sort((a, b) => a.order - b.order);
+        .filter((item: GalleryItem) => item.isActive)
+        .sort((a: GalleryItem, b: GalleryItem) => a.order - b.order);
       
       setGalleryItems(activeItems);
     } catch (err) {
@@ -43,9 +37,8 @@ export function useGallery(): UseGalleryReturn {
       setGalleryItems([]);
     } finally {
       setLoading(false);
-      updateLoadingState('gallery', false);
     }
-  }, [updateLoadingState]);
+  }, []);
 
   useEffect(() => {
     fetchGalleryItems();
@@ -79,7 +72,7 @@ export function useGalleryItem(id: number): UseGalleryItemReturn {
       await new Promise(resolve => setTimeout(resolve, 300));
       
       // Find gallery item in local data
-      const foundItem = galleryData.find(item => item.id === id && item.isActive);
+      const foundItem = galleryData.find((item: GalleryItem) => item.id === id && item.isActive);
       
       if (!foundItem) {
         throw new Error('Gallery item not found');

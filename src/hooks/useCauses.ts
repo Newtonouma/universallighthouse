@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
 import { CauseItem, causes as causesData } from '../data/causesData';
-import { useLoadingContext } from '../contexts/LoadingContext';
 
 interface UseCausesReturn {
   causes: CauseItem[];
@@ -19,27 +18,23 @@ interface UseCauseReturn {
 // Hook to fetch all causes
 export function useCauses(): UseCausesReturn {
   const [causes, setCauses] = useState<CauseItem[]>(causesData); // Initialize with data
-  const [loading, setLoading] = useState(false); // No loading for local data
+  const [loading] = useState(false); // No loading for local data
   const [error, setError] = useState<string | null>(null);
-  const { updateLoadingState } = useLoadingContext();
 
   const fetchCauses = useCallback(async () => {
     try {
       setError(null);
       // Use local data directly - no loading state needed
       setCauses(causesData);
-      updateLoadingState('causes', false); // Ensure loading context knows we're done
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
       setCauses([]);
     }
-  }, [updateLoadingState]);
+  }, []);
   
   useEffect(() => {
-    // Immediately set causes as not loading since we have local data
-    updateLoadingState('causes', false);
     fetchCauses();
-  }, [fetchCauses, updateLoadingState]);
+  }, [fetchCauses]);
 
   return {
     causes,

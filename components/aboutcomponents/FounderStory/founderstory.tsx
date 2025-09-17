@@ -55,13 +55,13 @@ const FounderStory: React.FC = () => {
           <div className="founder-image-section">
             <div className="founder-image-container">
               <img
-                src="/images/teams/emilly.webp"
-                alt="Emily - Universal Lighthouse Founder and Director"
+                src="/images/founder-placeholder.jpg"
+                alt="Universal Lighthouse Founder and Director"
                 className="founder-image"
               />
               <div className="image-overlay" />
               <div className="image-caption">
-                <h4>Emily - Founder & Director</h4>
+                <h4>Founder & Director</h4>
                 <p>Universal Lighthouse CBO</p>
               </div>
             </div>

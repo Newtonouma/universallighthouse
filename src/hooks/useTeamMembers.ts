@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useLoadingContext } from '../contexts/LoadingContext';
 import { TeamMember, teamMembers as teamMembersData } from '../data/teamMembersData';
 
 // Re-export TeamMember interface for components
@@ -19,19 +18,15 @@ interface UseTeamMemberResult {
   refetch: () => Promise<void>;
 }
 
-export function useTeamMembers(category?: string): UseTeamMembersResult {  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
+export function useTeamMembers(category?: string): UseTeamMembersResult {
+  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const { updateLoadingState } = useLoadingContext();
 
   const fetchTeamMembers = useCallback(async () => {
     try {
       setLoading(true);
-      updateLoadingState('teams', true);
       setError(null);
-
-      // Simulate a brief loading delay for better UX
-      await new Promise(resolve => setTimeout(resolve, 500));
       
       // Use local data instead of API
       let filteredMembers = teamMembersData;
@@ -49,9 +44,10 @@ export function useTeamMembers(category?: string): UseTeamMembersResult {  const
       setTeamMembers([]);
     } finally {
       setLoading(false);
-      updateLoadingState('teams', false);
     }
-  }, [category, updateLoadingState]);useEffect(() => {
+  }, [category]);
+
+  useEffect(() => {
     fetchTeamMembers();
   }, [fetchTeamMembers]);
 

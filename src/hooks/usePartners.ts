@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useLoadingContext } from '../contexts/LoadingContext';
 
 export interface Partner {
   id: number;
@@ -26,14 +25,14 @@ interface UsePartnerReturn {
   refetch: () => Promise<void>;
 }
 
-export function usePartners(category?: string, activeOnly: boolean = true): UsePartnersReturn {  const [partners, setPartners] = useState<Partner[]>([]);
+export function usePartners(category?: string, activeOnly: boolean = true): UsePartnersReturn {
+  const [partners, setPartners] = useState<Partner[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const { updateLoadingState } = useLoadingContext();
 
   const fetchPartners = useCallback(async () => {
-    try {      setLoading(true);
-      updateLoadingState('partners', true);
+    try {
+      setLoading(true);
       setError(null);
       
       const params = new URLSearchParams();
@@ -59,11 +58,13 @@ export function usePartners(category?: string, activeOnly: boolean = true): UseP
       setPartners(data.data || []);
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Failed to fetch partners';
-      setError(errorMessage);      console.error('Error fetching partners:', err);    } finally {
+      setError(errorMessage);
+      console.error('Error fetching partners:', err);
+    } finally {
       setLoading(false);
-      updateLoadingState('partners', false);
     }
-  }, [category, activeOnly, updateLoadingState]);
+  }, [category, activeOnly]);
+
   useEffect(() => {
     fetchPartners();
   }, [fetchPartners]);
