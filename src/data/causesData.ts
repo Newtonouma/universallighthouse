@@ -13,7 +13,7 @@ export const causes: CauseItem[] = [
   {
     id: 'restoring-mobility-limb-loss',
     title: 'Restoring Mobility for Limb Loss Survivors',
-    raised: 23500,
+    raised: 14100,
     goal: 50000,
     category: 'Medical Support',
     description: `
@@ -36,7 +36,7 @@ export const causes: CauseItem[] = [
   {
     id: 'holistic-rehabilitation-mental-health',
     title: 'Holistic Rehabilitation – Mental Health & Nutrition',
-    raised: 18750,
+    raised: 11250,
     goal: 35000,
     category: 'Mental Health',
     description: `
@@ -59,7 +59,7 @@ export const causes: CauseItem[] = [
   {
     id: 'empowering-caregivers-advocates',
     title: 'Empowering Caregivers & Community Advocates',
-    raised: 14200,
+    raised: 8520,
     goal: 28000,
     category: 'Education & Training',
     description: `
@@ -82,7 +82,7 @@ export const causes: CauseItem[] = [
   {
     id: 'economic-empowerment-disabilities',
     title: 'Economic Empowerment for Persons with Disabilities',
-    raised: 26800,
+    raised: 16080,
     goal: 42000,
     category: 'Economic Development',
     description: `
@@ -105,7 +105,7 @@ export const causes: CauseItem[] = [
   {
     id: 'advocacy-inclusive-health-policy',
     title: 'Advocacy for Inclusive Health & Policy Reform',
-    raised: 31200,
+    raised: 18720,
     goal: 60000,
     category: 'Policy & Advocacy',
     description: `

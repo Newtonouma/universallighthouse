@@ -26,7 +26,7 @@ export const teamMembers: TeamMember[] = [
     id: 'sylvia-otieno',
     name: 'Sylvia Otieno',
     description: 'Program Coordinator',
-    imageUrl: '/images/team/sylvia-otieno.jpg',
+    imageUrl: '/images/teams/Sylvia_otieno.jpg',
     email: 'sylvia.otieno@universallighthouse.org',
     facebook: 'https://facebook.com/sylviaotieno',
     linkedin: 'https://linkedin.com/in/sylviaotieno'
@@ -44,7 +44,7 @@ export const teamMembers: TeamMember[] = [
     id: 'peter-otieno',
     name: 'Peter Otieno',
     description: 'Finance Manager',
-    imageUrl: '/images/team/peter-otieno.jpg',
+    imageUrl: '/images/teams/Peter_otieno.jpg',
     email: 'peter.otieno@universallighthouse.org',
     linkedin: 'https://linkedin.com/in/peterotieno',
     contact: '+254 723 456 789'
@@ -53,7 +53,7 @@ export const teamMembers: TeamMember[] = [
     id: 'sylvia-oyugi',
     name: 'Sylvia Oyugi',
     description: 'Social Worker & Peer Counselor',
-    imageUrl: '/images/team/sylvia-oyugi.jpg',
+    imageUrl: '/images/teams/sylvia_oyugi.jpg',
     email: 'sylvia.oyugi@universallighthouse.org',
     facebook: 'https://facebook.com/sylviaoyugi',
     linkedin: 'https://linkedin.com/in/sylviaoyugi'
