@@ -75,14 +75,5 @@ export const teamMembers: TeamMember[] = [
     email: 'john.atwete@universallighthouse.org',
     linkedin: 'https://linkedin.com/in/johnatwete',
     contact: '+254 745 678 901'
-  },
-  {
-    id: 'newton-ouma',
-    name: 'Newton Ouma',
-    description: 'IT Services',
-    imageUrl: '/images/teams/Newton.jpg',
-    email: 'newton.ouma@universallighthouse.org',
-    twitter: 'https://twitter.com/newtonouma',
-    linkedin: 'https://linkedin.com/in/newtonouma'
   }
 ];
