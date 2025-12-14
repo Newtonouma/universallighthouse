@@ -17,7 +17,7 @@ export const teamMembers: TeamMember[] = [
     id: 'emmily-akech',
     name: 'Emmily Akech',
     description: 'Founder & Director',
-    imageUrl: '/images/teams/emilly.webp',
+    imageUrl: '/images/teams/emily.jpg',
     email: 'emmily.akech@universallighthouse.org',
     linkedin: 'https://linkedin.com/in/emmilyakech',
     twitter: 'https://twitter.com/emmilyakech'
